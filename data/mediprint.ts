@@ -1,5 +1,6 @@
-// Case A — MediPrint Solutions. Section 6.A of the build prompt.
-// N1: every string here ships verbatim. Do not paraphrase or translate.
+// Case A — DataForm Systems. Day 2 Task 1.
+// N1: every string here ships verbatim from the curriculum. Do not paraphrase.
+// The route id stays /case/mediprint for stable links; the content is DataForm.
 
 import type { CategoryCode } from "./categories";
 import type { ContextTile, Hotspot, Zone } from "./case-shared";
@@ -7,124 +8,135 @@ import type { ContextTile, Hotspot, Zone } from "./case-shared";
 export type { ContextTile, Hotspot, Zone };
 
 export const HERO_IMAGE = {
-  src: "/assets/mediprint-hero.jpeg",
-  width: 2048,
-  height: 1117,
+  src: "/assets/dataform-hero.jpeg",
+  width: 2752,
+  height: 1536,
   alt:
-    "Cutaway illustration of the MediPrint Solutions offices: a server room, a print area, an open-plan workspace, a boardroom, a project presentation room, a basement store of old devices, a procurement sign and a cloud icon, with a category legend down the left side.",
+    "Illustrated cutaway of the DataForm Systems building. Down the left, five area arrows — Operations, Procurement, Use, Replacement, Storage. Across three floors: a server room and a standalone test tower with a cloud outside on the top floor; a workstation desk, a printer and a laptop being swapped on a refresh cycle in the middle; and a store of boxed-up devices, a procurement desk and a quiet office corner below.",
+  // Version 2: the schematic SVG, reachable from the IMG/SVG toggle.
+  schematic: "/assets/dataform-hero.svg",
 };
 
 export const BRIEF = {
-  name: "MediPrint Solutions",
+  name: "DataForm Systems",
   lines: [
-    "280 employees, two sites, own server room, device renewal every three years, high volume of printing, growing cloud use, no sustainability strategy in IT.",
+    "420 employees. The company operates a mix of office workstations, mobile devices, printers, a local server room, cloud applications and several test systems.",
+    "Devices are replaced regularly, although many would still be technically usable. There is no systematic examination of energy or resource consumption.",
   ],
 };
 
 export const CONTEXT: ContextTile[] = [
-  { id: "ctx-elec-rising", text: "Electricity costs are rising significantly." },
   {
-    id: "ctx-mgmt-asking",
-    text:
-      "Management is asking for the first time about IT's contribution to sustainability.",
+    id: "ctx-replace",
+    text: "Devices are replaced regularly, although many would still be technically usable.",
   },
   {
-    id: "ctx-projects-fnspd",
-    text: "IT projects are assessed only in terms of functionality and speed.",
+    id: "ctx-nosystem",
+    text: "There is no systematic examination of energy or resource consumption.",
   },
 ];
 
-// Order is the contract: the list view and the hero share it.
+// Order is the contract: the list view and the hero share it. `x`/`y` are the
+// schematic-SVG coordinates (v2); `imgX`/`imgY` are measured off the illustration
+// (v1, default). Percentages of the image box in both cases.
 export const HOTSPOTS: Hotspot[] = [
   {
     id: "hs-server-room",
     label: "Server room",
-    x: 62.5,
-    y: 29,
-    categories: ["E"],
-    fact:
-      "Own server room on site. Runs continuously; cooling and uptime are the operational priority.",
-    onTheImage:
-      "Racks lit red behind two large cooling fans, with heat rising from the cabinet on the left.",
+    x: 28.8,
+    y: 27.8,
+    imgX: 50.5,
+    imgY: 25.8,
+    categories: ["Op"],
+    lens: "energy",
+    fact: "Several older systems with low utilisation exist in the server room.",
+    onTheImage: "The rack of servers on the top floor, by the white marker.",
   },
   {
-    id: "hs-elec-meter",
-    label: "Electricity meter",
-    x: 73,
-    y: 11.5,
-    categories: ["E"],
-    fact: "Electricity costs are rising significantly.",
-    onTheImage: "A wall chart with a red line climbing steeply to the right.",
+    id: "hs-test-systems",
+    label: "Test systems",
+    x: 56.5,
+    y: 27.8,
+    imgX: 66.3,
+    imgY: 24.4,
+    categories: ["Op"],
+    lens: "energy",
+    fact:
+      "Several test systems run alongside the production estate — convenient to leave powered, and easy to forget once the test they were built for is over.",
+    onTheImage: "The standalone tower to the right of the racks, top floor.",
   },
   {
     id: "hs-cloud",
-    label: "Cloud services",
-    x: 56.5,
-    y: 82.5,
-    categories: ["E", "Em"],
+    label: "Cloud applications",
+    x: 84.2,
+    y: 27.8,
+    imgX: 86,
+    imgY: 22,
+    categories: ["Op"],
+    lens: "energy",
     fact:
-      "Growing cloud use. Compute and storage are shifting to external providers whose energy mix is not tracked here.",
-    onTheImage:
-      "A cloud icon above the basement servers, with arrows running between the two.",
+      "Cloud applications are in growing use. The energy behind them sits on the provider's meter, not tracked here.",
+    onTheImage: "The cloud outside the building, top right, wired in by a cable.",
   },
   {
-    id: "hs-devices-3yr",
-    label: "Workplace devices",
-    x: 82.5,
-    y: 49,
-    categories: ["R"],
-    fact: "Regular device renewal every three years across the workforce.",
-    onTheImage:
-      "A speech bubble over the boardroom noting the three-year renewal cycle.",
-  },
-  {
-    id: "hs-basement",
-    label: "Basement storage",
-    x: 31,
-    y: 89,
-    categories: ["R"],
-    fact: "Many old devices are stored unused in the basement.",
-    onTheImage:
-      "A pile of old monitors, towers and keyboards under a single hanging lamp.",
+    id: "hs-workstations",
+    label: "Workstations",
+    x: 28.8,
+    y: 55.4,
+    imgX: 50.3,
+    imgY: 47.5,
+    categories: ["U"],
+    lens: "energy",
+    fact: "Workstation computers often keep running at night as well.",
+    onTheImage: "The desk with a monitor and two people, middle floor left.",
   },
   {
     id: "hs-print",
-    label: "Print area",
-    x: 57.5,
-    y: 63,
-    categories: ["R", "Em"],
-    fact: "High volume of printing.",
-    onTheImage:
-      "Two copiers beside stacks of paper reaching desk height, with staff feeding them.",
+    label: "Printers & peripherals",
+    x: 56.5,
+    y: 55.4,
+    imgX: 69.3,
+    imgY: 49.6,
+    categories: ["U"],
+    lens: "both",
+    fact: "Printers and peripherals are distributed across many areas.",
+    onTheImage: "The printer with a stack of paper, middle floor.",
+  },
+  {
+    id: "hs-devices-3yr",
+    label: "3-year notebook refresh",
+    x: 84.2,
+    y: 55.4,
+    imgX: 82.8,
+    imgY: 48.4,
+    categories: ["Rp"],
+    lens: "resource",
+    fact: "Notebooks are replaced by default after three years.",
+    onTheImage: "The laptop by the green refresh arrows, middle floor right.",
+  },
+  {
+    id: "hs-basement",
+    label: "Unused devices in store",
+    x: 28.8,
+    y: 83.1,
+    imgX: 54.5,
+    imgY: 79.7,
+    categories: ["St"],
+    lens: "resource",
+    fact: "Old monitors and accessories are stored unused.",
+    onTheImage: "The shelving of boxed-up devices, lower floor left.",
   },
   {
     id: "hs-procurement",
     label: "Procurement desk",
-    x: 43,
-    y: 86,
-    categories: ["G"],
-    fact: "There are no rules for procurement or device service life.",
-    onTheImage: "A post sign standing at the edge of the basement.",
-  },
-  {
-    id: "hs-boardroom",
-    label: "Boardroom",
-    x: 85.5,
-    y: 64,
-    categories: ["G"],
-    fact: "No sustainability strategy in IT.",
-    onTheImage:
-      "Four people around a glass-walled meeting table, one of them presenting.",
-  },
-  {
-    id: "hs-project-lens",
-    label: "Project intake board",
-    x: 88.5,
-    y: 84,
-    categories: ["G"],
-    fact: "IT projects are assessed only in terms of functionality and speed.",
-    onTheImage:
-      "A projector screen in the room at the lower right, read out by a presenter.",
+    x: 56.5,
+    y: 83.1,
+    imgX: 67.6,
+    imgY: 75.7,
+    categories: ["Pr"],
+    lens: "resource",
+    fact: "New devices are often procured without a repair check or reuse assessment.",
+    onTheImage: "The desk with a delivery box and staff, lower floor centre.",
   },
 ];
 
@@ -133,29 +145,25 @@ export const HOTSPOTS: Hotspot[] = [
  * carry the brief and the legend instead of a sidebar repeating them.
  * All four values are percentages of the image box.
  */
-/** The building carrying the MediPrint logo. */
+/** The company title block (illustration) / banner (schematic). */
 export const COMPANY_ZONE: Zone = {
   id: "zone-company",
-  label: "MediPrint Solutions — company brief and context",
-  x: 24,
-  y: 9,
-  w: 17,
-  h: 36,
+  label: "DataForm Systems — company brief and context",
+  x: 15.5,
+  y: 3,
+  w: 23,
+  h: 9,
+  imgX: 3,
+  imgY: 5,
+  imgW: 26,
+  imgH: 12,
 };
 
-/** The five category arrows already printed down the left of the artwork. */
+/** The five area arrows down the left of the artwork. */
 export const CATEGORY_ZONES: (Zone & { code: CategoryCode })[] = [
-  { id: "zone-cat-e", code: "E", label: "Topic area: Energy", x: 2.5, y: 19.5, w: 16, h: 8.5 },
-  { id: "zone-cat-r", code: "R", label: "Topic area: Resources", x: 2.5, y: 28, w: 16, h: 8.5 },
-  { id: "zone-cat-em", code: "Em", label: "Topic area: Emissions", x: 2.5, y: 37.5, w: 16, h: 8.5 },
-  { id: "zone-cat-u", code: "U", label: "Topic area: Use", x: 2.5, y: 47.5, w: 16, h: 8.5 },
-  {
-    id: "zone-cat-g",
-    code: "G",
-    label: "Topic area: Organisation & Governance",
-    x: 2.5,
-    y: 57.5,
-    w: 16,
-    h: 10,
-  },
+  { id: "zone-cat-op", code: "Op", label: "Area: Operations", x: 1.5, y: 16, w: 11, h: 8, imgX: 2.5, imgY: 31, imgW: 24, imgH: 10 },
+  { id: "zone-cat-pr", code: "Pr", label: "Area: Procurement", x: 1.5, y: 26, w: 11, h: 8, imgX: 2.5, imgY: 43.5, imgW: 24, imgH: 10 },
+  { id: "zone-cat-u", code: "U", label: "Area: Use", x: 1.5, y: 36, w: 11, h: 8, imgX: 2.5, imgY: 55, imgW: 24, imgH: 10 },
+  { id: "zone-cat-rp", code: "Rp", label: "Area: Replacement", x: 1.5, y: 46, w: 11, h: 8, imgX: 2.5, imgY: 67.5, imgW: 24, imgH: 10 },
+  { id: "zone-cat-st", code: "St", label: "Area: Storage", x: 1.5, y: 56, w: 11, h: 8, imgX: 2.5, imgY: 79.5, imgW: 24, imgH: 10 },
 ];

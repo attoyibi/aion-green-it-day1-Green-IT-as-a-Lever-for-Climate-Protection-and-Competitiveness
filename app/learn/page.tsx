@@ -11,17 +11,17 @@ import { W7OrgChart } from "@/components/learn/W7OrgChart";
 import { W8Roadmap } from "@/components/learn/W8Roadmap";
 import { W9Symbolic } from "@/components/learn/W9Symbolic";
 
-// The three levels of the Day 1 curriculum. Objectives are the mentor's
-// contract with the room: what a participant can do afterwards.
+// The three levels of the Day 2 curriculum. Objectives are the promise to the
+// learner: what you can do after working through this level.
 const LEVELS = [
   {
     id: "l1",
     pill: "L1 · Knowledge",
-    summary: "Understand the terms, and place Green IT's strategic relevance",
+    summary: "Understand where IT's energy and resources go, and why it is strategic",
     objectives: [
-      "Understand the vocabulary and the basics of Green IT.",
-      "Place why Green IT is strategically relevant for a company.",
-      "Distinguish and assess IT's contribution to climate protection.",
+      "Understand the energy consumption of IT systems as an environmental and cost factor.",
+      "Distinguish direct from indirect energy, and energy from resource consumption.",
+      "Place resource consumption across the whole life cycle, not the usage phase alone.",
     ],
     widgets: (
       <>
@@ -36,11 +36,11 @@ const LEVELS = [
   {
     id: "l2",
     pill: "L2 · Application",
-    summary: "Find the fields of action, and name the goal conflicts",
+    summary: "Find the drivers, weigh the levers, name the goal conflicts",
     objectives: [
-      "Recognise Green IT fields of action inside a company.",
-      "Derive a first set of priorities for measures and steering.",
-      "Analyse goal conflicts between economics, sustainability and feasibility.",
+      "Analyse the typical drivers of energy and resource consumption in an IT estate.",
+      "Identify levers for reduction and assess first measures under economic and organisational conditions.",
+      "Weigh the goal conflicts between performance, availability, cost and resource conservation.",
     ],
     widgets: (
       <MeridianScenario layout="inline" />
@@ -49,10 +49,10 @@ const LEVELS = [
   {
     id: "l3",
     pill: "L3 · Management decision",
-    summary: "Treat Green IT as a steering topic, and decide under uncertainty",
+    summary: "Treat energy and resources as a steering topic, and decide under uncertainty",
     objectives: [
-      "Position Green IT as a leadership and steering topic at company level.",
-      "Take responsibility for priorities, governance and decisions under uncertainty.",
+      "Treat energy and resource consumption as management parameters for investment, procurement, architecture and operations.",
+      "Take responsibility for priorities and trade-offs, and decide under incomplete data.",
     ],
     widgets: (
       <>
@@ -70,15 +70,16 @@ export default function LearnPage() {
       <PageHeader
         eyebrow="Tab 1"
         title="Learn"
-        intro="Eleven widgets across three levels. Each one is something to do, not something to read — and each carries a checkable figure from practice rather than a claim. Verdicts are shown here on purpose: this is where you are allowed to be wrong cheaply."
+        intro="Seven hands-on widgets and a case study, across three levels. Each one is something to do, not something to read — and each carries a checkable figure from practice rather than a claim. Verdicts are shown here on purpose: this is where you are allowed to be wrong cheaply."
       />
 
       <p className="mb-6 rounded-2xl border-l-4 border-purple bg-lilac/60 p-4 text-body text-navy">
-        <span className="font-semibold">How to use this as a mentor: </span>
-        run one level per block. Let the room attempt each widget before you explain
-        anything — the widgets are built so that being wrong is the teaching moment. The
-        “From the field” notes carry the numbers you will be challenged on, with the
-        source next to them.
+        <span className="font-semibold">How to use this: </span>
+        work top to bottom, one level at a time, and try each activity before you read
+        the explanation — getting it wrong first is the fastest way to remember it. Every
+        activity opens with a <span className="font-semibold">“What&apos;s in it for you”</span> line
+        so you know why it is worth your time, and the “From the field” notes give you a
+        real figure and its source you can rely on.
       </p>
 
       <Accordion
@@ -91,7 +92,7 @@ export default function LearnPage() {
             <>
               <div className="rounded-xl border border-line p-4">
                 <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-                  After this level, a participant can
+                  After this level, you can
                 </p>
                 <ul className="list-disc space-y-1 pl-5">
                   {level.objectives.map((objective) => (

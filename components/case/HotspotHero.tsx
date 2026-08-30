@@ -134,6 +134,10 @@ type Props = {
   highlight: { ids: string[]; hex: string } | null;
   /** Rendered in the detail card. Null hides the card. */
   detail: ReactNode | null;
+  /** Which version is showing, and whether a v2 SVG exists to toggle to. */
+  view: "img" | "svg";
+  onSetView: (v: "img" | "svg") => void;
+  hasSchematic: boolean;
 };
 
 export function HotspotHero({
@@ -148,6 +152,9 @@ export function HotspotHero({
   onClear,
   highlight,
   detail,
+  view,
+  onSetView,
+  hasSchematic,
 }: Props) {
   const { transform, scale } = transformFor(focus);
   const inverse = `scale(${1 / scale})`;
@@ -277,6 +284,38 @@ export function HotspotHero({
           >
             Zoom out
           </button>
+        ) : null}
+
+        {/* Small version toggle in the corner: illustration (v1) vs SVG (v2).
+            Bottom-right so it never sits over the detail card's Close button. */}
+        {hasSchematic ? (
+          <div
+            className="absolute bottom-3 right-3 z-10 inline-flex overflow-hidden rounded-lg border border-line bg-paper/95 text-[11px] font-semibold shadow-lg"
+            aria-label="Hero version"
+          >
+            <button
+              type="button"
+              aria-pressed={view === "img"}
+              onClick={() => onSetView("img")}
+              className={clsx(
+                "px-2 py-1 transition-colors duration-200",
+                view === "img" ? "bg-navy text-paper" : "text-navy hover:bg-lilac",
+              )}
+            >
+              IMG
+            </button>
+            <button
+              type="button"
+              aria-pressed={view === "svg"}
+              onClick={() => onSetView("svg")}
+              className={clsx(
+                "px-2 py-1 transition-colors duration-200",
+                view === "svg" ? "bg-navy text-paper" : "text-navy hover:bg-lilac",
+              )}
+            >
+              SVG
+            </button>
+          </div>
         ) : null}
       </div>
 
