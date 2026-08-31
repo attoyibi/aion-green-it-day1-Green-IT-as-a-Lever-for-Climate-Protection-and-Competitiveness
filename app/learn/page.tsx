@@ -16,7 +16,7 @@ import { W9Symbolic } from "@/components/learn/W9Symbolic";
 const LEVELS = [
   {
     id: "l1",
-    pill: "L1 · Knowledge",
+    pill: "L1: Knowledge",
     summary: "Understand the terms, and place Green IT's strategic relevance",
     objectives: [
       "Understand the vocabulary and the basics of Green IT.",
@@ -35,7 +35,7 @@ const LEVELS = [
   },
   {
     id: "l2",
-    pill: "L2 · Application",
+    pill: "L2: Application",
     summary: "Find the fields of action, and name the goal conflicts",
     objectives: [
       "Recognise Green IT fields of action inside a company.",
@@ -48,7 +48,7 @@ const LEVELS = [
   },
   {
     id: "l3",
-    pill: "L3 · Management decision",
+    pill: "L3: Management decision",
     summary: "Treat Green IT as a steering topic, and decide under uncertainty",
     objectives: [
       "Position Green IT as a leadership and steering topic at company level.",
@@ -70,13 +70,13 @@ export default function LearnPage() {
       <PageHeader
         eyebrow="Tab 1"
         title="Learn"
-        intro="Eleven widgets across three levels. Each one is something to do, not something to read — and each carries a checkable figure from practice rather than a claim. Verdicts are shown here on purpose: this is where you are allowed to be wrong cheaply."
+        intro="Eleven widgets across three levels. Each one is something you do, not something you read, and each gives you a figure from real practice that you can check. This tab tells you when you are right or wrong on purpose. It is the safe place to get things wrong."
       />
 
       <p className="mb-6 rounded-2xl border-l-4 border-purple bg-lilac/60 p-4 text-body text-navy">
         <span className="font-semibold">How to use this as a mentor: </span>
         run one level per block. Let the room attempt each widget before you explain
-        anything — the widgets are built so that being wrong is the teaching moment. The
+        anything. The widgets are built so that being wrong is the teaching moment. The
         “From the field” notes carry the numbers you will be challenged on, with the
         source next to them.
       </p>

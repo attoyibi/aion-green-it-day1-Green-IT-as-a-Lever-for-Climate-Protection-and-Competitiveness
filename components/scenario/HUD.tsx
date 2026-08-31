@@ -62,7 +62,7 @@ export function HUD({
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : key)}
-                    title={`${STAKEHOLDERS[key].name} — ${MOOD_LABEL[mood]}`}
+                    title={`${STAKEHOLDERS[key].name}: ${MOOD_LABEL[mood]}`}
                     className={clsx(
                       "flex items-center gap-1.5 rounded-full border px-1.5 py-1 transition-colors duration-200",
                       isOpen ? "border-purple bg-lilac" : "border-line hover:bg-lilac/60",

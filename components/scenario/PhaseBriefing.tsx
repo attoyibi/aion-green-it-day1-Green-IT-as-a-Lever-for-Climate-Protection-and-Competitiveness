@@ -35,7 +35,7 @@ export function PhaseBriefing({
         </div>
 
         <p className="mb-1.5 text-caption uppercase tracking-wide text-ash">
-          Three questions — select one to see what you are listening for
+          Three questions. Select one to see what you are listening for
         </p>
 
         <ul className="mb-3 space-y-1.5">

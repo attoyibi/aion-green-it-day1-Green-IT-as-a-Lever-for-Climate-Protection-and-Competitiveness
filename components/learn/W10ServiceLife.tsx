@@ -98,7 +98,7 @@ export function W10ServiceLife() {
 
         <p className="mt-3 text-caption text-ash">
           Model: {EMBODIED}% of lifetime footprint is fixed at manufacturing, the rest
-          accrues in use. Shown as an index, not as absolute figures — this module is
+          accrues in use. This is shown as an index, not as absolute figures, because this module is
           deliberately pre-metric.
         </p>
       </div>

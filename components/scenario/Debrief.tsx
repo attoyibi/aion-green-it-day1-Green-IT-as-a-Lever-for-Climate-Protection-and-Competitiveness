@@ -13,7 +13,7 @@ import { computeEnding, computeSignals, type MeridianState, type Phase } from "@
 import { EndingArt } from "./ScenarioArt";
 
 const titleOf = (phase: Phase, choiceId: string | null) =>
-  PHASES.find((p) => p.id === phase)?.choices.find((c) => c.id === choiceId)?.title ?? "—";
+  PHASES.find((p) => p.id === phase)?.choices.find((c) => c.id === choiceId)?.title ?? "Not chosen";
 
 /** NS5 / R4: the only surface where reveal vocabulary is allowed. */
 export function Debrief({
@@ -158,7 +158,7 @@ export function Debrief({
           href="#l3"
           className="rounded-xl bg-purple px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-navy"
         >
-          Continue to L3 · Management decision →
+          Continue to L3: Management decision →
         </a>
         <Link
           href="/task-map"

@@ -187,7 +187,7 @@ function Framed({ a }: { a: Artifact }) {
       <article className="motion-safe:animate-[artifactIn_240ms_ease-out] rounded-2xl border border-line bg-paper p-4">
         <SlideMockup id={a.id} />
         <p className="mt-2 text-caption uppercase tracking-wide text-ash">
-          Marketing — draft v2
+          Marketing: draft v2
         </p>
       </article>
     );

@@ -30,7 +30,7 @@ export const CONTEXT: ContextTile[] = [
 /** The company block on the left of the board: building, profile tag and city. */
 export const COMPANY_ZONE: Zone = {
   id: "zone-company",
-  label: "NordCom Services GmbH — company brief and context",
+  label: "NordCom Services GmbH: company brief and context",
   x: 3,
   y: 15.5,
   w: 20,
@@ -150,40 +150,40 @@ export const HOTSPOTS: Hotspot[] = [
 // ---------------------------------------------------------------------------
 
 export const TASK3 = {
-  number: "Task 3 · Level 2 — Application",
+  number: "Task 3, Level 2: Application",
   title: "Green IT between cost pressure and competitiveness",
   lead:
-    "You advise the management of NordCom Services GmbH. Everything you need is on the board above: nine findings and the setting they sit in. Nothing else is given, and nothing else is needed.",
+    "You are advising the management of NordCom Services GmbH. Everything you need is on the board above: nine findings and the setting they sit in. Nothing else is given, and nothing else is needed.",
   assignment: [
     {
       id: "t3-1",
       text: "Analyse the initial situation from the perspectives of operations, procurement, use, governance and competitiveness.",
-      hint: "Five perspectives, nine findings. A finding may belong to more than one, and one perspective may hold several.",
+      hint: "You have five perspectives and nine findings. One finding can belong to more than one perspective, and one perspective can hold several findings.",
     },
     {
       id: "t3-2",
       text: "Identify four action areas that become priorities.",
-      hint: "Group the findings. Four areas, not nine measures — if you end up with nine you have listed symptoms, not areas.",
+      hint: "Group the findings together. You want four areas, not nine measures. If you end up with nine, you have listed symptoms instead of areas.",
     },
     {
       id: "t3-3",
       text: "Draw up an initial Green IT recommendation for management, with short-term and medium-term steps.",
-      hint: "Short-term means startable now with the people already here. Medium-term means it needs a decision, a budget or a supplier.",
+      hint: "Short-term means you could start it now with the people you already have. Medium-term means it first needs a decision, a budget or a supplier.",
     },
     {
       id: "t3-4",
       text: "Decide which step should be carried out first.",
-      hint: "One step. The panel below records your choice and answers back before you see the key.",
+      hint: "Choose one step. The panel below records your choice and responds to it before it shows you the key.",
     },
     {
       id: "t3-5",
       text: "Justify your decision with regard to impact, risk and feasibility.",
-      hint: "All three. A step with high impact and no feasibility is a wish, not a decision.",
+      hint: "Cover all three. A step with high impact but no feasibility is a wish, not a decision.",
     },
     {
       id: "t3-6",
       text: "Formulate a proposal for anchoring responsibility and control organisationally.",
-      hint: "Who decides, who reports, and on what rhythm. A name without a reporting line is not an anchor.",
+      hint: "Say who decides, who reports, and how often. A name on its own, with no reporting line, is not an anchor.",
     },
   ],
   objectiveHeading: "Objective",
@@ -231,7 +231,7 @@ export const ACTION_AREAS: ActionArea[] = [
     strength:
       "It addresses the most visible waste on the board, and device lifetime is the lever with the clearest resource effect.",
     tradeoff:
-      "Procurement here is decentralised. A guideline issued into that structure is a document, not a control — until someone holds the authority to apply it, each team keeps buying the way it already buys.",
+      "Procurement here is decentralised. A guideline issued into that structure is only a document, not a control. Until someone has the authority to apply it, each team keeps buying the way it already buys.",
   },
   {
     id: "aa-infrastructure",

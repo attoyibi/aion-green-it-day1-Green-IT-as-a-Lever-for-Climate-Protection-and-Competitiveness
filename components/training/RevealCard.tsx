@@ -102,7 +102,7 @@ export function RevealCard({
       {!revealed ? (
         <>
           <p className="mb-2 text-body text-ash">
-            Which category does this belong to? Press 1–5 or choose below.
+            Which category does this belong to? Press 1 to 5, or choose below.
           </p>
           <div className="mb-3 flex flex-wrap gap-2">
             {CATEGORIES.map((category, i) => (
@@ -138,7 +138,7 @@ export function RevealCard({
           {/* Without this the card ends abruptly and reads as broken. */}
           <div className="mt-4 rounded-xl border border-dashed border-line bg-lilac/30 p-4">
             <p className="mb-3 text-caption font-semibold uppercase tracking-wide text-ash">
-              Opens once you choose — nothing is lost by choosing wrong
+              Opens once you choose. Nothing is lost by choosing wrong
             </p>
             <ul className="grid gap-2 md:grid-cols-2">
               {[

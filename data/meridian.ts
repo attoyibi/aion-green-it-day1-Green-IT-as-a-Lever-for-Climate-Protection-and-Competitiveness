@@ -107,12 +107,12 @@ export const ARTIFACTS: Record<string, Artifact> = {
     role: "CIO",
     to: "Nadia Rahmani",
     time: "08:47",
-    subject: "Nordvind clause — need a plan",
+    subject: "Nordvind clause: we need a plan",
     body: [
-      "Nadia — just came out of the Nordvind Retail meeting. They're 30% of our revenue. Their RFP renewal has a new clause: IT sustainability disclosure required within 6 months, or the contract doesn't renew.",
+      "Nadia, I have just come out of the Nordvind Retail meeting. They're 30% of our revenue. Their RFP renewal has a new clause: IT sustainability disclosure required within 6 months, or the contract doesn't renew.",
       "Board meeting is in 12 weeks. They want to see your plan.",
       "Handle this.",
-      "— M",
+      "M",
     ],
   },
   "meridian/slack-sabine-heads-up": {
@@ -144,14 +144,14 @@ export const ARTIFACTS: Record<string, Artifact> = {
   "meridian/artifact-audit-preview": {
     id: "meridian/artifact-audit-preview",
     kind: "figure",
-    title: "Energy audit — partial results",
+    title: "Energy audit: partial results",
     desc: "A dashboard part-filled with data, three panels populated and two still empty.",
     art: "audit-preview",
   },
   "meridian/calendar-urgent-marcus": {
     id: "meridian/calendar-urgent-marcus",
     kind: "calendar",
-    title: "URGENT — board is asking, what am I telling them?",
+    title: "URGENT: the board is asking. What am I telling them?",
     day: "Thursday",
     time: "16:30",
     attendees: ["Marcus Vogel", "Nadia Rahmani"],
@@ -183,9 +183,9 @@ export const ARTIFACTS: Record<string, Artifact> = {
     role: "Head of Procurement",
     to: "Marcus Vogel · cc People & Culture",
     time: "16:55",
-    subject: "Procurement process — the laptop order",
+    subject: "Procurement process: the laptop order",
     body: [
-      "Marcus — fifty units went through on a fast-track authorisation without passing procurement. I found out when the invoice arrived.",
+      "Marcus, fifty units went through on a fast-track authorisation without passing procurement. I found out when the invoice arrived.",
       "I am not objecting to the devices. I am objecting to being told afterwards. If Green IT is going to work this way, say so now and I will plan around it.",
     ],
   },
@@ -196,7 +196,7 @@ export const ARTIFACTS: Record<string, Artifact> = {
     fromName: "Facilities",
     role: "Energy reporting",
     time: "11:20",
-    subject: "Footprint breakdown — first pass",
+    subject: "Footprint breakdown: first pass",
     body: [
       "First pass at the IT breakdown you asked for. The laptop fleet comes out at roughly 12% of total IT footprint. The on-prem data centre is the dominant line.",
     ],
@@ -221,7 +221,7 @@ export const ARTIFACTS: Record<string, Artifact> = {
   "meridian/artifact-consultant-report": {
     id: "meridian/artifact-consultant-report",
     kind: "figure",
-    title: "External assessment — 47 pages",
+    title: "External assessment: 47 pages",
     desc: "The cover of a thick bound consultancy report with a page count on the spine.",
     art: "consultant-report",
     caption:
@@ -234,7 +234,7 @@ export const ARTIFACTS: Record<string, Artifact> = {
     fromName: "Elena",
     to: "Nadia Rahmani",
     date: "Week 5",
-    subject: "Advisory engagement — cost breakdown",
+    subject: "Advisory engagement: cost breakdown",
     body: [
       "Please break down the €45k against expected outcomes. I need to show the line against something.",
     ],
@@ -258,7 +258,7 @@ export const ARTIFACTS: Record<string, Artifact> = {
         label: "Data centre on-prem",
         points: [
           "Installed in 2016 and never re-planned.",
-          "PUE 2.1 — for every unit reaching the computing, 1.1 more goes to cooling, conversion and the building.",
+          "PUE 2.1. For every unit reaching the computing, 1.1 more goes to cooling, conversion and the building.",
           "Largest single line, and the one Rafael's warehouses depend on.",
         ],
       },
@@ -302,7 +302,7 @@ export const ARTIFACTS: Record<string, Artifact> = {
   "meridian/artifact-cloud-savings": {
     id: "meridian/artifact-cloud-savings",
     kind: "figure",
-    title: "Cloud consolidation — running total",
+    title: "Cloud consolidation: running total",
     desc: "A descending line chart with idle resources marked as they are switched off.",
     art: "cloud-savings",
   },
@@ -330,10 +330,10 @@ export const ARTIFACTS: Record<string, Artifact> = {
     fromName: "Marketing",
     role: "Brand & Communications",
     time: "11:05",
-    subject: "Nordvind slide — headline still open",
+    subject: "Nordvind slide: the headline is still open",
     body: [
       "We have left the headline box empty for you. Our advice is something aggressive but believable.",
-      "Buyers in this sector expect a number. “Significant reduction” reads as nothing to a procurement team — they see that phrasing every week. Tell us what to put in the box and we will build the rest around it.",
+      "Buyers in this sector expect a number. “Significant reduction” reads as nothing to a procurement team, because they see that phrasing every week. Tell us what to put in the box and we will build the rest around it.",
     ],
   },
   "meridian/email-nordvind-excited": {
@@ -497,7 +497,7 @@ export const PHASES: PhaseSpec[] = [
     id: "p1",
     briefing: {
       short:
-        "A first move is not just what you do — it is what you can still know afterwards. Before picking, separate a field of action from optics.",
+        "A first move is not just what you do. It is what you can still know afterwards. Before picking, separate a field of action from optics.",
       questions: [
         {
           q: "Which of these produces knowledge you do not have yet?",
@@ -505,7 +505,7 @@ export const PHASES: PhaseSpec[] = [
             "You are listening for whether the output is a fact or an impression. An audit produces numbers. A photograph produces a feeling. Both are useful; only one can be argued from.",
         },
         {
-          q: "Which produces something to show — and is visibility what is scarce right now, or is it evidence?",
+          q: "Which one produces something to show, and is visibility what is scarce right now, or is it evidence?",
           lookFor:
             "Scarcity decides. If the programme is safe, visibility is cheap and evidence is valuable. If it is about to be cut, the reverse is true.",
         },
@@ -519,7 +519,7 @@ export const PHASES: PhaseSpec[] = [
         title: "Fields of action, and the cost of a first move",
         paragraphs: [
           "A field of action is somewhere a decision can change a physical or contractual fact: what is bought, how long it runs, when it is replaced, who signs it off. Optics is anything that changes what people believe without changing one of those. Both are legitimate moves; the mistake is not being able to say which one you just made.",
-          "Every first move spends the same twelve weeks. The real cost of an option is not on its price tag — it is the option it forecloses. Six weeks of audit means six weeks not spent negotiating a contract. Three weeks of visible delivery means arriving at Phase 2 without a baseline to argue from.",
+          "Every first move spends the same twelve weeks. The real cost of an option is not on its price tag. It is the option it closes off. Six weeks of audit means six weeks not spent negotiating a contract. Three weeks of visible delivery means arriving at Phase 2 without a baseline to argue from.",
           "Meridian's estate has four candidate fields of action: what the data centre draws, how long devices live, how cloud is bought, and who decides any of it. Nothing in Phase 1 fixes any of them. It decides which one you will be able to see clearly.",
         ],
         links: [
@@ -548,7 +548,7 @@ export const PHASES: PhaseSpec[] = [
         title: "Data first",
         body: "Commission a full energy audit and device inventory before any commitments are made.",
         tags: [
-          { icon: "clock", text: "6–8 weeks" },
+          { icon: "clock", text: "6 to 8 weeks" },
           { icon: "wallet", text: "low cost" },
           { icon: "target", text: "fact base" },
         ],
@@ -638,7 +638,7 @@ export const PHASES: PhaseSpec[] = [
             "The percentages give you size. The duration tags give you horizon. Size is the ceiling; horizon decides whether you reach it inside the year.",
         },
         {
-          q: "Who has to agree before this can start — and do they know yet?",
+          q: "Who has to agree before this can start, and do they know that yet?",
           lookFor:
             "Look at whose stake is listed under the option. If someone holding a veto is not in the conversation yet, the timeline on the card is optimistic.",
         },
@@ -652,7 +652,7 @@ export const PHASES: PhaseSpec[] = [
         title: "Prioritising when the three tests disagree",
         paragraphs: [
           "Impact asks how much of the footprint an option can move. Feasibility asks whether it can be done with the people, budget and authority you actually have. Visibility asks whether anyone outside IT will notice. A strong option usually wins two and loses one, and being able to name which one it loses is what makes the case defensible.",
-          "The trap in this phase is treating the biggest percentage as the answer. The data centre is the largest line and also the one with the longest horizon, the highest capital cost and the most operational risk — which is a different question from whether it is the right thing to start.",
+          "The trap in this phase is treating the biggest percentage as the answer. The data centre is the largest line and also the one with the longest horizon, the highest capital cost and the most operational risk. That is a different question from whether it is the right thing to start.",
           "The other trap is the opposite: choosing the smallest, safest area because it can be finished. Finishing something small is worth a great deal in a first year, and worth very little if it becomes the whole programme.",
         ],
         links: [
@@ -686,7 +686,7 @@ export const PHASES: PhaseSpec[] = [
         title: "Data centre migration",
         body: "Migrate on-prem workloads to a green-certified colocation partner. Largest impact, longest horizon, highest disruption risk.",
         tags: [
-          { icon: "clock", text: "12–18 months" },
+          { icon: "clock", text: "12 to 18 months" },
           { icon: "wallet", text: "€800k+ CAPEX" },
           { icon: "chartDown", text: "~35% reduction" },
         ],
@@ -705,7 +705,7 @@ export const PHASES: PhaseSpec[] = [
         title: "Laptop lifecycle programme",
         body: "Extend fleet lifetime with structured refurb, condition-based refresh, and end-of-life management. Fast, visible, Procurement can co-own.",
         tags: [
-          { icon: "clock", text: "3–4 months" },
+          { icon: "clock", text: "3 to 4 months" },
           { icon: "wallet", text: "€120k" },
           { icon: "chartDown", text: "~15% reduction" },
         ],
@@ -776,7 +776,7 @@ export const PHASES: PhaseSpec[] = [
             "A modest claim survives a slip as a delay. An ambitious one converts the same slip into a credibility problem.",
         },
         {
-          q: "Who is the audience — the buyer's procurement team, your own board, or a press release?",
+          q: "Who is the audience: the buyer's procurement team, your own board, or a press release?",
           lookFor:
             "Procurement reads for evidence, a board reads for confidence, a press release reads for a headline. Only one of the three is still reading in twelve months.",
         },
@@ -785,7 +785,7 @@ export const PHASES: PhaseSpec[] = [
         title: "What a sustainability claim exposes you to",
         paragraphs: [
           "The exposure in this phase is not having a weak position. It is publishing a position you cannot evidence. A modest number you can show beats an ambitious number you cannot, because the ambitious one converts every later delay into a credibility problem rather than a delivery problem.",
-          "Buyers' procurement teams read these claims for a living. Vague commitment language — “significant reduction”, “aligned with science-based targets” — is legally safe and reads to a professional buyer as an absence of data. It usually produces a follow-up question rather than a signature.",
+          "Buyers' procurement teams read these claims for a living. Vague commitment language, such as “significant reduction” or “aligned with science-based targets”, is legally safe and reads to a professional buyer as an absence of data. It usually produces a follow-up question rather than a signature.",
           "This is also the phase where somebody else's incentives are pulling on you. Marketing wants a headline. Your CIO wants a board slide. Neither of them will be asked to produce the evidence in twelve months.",
         ],
         links: [
@@ -906,7 +906,7 @@ export const PHASES: PhaseSpec[] = [
             "Anything that stops when one person moves was a person, not a structure.",
         },
         {
-          q: "Does this need expertise, authority, or both — and does the option supply the one it needs?",
+          q: "Does this need expertise, authority, or both, and does the option supply the one it needs?",
           lookFor:
             "Expertise without a mandate produces recommendations nobody has to act on. A mandate without expertise approves the wrong things confidently.",
         },
@@ -1058,7 +1058,7 @@ export const ENDINGS: Record<
       "The spend never grew large enough to need defending.",
       "The next person to hold this inherits a working machine, not a backlog.",
     ],
-    body: "You built the capability, kept ownership shared, and did it for less money than a single quick win would have cost. There is no announcement and no relaunch, because there is nothing to relaunch — the decisions that follow are simply better than the ones before them, and nobody can point to the moment that changed.",
+    body: "You built the capability, kept ownership shared, and did it for less money than a single quick win would have cost. There is no announcement and no relaunch, because there is nothing to relaunch. The decisions that follow are simply better than the ones before them, and nobody can point to the moment that changed.",
   },
   "quiet-drift": {
     beats: [
@@ -1073,7 +1073,7 @@ export const ENDINGS: Record<
 };
 
 export const DEBRIEF_MESSAGE = [
-  "Green IT at management level is not the question “which choice is correct.” It is the question “does this sequence of choices hold together.” A bold commitment paired with weak governance is not braver than a modest commitment paired with strong governance — it is more exposed.",
+  "Green IT at management level is not the question “which choice is correct.” It is the question “does this sequence of choices hold together.” A bold commitment paired with weak governance is not braver than a modest commitment paired with strong governance. It is more exposed.",
   "Notice which stakeholders you brought with you, and which you left behind. In practice, that is what determines whether a decision survives a change of CIO.",
 ];
 

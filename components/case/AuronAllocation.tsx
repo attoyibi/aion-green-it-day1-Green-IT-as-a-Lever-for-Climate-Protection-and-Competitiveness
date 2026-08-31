@@ -55,7 +55,7 @@ export function AuronAllocation() {
   return (
     <section aria-labelledby="allocation-title" className="card p-5 md:p-6" id="allocation">
       <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-purple">
-        Task 4 · step 7
+        Task 4, step 7
       </p>
       <h2 id="allocation-title" className="mb-2 text-h2 text-ink">
         The 12-month roadmap, as an allocation
@@ -64,8 +64,8 @@ export function AuronAllocation() {
         Six measures. Together they need{" "}
         <strong className="text-ink">{REQUIRED} points</strong> of capacity, and you
         have <strong className="text-ink">{CAPACITY_TOTAL}</strong>. The shortfall is
-        deliberate and is not a fault in the exercise — a prioritised roadmap is one
-        where some things sit late on purpose.
+        deliberate. It is not a fault in the exercise. A prioritised roadmap is one
+        where some things are scheduled late on purpose.
       </p>
 
       {/* Capacity meter */}
@@ -168,12 +168,12 @@ export function AuronAllocation() {
             onClick={() => setCommitted(true)}
             className="rounded-xl bg-navy px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-purple disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Commit this roadmap
+            Confirm this roadmap
           </button>
           <span className="text-caption text-ash">
             {funded.length === 0
               ? "Fund at least one measure to continue."
-              : "You can still change the allocation until you commit."}
+              : "You can still change your allocation until you confirm it."}
           </span>
         </div>
       ) : (
@@ -221,7 +221,7 @@ export function AuronAllocation() {
             <p className="mt-2 text-caption text-ash">
               {postponed.trim().length === 0
                 ? "Still blank. This is the field the group debrief turns on."
-                : "Recorded for the debrief. Nothing here is marked — it is what you will be asked to defend."}
+                : "Saved for the debrief. Nothing here is marked. This is what you will be asked to defend."}
             </p>
           </div>
 

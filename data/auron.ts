@@ -37,7 +37,7 @@ export const CONTEXT: ContextTile[] = [
 /** The board's title banner, which names the company and the status. */
 export const COMPANY_ZONE: Zone = {
   id: "zone-company",
-  label: "Auron Digital Group — the big picture and your role",
+  label: "Auron Digital Group: the big picture and your role",
   x: 2,
   y: 12.5,
   w: 41,
@@ -169,7 +169,7 @@ export const HOTSPOTS: Hotspot[] = [
 // ---------------------------------------------------------------------------
 
 export const TASK4 = {
-  number: "Task 4 · Level 3 — Management decision",
+  number: "Task 4, Level 3: Management decision",
   title: "Building a Green IT decision architecture for a growing company",
   lead:
     "Draw up a management proposal that is ready to be decided on. The board above holds every condition it has to survive. There is no configuration that satisfies all of them, and the capacity below does not cover the requirement. That is the task, not a fault in it.",
@@ -300,11 +300,11 @@ export const MEASURES: Measure[] = [
 /** Read back after allocating. No ranking, no score — consequence only. */
 export const ALLOCATION_NOTES = {
   underspent:
-    "Capacity is left unused. Unspent capacity is not saved for later in this exercise — it is simply not used.",
+    "You have left some capacity unused. In this exercise, unused capacity is not saved for later. It is simply not used.",
   complete:
     "Capacity is committed. What you left out is now the substance of your proposal, not an omission from it.",
   noOwner:
-    "You funded work without funding anyone to own it. That is a defensible choice under a hard budget, and it is also the case's stated failure mode — say which it is in your justification.",
+    "You have funded work without funding anyone to own it. Under a hard budget that can be a defensible choice, and it is also the failure this case warns about. Say which one it is in your justification.",
   ownerOnly:
     "You funded the ability to steer and little else. Management asked for results, so the proposal now has to explain what the first six months produce.",
 };

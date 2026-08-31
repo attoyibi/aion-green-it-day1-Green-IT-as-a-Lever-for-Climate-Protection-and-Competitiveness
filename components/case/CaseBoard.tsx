@@ -208,8 +208,8 @@ export function CaseBoard({
           </>
         ) : (
           <p className="mb-3 rounded-xl bg-lilac px-3 py-2 text-caption text-navy">
-            No finding on this board carries this tag. The topic area still belongs
-            to the set of five — its absence here is itself worth noting.
+            No finding on this board carries this tag. The topic area is still one of
+            the five, and the fact that it is missing here is worth noticing.
           </p>
         )}
 
@@ -238,7 +238,7 @@ export function CaseBoard({
 
         {/* The legend Case A has drawn into its artwork. Here it is rendered. */}
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <span className="text-caption text-ash">Filter by topic area:</span>
+          <span className="text-caption text-ash">Show findings by topic area:</span>
           {CATEGORIES.map((category) => {
             const count = hotspots.filter((h) =>
               h.categories.includes(category.code),
@@ -280,14 +280,14 @@ export function CaseBoard({
             <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-purple bg-paper text-caption font-semibold text-purple">
               1
             </span>
-            One finding — {hotspots.length} of them, on panels and on the scene
+            A finding. There are {hotspots.length} in total, on the panels and on the scene
           </span>
 
           <span className="flex items-center gap-2">
             <span className="flex h-5 min-w-[20px] items-center justify-center rounded-md border border-purple bg-paper px-1 text-[11px] font-semibold leading-none text-purple">
               i
             </span>
-            The company block — brief and context
+            The company block, with the brief and the context
           </span>
 
           <span className="text-ash">

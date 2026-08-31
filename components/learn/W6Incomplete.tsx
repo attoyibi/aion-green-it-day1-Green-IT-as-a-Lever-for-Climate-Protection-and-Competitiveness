@@ -38,7 +38,7 @@ export function W6Incomplete() {
               {revealed ? (
                 <p className="text-body text-ink">{tile.content}</p>
               ) : (
-                <p className="text-body text-ash">Covered — you do not have this yet.</p>
+                <p className="text-body text-ash">Covered. You do not have this yet.</p>
               )}
             </div>
           );

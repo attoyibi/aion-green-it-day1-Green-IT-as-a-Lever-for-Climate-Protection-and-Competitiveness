@@ -141,7 +141,7 @@ export function BriefingVisual({ phase }: { phase: Phase }) {
         <line x1="106" y1="48" x2="106" y2="72" stroke={N} strokeDasharray="4 3" />
         <line x1="240" y1="48" x2="240" y2="60" stroke={N} strokeDasharray="4 3" />
         <line x1="106" y1="60" x2="240" y2="60" stroke={N} strokeWidth="1.5" />
-        {label(112, 56, "exposure — the part someone else checks", N)}
+        {label(112, 56, "exposure: the part someone else checks", N)}
       </Frame>
     );
   }

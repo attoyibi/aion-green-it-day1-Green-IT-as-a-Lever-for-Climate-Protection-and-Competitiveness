@@ -26,15 +26,15 @@ export function NordcomFirstStep() {
       id="first-step"
     >
       <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-purple">
-        Task 3 · step 4
+        Task 3, step 4
       </p>
       <h2 id="first-step-title" className="mb-2 text-h2 text-ink">
         Which step is carried out first?
       </h2>
       <p className="mb-5 text-body text-ash">
-        Four action areas, drawn from the nine findings above. All four belong in
-        the recommendation. Only one can start first, and the order is the
-        decision management is actually asking you for.
+        Four action areas, taken from the nine findings above. All four belong in
+        your recommendation. Only one of them can start first, and that order is
+        the real decision management is asking you for.
       </p>
 
       <div className="mb-4 grid gap-3 md:grid-cols-2">
@@ -89,11 +89,11 @@ export function NordcomFirstStep() {
             onClick={() => setCommitted(picked)}
             className="rounded-xl bg-navy px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-purple disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Commit to this as the first step
+            Confirm this as the first step
           </button>
           <span className="text-caption text-ash">
             {picked
-              ? "You can still change your mind until you commit."
+              ? "You can still change your answer until you confirm it."
               : "Pick one to continue."}
           </span>
         </div>
@@ -125,8 +125,8 @@ export function NordcomFirstStep() {
                 Show the answer key
               </button>
               <span className="text-caption text-ash">
-                Write your justification first — impact, risk, feasibility. The key
-                is easier to agree with than to have arrived at.
+                Write your justification first: impact, risk, feasibility. It is much
+                easier to agree with the key than to reach it yourself.
               </span>
             </div>
           ) : null}
@@ -151,8 +151,8 @@ export function NordcomFirstStep() {
                 )}
               >
                 {isKeyChoice
-                  ? "This is the area you committed to. The trade-off above still stands — it is the price of the recommended step, not a reason against it."
-                  : "This is not the area you committed to. That does not make your choice wrong; it makes it a choice you now have to defend against this one."}
+                  ? "This is the area you chose. The cost shown above still applies. It is the price of the recommended step, not an argument against it."
+                  : "This is not the area you chose. That does not make your choice wrong. It means you now have to defend your choice against this one."}
               </div>
 
               <h4 className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">

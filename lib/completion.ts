@@ -58,7 +58,7 @@ export function useCompletion(): {
   const groups: CompletionGroup[] = [
     build(
       "learn",
-      "Learn — widgets completed",
+      "Learn: widgets completed",
       "/learn",
       "widgets",
       [
@@ -71,7 +71,7 @@ export function useCompletion(): {
     ),
     build(
       "meridian",
-      "L2 · Meridian — decisions taken",
+      "L2 Meridian: decisions taken",
       "/learn#l2",
       "decisions",
       PHASES.map((phase, i) => {
@@ -79,36 +79,36 @@ export function useCompletion(): {
         const title = phase.choices.find((c) => c.id === chosen)?.title;
         return {
           id: phase.id,
-          label: `${phase.banner.left}${title ? ` — ${title}` : ""}`,
+          label: `${phase.banner.left}${title ? `: ${title}` : ""}`,
           done: Boolean(chosen),
         };
       }),
     ),
     build(
       "training-cards",
-      "Training Ground — cards answered",
+      "Training Ground: cards answered",
       "/training",
       "cards",
       CARDS.map((c, i) => ({
         id: c.id,
-        label: `Card ${i + 1} — ${c.snippet.split(" ").slice(0, 6).join(" ")}…`,
+        label: `Card ${i + 1}: ${c.snippet.split(" ").slice(0, 6).join(" ")}...`,
         done: cardsVisited.includes(c.id),
       })),
     ),
     build(
       "badges",
-      "Training Ground — category badges",
+      "Training Ground: category badges",
       "/training",
       "badges",
       CATEGORIES.map((c) => ({
         id: `badge-${c.code}`,
-        label: `${c.name} — needs all ${BADGE_THRESHOLD} of its cards matched`,
+        label: `${c.name}: needs all ${BADGE_THRESHOLD} of its cards matched`,
         done: (correctByCategory[c.code] ?? 0) >= BADGE_THRESHOLD,
       })),
     ),
     build(
       "mediprint",
-      "Case A · MediPrint — passages opened",
+      "Case A MediPrint: passages opened",
       "/case/mediprint",
       "markers",
       HOTSPOTS.map((h, i) => ({
@@ -121,7 +121,7 @@ export function useCompletion(): {
     ),
     build(
       "nordcom",
-      "Case B · NordCom — findings opened",
+      "Case B NordCom: findings opened",
       "/case/nordcom",
       "findings",
       NORDCOM_HOTSPOTS.map((h, i) => ({
@@ -134,7 +134,7 @@ export function useCompletion(): {
     ),
     build(
       "auron",
-      "Case C · Auron — findings opened",
+      "Case C Auron: findings opened",
       "/case/auron",
       "findings",
       AURON_HOTSPOTS.map((h, i) => ({

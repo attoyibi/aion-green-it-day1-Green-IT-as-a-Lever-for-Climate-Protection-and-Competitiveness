@@ -42,7 +42,7 @@ export type ComparatorCard = {
 
 export const W1: WidgetMeta & { cards: ComparatorCard[]; closing: string } = {
   id: "w1",
-  title: "What Green IT is — and what it is not",
+  title: "What Green IT is, and what it is not",
   task: "Open all four cards. Read each boundary line before moving on.",
   why: "Most Green IT programmes stall because the room is using one word for four different things. Sorting the vocabulary first saves an hour of argument later.",
   xp: 10,
@@ -66,7 +66,7 @@ export const W1: WidgetMeta & { cards: ComparatorCard[]; closing: string } = {
       term: "Digital Sustainability",
       short: "Whether the digital service should exist at all",
       definition:
-        "The wider question of whether digital products and services hold up over time — data minimalism, software longevity, accessibility, maintainability, digital sovereignty.",
+        "The wider question of whether digital products and services hold up over time: data minimalism, software longevity, accessibility, maintainability, digital sovereignty.",
       boundary:
         "Digital sustainability contains Green IT and adds durability and social questions. Green IT alone never asks whether the service is worth running.",
       inPractice:
@@ -83,22 +83,22 @@ export const W1: WidgetMeta & { cards: ComparatorCard[]; closing: string } = {
       inPractice:
         "Owned by finance or a sustainability function. IT is a data supplier, and usually a late one.",
       note: {
-        text: "Under CSRD the reporting company must disclose Scope 3 — its value chain. That is why suppliers well below the reporting threshold still receive emissions questionnaires from customers: they are somebody else's Scope 3.",
+        text: "Under CSRD the reporting company must disclose Scope 3, which is its value chain. That is why suppliers well below the reporting threshold still receive emissions questionnaires from customers: they are somebody else's Scope 3.",
         source: "csrd",
       },
       cases: [
         {
           id: "case-dws",
           headline: "A €25 million fine for saying it, not for doing it",
-          what: "In April 2025 the Frankfurt public prosecutor fined DWS, Deutsche Bank's asset manager, €25 million after a three-year investigation. Claims in its marketing — that it was a leader in ESG, that “ESG is an integral part of our DNA” — did not match what its processes actually did. The offices had been raided in 2022 by prosecutors, BaFin and the federal police. A US regulator had already fined it $19 million for related claims in 2023.",
+          what: "In April 2025 the Frankfurt public prosecutor fined DWS, Deutsche Bank's asset manager, €25 million after a three-year investigation. Its marketing claimed that it was a leader in ESG, and that “ESG is an integral part of our DNA”. That did not match what its processes actually did. The offices had been raided in 2022 by prosecutors, BaFin and the federal police. A US regulator had already fined it $19 million for related claims in 2023.",
           lesson:
-            "ESG statements are enforceable. The exposure is not having a weak position — it is describing a position you cannot evidence. This is the difference between ESG and CSR in one case.",
+            "ESG statements are enforceable. The risk is not having a weak position. The risk is describing a position you cannot evidence. This is the difference between ESG and CSR in one case.",
           source: "dws",
         },
         {
           id: "case-microsoft",
           headline: "Almost the whole footprint sits outside the company",
-          what: "Microsoft reports total emissions roughly 23% above its 2020 baseline, driven by AI and data-centre build-out, while more than 97% of its carbon impact sits in Scope 3 — its supply chain and value chain rather than its own operations. Google reported a 13% rise over a comparable period.",
+          what: "Microsoft reports total emissions roughly 23% above its 2020 baseline, driven by AI and data-centre build-out, while more than 97% of its carbon impact sits in Scope 3, which is its supply chain and value chain rather than its own operations. Google reported a 13% rise over a comparable period.",
           lesson:
             "For a technology company, the number that matters is mostly other people's. That is why customers send suppliers emissions questionnaires, and why an IT department with no procurement data cannot answer them.",
           source: "microsoftReport",
@@ -144,7 +144,7 @@ export type FlipCard = {
 export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
   id: "w2",
   title: "IT as cause and enabler",
-  task: "Flip all six cards. Each has a cost side and a leverage side — read both.",
+  task: "Flip all six cards. Each one has a cost side and a leverage side. Read both.",
   why: "Arguing only the cost side makes IT look like a problem to be shrunk. Arguing only the leverage side makes Green IT look like marketing. Leaders need both numbers in the same sentence.",
   xp: 10,
   cards: [
@@ -166,9 +166,9 @@ export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
       cause:
         "Concentrated compute in one place over days. Energy, cooling and dedicated accelerator hardware.",
       enabler:
-        "Forecasting, route and load optimisation, predictive maintenance, grid balancing — each avoiding physical waste elsewhere.",
+        "Forecasting, route and load optimisation, predictive maintenance, grid balancing. Each of these avoids physical waste somewhere else.",
       note: {
-        text: "Electricity use by AI-focused data centres rose about 50% in 2025. Data centres overall sit near 1.5% of global electricity and are projected to reach just under 3% by 2030. Large in growth rate, still small in share — quote both numbers or you will be corrected.",
+        text: "Electricity use by AI-focused data centres rose about 50% in 2025. Data centres overall sit near 1.5% of global electricity and are projected to reach just under 3% by 2030. Large in growth rate, still small in share. Quote both numbers or you will be corrected.",
         source: "ieaEnergyAi",
       },
     },
@@ -177,7 +177,7 @@ export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
       front: "Smart building controls",
       cause: "Sensors, gateways and a network that must stay awake continuously.",
       enabler:
-        "Setbacks on heating, cooling and lighting — usually the largest controllable energy line in an office building.",
+        "Setbacks on heating, cooling and lighting. This is usually the largest controllable energy line in an office building.",
     },
     {
       id: "w2-cloud",
@@ -187,7 +187,7 @@ export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
       enabler:
         "Higher utilisation, newer hardware, and the ability to pick a region by carbon intensity instead of by price alone.",
       note: {
-        text: "Once the workload is external it becomes your Scope 3, not your Scope 2. That is a reporting change, not a reduction — a point auditors raise often.",
+        text: "Once the workload is external it becomes your Scope 3, not your Scope 2. That is a reporting change, not a reduction. Auditors raise this point often.",
         source: "csrd",
       },
     },
@@ -207,13 +207,13 @@ export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
       enabler:
         "Every extra year of service life spreads that fixed cost further. This is the largest lever an IT department controls on its own.",
       note: {
-        text: "Manufacturing is roughly 75–85% of a laptop's lifetime carbon — around 80% is the figure usually quoted, against about 14% for use. Four subassemblies carry about 95% of it: mainboard, display, chassis, battery. Buying a more efficient laptop sooner can raise total emissions.",
+        text: "Manufacturing is roughly 75 to 85% of a laptop's lifetime carbon. Around 80% is the figure usually quoted, against about 14% for use. Four subassemblies carry about 95% of it: mainboard, display, chassis, battery. Buying a more efficient laptop sooner can raise total emissions.",
         source: "techCarbon",
       },
     },
   ],
   closing:
-    "Cause and enabler are not opposites. The same laptop is both — which one you argue depends on who is in the room.",
+    "Cause and enabler are not opposites. The same laptop is both. Which one you argue depends on who is in the room.",
 };
 
 // ---------------------------------------------------------------- L1 · W3
@@ -228,8 +228,8 @@ export type SorterSnippet = {
 export const W3: WidgetMeta & { snippets: SorterSnippet[]; closing: string } = {
   id: "w3",
   title: "Category sorter",
-  task: "Put each observation into one of the five categories. Keyboard: focus a snippet and press 1–5.",
-  why: "The five categories are the shared language for the rest of the module. Sorting is not the goal — noticing why a case is borderline is.",
+  task: "Put each observation into one of the five categories. Keyboard: focus a snippet and press 1 to 5.",
+  why: "The five categories are the shared language for the rest of the module. Sorting is not the goal. The goal is noticing why a case is borderline.",
   xp: 15,
   snippets: [
     {
@@ -242,13 +242,13 @@ export const W3: WidgetMeta & { snippets: SorterSnippet[]; closing: string } = {
       id: "w3-02",
       text: "The office lights, screens and desktops are left on over the weekend.",
       answer: "E",
-      why: "A standing electrical draw with no output. Nothing is consumed or emitted directly — it is pure energy.",
+      why: "A standing electrical draw with no output. Nothing is consumed or emitted directly. It is pure energy.",
     },
     {
       id: "w3-03",
       text: "A vendor is chosen on price alone; no environmental criteria enter the evaluation.",
       answer: "G",
-      why: "Nothing physical happened yet. What is missing is a rule — and a missing rule is governance, not energy.",
+      why: "Nothing physical happened yet. What is missing is a rule, and a missing rule is governance, not energy.",
     },
     {
       id: "w3-04",
@@ -266,7 +266,7 @@ export const W3: WidgetMeta & { snippets: SorterSnippet[]; closing: string } = {
       id: "w3-06",
       text: "Old laptops are stockpiled in a cupboard instead of being reused or refurbished.",
       answer: "R",
-      why: "The embedded manufacturing carbon is already spent. Leaving it idle wastes it — a resources question.",
+      why: "The embedded manufacturing carbon is already spent. Leaving it idle wastes it, which makes it a resources question.",
     },
     {
       id: "w3-07",
@@ -294,7 +294,7 @@ export const W3: WidgetMeta & { snippets: SorterSnippet[]; closing: string } = {
     },
   ],
   closing:
-    "Several of these could carry two tags. The useful question is not “which box is correct” but “which lever would you actually pull” — the category follows the lever.",
+    "Several of these could carry two tags. The useful question is not “which box is correct” but “which lever would you actually pull”. The category follows the lever.",
 };
 
 // ---------------------------------------------------------------- L2 · W4
@@ -313,13 +313,13 @@ export type Dial = {
 export const W4: WidgetMeta & { dials: Dial[]; closing: string } = {
   id: "w4",
   title: "Trade-off dial",
-  task: "Move all three dials. Watch the readout — there is no setting without a price.",
+  task: "Move all three dials. Watch the readout. There is no setting without a price.",
   why: "Executives do not reject Green IT because they dislike it. They reject proposals that pretend the trade-off is free. Naming the price is what makes a proposal credible.",
   xp: 15,
   dials: [
     {
       id: "w4-a",
-      title: "Dial A — Performance vs energy efficiency",
+      title: "Dial A: Performance vs energy efficiency",
       leftLabel: "Maximise performance",
       rightLabel: "Maximise efficiency",
       readouts: [
@@ -336,7 +336,7 @@ export const W4: WidgetMeta & { dials: Dial[]; closing: string } = {
     },
     {
       id: "w4-b",
-      title: "Dial B — Purchase cost vs sustainability",
+      title: "Dial B: Purchase cost vs sustainability",
       leftLabel: "Lowest purchase price",
       rightLabel: "Lowest lifetime impact",
       readouts: [
@@ -347,13 +347,13 @@ export const W4: WidgetMeta & { dials: Dial[]; closing: string } = {
       price:
         "Left: you pay later, in a different cost centre. Right: you pay now, visibly, and have to defend it.",
       note: {
-        text: "The Blue Angel criteria for data centres require total cost of ownership to be calculated at purchase, and labels such as Energy Star, TCO Certified and EPEAT to be weighed. Blue Angel requirements are moving towards mandatory for German federal IT procurement — for public bodies this dial is being set by law.",
+        text: "The Blue Angel criteria for data centres require total cost of ownership to be calculated at purchase, and labels such as Energy Star, TCO Certified and EPEAT to be weighed. Blue Angel requirements are moving towards mandatory for German federal IT procurement. For public bodies, this dial is being set by law.",
         source: "blueAngel",
       },
     },
     {
       id: "w4-c",
-      title: "Dial C — Quick win vs strategic leverage",
+      title: "Dial C: Quick win vs strategic leverage",
       leftLabel: "Visible this quarter",
       rightLabel: "Changes how decisions are made",
       readouts: [
@@ -394,32 +394,32 @@ export const W5: WidgetMeta & {
   closing: string;
 } = {
   id: "w5",
-  title: "Priority matrix — impact × feasibility",
-  task: "Place all eight measures. Keyboard: focus a card and press 1–4.",
+  title: "Priority matrix: impact against feasibility",
+  task: "Place all eight measures. Keyboard: focus a card and press 1 to 4.",
   why: "There is no scoring here. The matrix exists so that when you later defend a ranking, you can say which axis decided it.",
   xp: 15,
   quadrants: [
     {
       id: "hi-hf",
-      title: "High impact · high feasibility",
+      title: "High impact, high feasibility",
       consequence:
         "Do it now, and use it to buy credibility for everything in the quadrant above.",
     },
     {
       id: "hi-lf",
-      title: "High impact · low feasibility",
+      title: "High impact, low feasibility",
       consequence:
         "Needs leadership sponsorship or it dies quietly. Never assign it to a team without air cover.",
     },
     {
       id: "li-hf",
-      title: "Low impact · high feasibility",
+      title: "Low impact, high feasibility",
       consequence:
-        "Cheap to do. Dangerous to report as progress — this is where symbolic action lives.",
+        "Cheap to do. Dangerous to report as progress. This is where symbolic action lives.",
     },
     {
       id: "li-lf",
-      title: "Low impact · low feasibility",
+      title: "Low impact, low feasibility",
       consequence:
         "Say no in writing, with a reason. An unrefused item comes back every quarter.",
     },
@@ -448,7 +448,7 @@ export const W5: WidgetMeta & {
     {
       id: "w5-procurement",
       text: "Add environmental criteria to the procurement template",
-      hint: "Compounding impact — it applies to every future purchase, not one.",
+      hint: "Compounding impact. It applies to every future purchase, not just one.",
     },
     {
       id: "w5-batch",
@@ -496,7 +496,7 @@ export const W6: WidgetMeta & {
 } = {
   id: "w6",
   title: "Decision under incomplete information",
-  task: "Two evidence tiles are open, three are covered. Choose anyway — then see what you could not see.",
+  task: "Two evidence tiles are open, three are covered. Choose anyway, then see what you could not see.",
   why: "Waiting for complete data is the most common way a Green IT programme dies. This widget makes the cost of waiting visible.",
   xp: 15,
   scenario:
@@ -553,7 +553,7 @@ export const W6: WidgetMeta & {
       immediate:
         "Attacks the largest known quantity: 1,900 devices on a contractual rather than condition-based cycle.",
       afterReveal:
-        "The supplier tile makes this cheap right now — a 14-month break clause with no penalty. The capacity tile does not block it, because this is a procurement task, not an IT-operations one.",
+        "The supplier tile makes this cheap right now, because of a 14-month break clause with no penalty. The capacity tile does not block it, because this is a procurement task, not an IT-operations one.",
     },
     {
       id: "w6-o3",
@@ -564,7 +564,7 @@ export const W6: WidgetMeta & {
     },
   ],
   message:
-    "Deferring the decision until every tile is open is itself a decision — and it is priced in time.",
+    "Deferring the decision until every tile is open is itself a decision, and it has a price in time.",
   closing:
     "Notice what actually decided it: not the missing energy data, but a contract date and a customer deadline. Ask which missing fact would change your action, not which facts are missing.",
 };
@@ -586,7 +586,7 @@ export const W7: WidgetMeta & {
 } = {
   id: "w7",
   title: "Governance mini org-chart",
-  task: "Open all five roles. For each, read what it cannot delegate — that line is the whole point.",
+  task: "Open all five roles. For each, read what it cannot delegate. That line is the whole point.",
   why: "Green IT stalls at the boundary between roles, not inside them. Knowing who cannot hand a decision on is how you find the person who has to sign.",
   xp: 20,
   nodes: [
@@ -596,7 +596,7 @@ export const W7: WidgetMeta & {
       decidesAlone:
         "Whether Green IT is a target with budget, or a topic with goodwill.",
       mustEscalate:
-        "Nothing internally — but must answer to owners, regulators and key customers.",
+        "Nothing internally, but must answer to owners, regulators and key customers.",
       cannotDelegate:
         "Setting the level of ambition, and accepting the trade-off between short-term results and structural change. Delegating this produces a programme with no authority.",
     },
@@ -669,8 +669,8 @@ export const W8: WidgetMeta & {
 } = {
   id: "w8",
   title: "Roadmap sequencer",
-  task: "Place all six measures across the year. Keyboard: focus a measure and press 1–4.",
-  why: "There is no correct roadmap. There is an order that works and an order that produces an expensive re-run — this shows you which is which.",
+  task: "Place all six measures across the year. Keyboard: focus a measure and press 1 to 4.",
+  why: "There is no correct roadmap. There is an order that works and an order that produces an expensive re-run. This shows you which is which.",
   xp: 20,
   quarters: ["Q1", "Q2", "Q3", "Q4"],
   measures: [
@@ -745,7 +745,7 @@ export const W9: WidgetMeta & {
     {
       id: "operational",
       label: "Operational improvement",
-      hint: "Real and measurable, but bounded — it improves a thing, not the way things are chosen.",
+      hint: "Real and measurable, but limited. It improves one thing, not the way things are chosen.",
     },
     {
       id: "strategic",
@@ -770,7 +770,7 @@ export const W9: WidgetMeta & {
       id: "w9-03",
       text: "“We raised the server-room setpoint by 3 °C after a thermal survey.”",
       answer: "operational",
-      why: "Genuine, measurable and defensible — a real reduction with evidence behind it. But it improves one room; it does not change how the next room is designed.",
+      why: "Genuine, measurable and defensible. It is a real reduction with evidence behind it. But it improves one room; it does not change how the next room is designed.",
     },
     {
       id: "w9-04",
@@ -786,7 +786,7 @@ export const W9: WidgetMeta & {
     },
   ],
   closing:
-    "Symbolic is not forbidden — it is forbidden to file it under strategy. Label it correctly and it can still buy you attention.",
+    "Symbolic action is not forbidden. What is forbidden is filing it under strategy. Label it correctly and it can still buy you attention.",
 };
 
 
@@ -809,7 +809,7 @@ export const W10: WidgetMeta & {
   note: FieldNote;
 } = {
   id: "w10",
-  title: "Service-life simulator — what one extra year does",
+  title: "Service-life simulator: what one extra year does",
   task: "Drag the refresh cycle. Watch what happens to the footprint carried by each device-year.",
   why: "This is the calculation to have ready when someone proposes replacing a fleet early to save energy. It is the most common well-meant mistake in Green IT, and one slider settles it.",
   xp: 15,
@@ -831,7 +831,7 @@ export const W10: WidgetMeta & {
     {
       upTo: 4,
       verdict:
-        "One extra year already removes about a fifth of the annual burden — with no purchase, no project and no new tooling.",
+        "One extra year already removes about a fifth of the annual burden, with no purchase, no project and no new tooling.",
     },
     {
       upTo: 5,
@@ -845,11 +845,11 @@ export const W10: WidgetMeta & {
     },
   ],
   note: {
-    text: "Manufacturing is roughly 75–85% of a laptop's lifetime carbon, against about 14% for use. Four subassemblies — mainboard, display, chassis, battery — carry about 95% of the manufacturing share. This is why swapping a working fleet for a more efficient one can raise total emissions rather than lower them.",
+    text: "Manufacturing is roughly 75 to 85% of a laptop's lifetime carbon, against about 14% for use. Four subassemblies (mainboard, display, chassis and battery) carry about 95% of the manufacturing share. This is why swapping a working fleet for a more efficient one can raise total emissions rather than lower them.",
     source: "techCarbon",
   },
   closing:
-    "Extending service life is the rare measure that reduces footprint and spend at the same time. The objections it meets are about support and security — prepare those answers, not the carbon argument.",
+    "Extending service life is the rare measure that reduces footprint and spend at the same time. The objections it meets are about support and security. Prepare those answers, not the carbon argument.",
 };
 
 // --------------------------------------------------- L2 · W11 (simulator)
@@ -869,7 +869,7 @@ export const W11: WidgetMeta & {
   note: FieldNote;
 } = {
   id: "w11",
-  title: "PUE check — the German thresholds",
+  title: "PUE check: the German thresholds",
   task: "Set how much power the building spends for every unit the computing spends. Watch which legal thresholds you clear.",
   why: "In Germany this stopped being a best-practice metric and became a statutory duty with dates attached. A leader who cannot say roughly where their data centre sits is exposed.",
   xp: 15,
@@ -896,7 +896,7 @@ export const W11: WidgetMeta & {
   draftNote:
     "A draft amendment published in April 2026 would relax these to 1.6, 1.4 and 1.3. Treat the stricter numbers as the planning assumption until it is law.",
   note: {
-    text: "The Energy Efficiency Act also requires data centres to match 50% of their electricity with renewables, to run a certified energy or environmental management system from 1 MW, and — for centres commissioned from July 2026 — to reuse a share of their waste heat, rising from 15% to 20% from July 2028.",
+    text: "The Energy Efficiency Act also requires data centres to match 50% of their electricity with renewables, to run a certified energy or environmental management system from 1 MW, and, for centres commissioned from July 2026, to reuse a share of their waste heat, rising from 15% to 20% from July 2028.",
     source: "enefg",
   },
   closing:
@@ -908,10 +908,10 @@ export const W11: WidgetMeta & {
  * done" means. The page renders from this, and so does the progress model.
  */
 export const WIDGET_INDEX: { level: string; widgets: WidgetMeta[] }[] = [
-  { level: "L1 · Knowledge", widgets: [W1, W2, W10, W3] },
+  { level: "L1: Knowledge", widgets: [W1, W2, W10, W3] },
   // L2 is delivered as the Meridian case study at /scenario/meridian.
-  { level: "L2 · Application", widgets: [] },
-  { level: "L3 · Management decision", widgets: [W7, W8, W9] },
+  { level: "L2: Application", widgets: [] },
+  { level: "L3: Management decision", widgets: [W7, W8, W9] },
 ];
 
 export const ALL_WIDGETS: WidgetMeta[] = WIDGET_INDEX.flatMap((l) => l.widgets);
@@ -942,7 +942,7 @@ export const CATEGORY_PRIMER: {
 } = {
   title: "The five categories, before you sort anything",
   intro:
-    "Every observation in this module gets filed under one of five headings. They are not five kinds of technology — they are five kinds of question you can ask about the same piece of technology. The same laptop appears under four of them depending on what you are asking.",
+    "Every observation in this module gets filed under one of five headings. They are not five kinds of technology. They are five kinds of question you can ask about the same piece of technology. The same laptop appears under four of them depending on what you are asking.",
   entries: [
     {
       code: "E",
@@ -962,7 +962,7 @@ export const CATEGORY_PRIMER: {
     {
       code: "Em",
       meaning:
-        "What is released — which depends on where and when the energy came from, not only how much.",
+        "What is released. This depends on where and when the energy came from, not only how much.",
       question: "Same activity, different place or hour: would what comes out change?",
       example:
         "The same computing job run on a coal-heavy grid instead of a wind-heavy one.",
@@ -972,7 +972,7 @@ export const CATEGORY_PRIMER: {
       code: "U",
       meaning: "How people actually use what already exists.",
       question:
-        "The equipment is justified — is it the habit, or the default setting, that costs?",
+        "The equipment is justified. So is it the habit, or the default setting, that costs?",
       example: "Every internal call defaulting to 4K video when 720p would do.",
       lever: "Defaults, retention rules, display schedules, training.",
     },
@@ -980,7 +980,7 @@ export const CATEGORY_PRIMER: {
       code: "G",
       meaning: "Who decides, by which rule, and who is accountable for the number.",
       question:
-        "Is anything physically happening here at all — or is what is missing a rule?",
+        "Is anything physically happening here at all, or is what is missing a rule?",
       example: "No owner anywhere in the org chart for Green IT metrics.",
       lever: "Roles, criteria written into procurement templates, KPIs, mandates.",
     },
@@ -1021,7 +1021,7 @@ export const W8_TRADEOFFS: MeasureTradeoff[] = [
   {
     id: "w8-baseline",
     ifLate:
-      "Without a baseline nothing later can be shown to have improved. Started in Q4, the first credible number arrives next year — and every claim made before it is unevidenced.",
+      "Without a baseline nothing later can be shown to have improved. Started in Q4, the first credible number arrives next year, and every claim made before it has no evidence behind it.",
     ifStacked:
       "Starting the baseline in the same quarter the owner is named leaves no time to scope it. Expect the first attempt to be redone.",
     wellPlaced:
@@ -1034,7 +1034,7 @@ export const W8_TRADEOFFS: MeasureTradeoff[] = [
     ifStacked:
       "Agreeing KPIs in the same quarter the baseline starts means setting targets against data you have not seen. They will move once it arrives.",
     wellPlaced:
-      "After the baseline and before the reporting cycle — the only window where a KPI can actually steer something this year.",
+      "After the baseline and before the reporting cycle. That is the only window where a KPI can actually steer something this year.",
   },
   {
     id: "w8-procurement",
@@ -1055,7 +1055,7 @@ export const W8_TRADEOFFS: MeasureTradeoff[] = [
   {
     id: "w8-report",
     ifLate:
-      "Late is the natural place for this one — reporting consumes what the earlier steps produce.",
+      "Late is the natural place for this one. Reporting consumes what the earlier steps produce.",
     ifStacked:
       "Reporting in the same quarter the KPIs are agreed leaves no cycle to collect anything against them.",
     wellPlaced: "At the end, consuming what the rest of the year produced.",
@@ -1075,14 +1075,14 @@ export const W8_PROFILES: RoadmapProfile[] = [
     label: "Everything at once",
     tone: "danger",
     what: "All six measures sit in a single quarter.",
-    cost: "No IT department has this capacity spare. In practice two get done, four slip quietly, and nobody decided which four — the sequence was chosen by whoever was busiest.",
+    cost: "No IT department has this capacity spare. In practice two get done, four slip quietly, and nobody decided which four. The sequence was chosen by whoever was busiest.",
   },
   {
     id: "back-loaded",
     label: "Back-loaded",
     tone: "danger",
     what: "The weight of the year sits in Q3 and Q4, with little or nothing early.",
-    cost: "There is nothing to show at the mid-year review, which is when programmes lose their budget. Everything also depends on the last quarter going perfectly — and Q4 is the quarter with holidays, year-end close and a change freeze.",
+    cost: "There is nothing to show at the mid-year review, which is when programmes lose their budget. Everything also depends on the last quarter going perfectly, and Q4 is the quarter with holidays, year-end close and a change freeze.",
   },
   {
     id: "front-loaded",
@@ -1103,7 +1103,7 @@ export const W8_PROFILES: RoadmapProfile[] = [
     label: "Evenly paced",
     tone: "warn",
     what: "The measures are spread fairly evenly and the dependencies hold.",
-    cost: "Nothing here will fail. But spreading work evenly is not the same as sequencing it — check that the early quarters carry the measures everything else depends on, not just the easy ones.",
+    cost: "Nothing here will fail. But spreading work evenly is not the same as sequencing it. Check that the early quarters carry the measures everything else depends on, not just the easy ones.",
   },
 ];
 

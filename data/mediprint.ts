@@ -136,7 +136,7 @@ export const HOTSPOTS: Hotspot[] = [
 /** The building carrying the MediPrint logo. */
 export const COMPANY_ZONE: Zone = {
   id: "zone-company",
-  label: "MediPrint Solutions — company brief and context",
+  label: "MediPrint Solutions: company brief and context",
   x: 24,
   y: 9,
   w: 17,

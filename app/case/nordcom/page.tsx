@@ -15,9 +15,9 @@ export default function NordcomPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Tab 4 · Case B"
+        eyebrow="Tab 4, Case B"
         title="NordCom Services GmbH"
-        intro="Green IT between cost pressure and competitiveness. The board carries everything: the company block on the left opens the brief, and nine findings — six titled panels and three points on the scene — each carry one passage from the description. The assignment sits below it."
+        intro="Green IT between cost pressure and competitiveness. Everything you need is on the board. Click the company block on the left to read the brief. Then open the nine findings: six are titled panels on the right, and three are points on the company scene. Each one carries a passage from the case description. Your assignment is below the board."
       />
 
       <CaseBoard

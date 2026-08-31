@@ -147,7 +147,7 @@ export function ChoiceCardGrid({
 
                 <p className="mt-2 text-caption text-ash">
                   How they react is not knowable yet. Select another card to change your
-                  mind — committing moves the week forward and cannot be undone.
+                  mind. Confirming moves the week forward and cannot be undone.
                 </p>
               </div>
 

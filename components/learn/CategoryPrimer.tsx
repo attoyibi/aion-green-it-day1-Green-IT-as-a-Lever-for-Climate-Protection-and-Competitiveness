@@ -67,7 +67,7 @@ export function CategoryPrimer() {
       <FieldNote note={CATEGORY_PRIMER.note} />
 
       <p className="mt-4 border-t border-line pt-3 text-body text-ash">
-        Now put it to work — the sorter below gives you ten observations to file.
+        Now put it to work. The sorter below gives you ten observations to file.
       </p>
     </section>
   );

@@ -9,13 +9,13 @@ export default function TaskMapPage() {
       <PageHeader
         eyebrow="Tab 6"
         title="Task map"
-        intro="Which worksheet is anchored to which case tab, and which Learn widgets support it. Use this to jump straight to the surface a task needs."
+        intro="This table shows which worksheet belongs to which case, and which Learn widgets help you with it. Use it to jump straight to what a task needs."
       />
 
       <div className="mb-6">
         <OpenItems
           title="Module progress"
-          intro="Everything the playground tracks, in one place, so you can see what has not been worked through yet. Case tabs never award XP — opening a passage only marks that you have read it."
+          intro="Everything this playground tracks, in one place, so you can see what you have not worked through yet. The case tabs never give you XP. Opening a finding only records that you have read it."
         />
       </div>
 

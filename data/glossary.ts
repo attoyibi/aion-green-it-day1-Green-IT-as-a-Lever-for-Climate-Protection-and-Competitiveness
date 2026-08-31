@@ -20,7 +20,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "HVAC",
     match: "HVAC",
     plain:
-      "Heating, Ventilation and Air Conditioning — the building's climate system. It warms, cools and moves fresh air through the offices.",
+      "Heating, Ventilation and Air Conditioning. This is the building's climate system. It warms, cools and moves fresh air through the offices.",
     soWhat:
       "In most office buildings this is the single largest electricity user, ahead of all the computers put together. It is also usually managed by facilities, not IT, which is why nobody notices it running at the weekend.",
   },
@@ -39,7 +39,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "Embedded carbon",
     also: ["embodied carbon", "embedded carbon", "manufacturing footprint"],
     plain:
-      "The emissions already released to make a product — mining, refining, manufacturing, shipping — before anyone switches it on for the first time.",
+      "The emissions already released to make a product, covering mining, refining, manufacturing and shipping, before anyone switches it on for the first time.",
     soWhat:
       "For a laptop this is roughly four fifths of its lifetime total. You cannot reduce it after the purchase. You can only spread it across more years of use, which is why service life is such a strong lever.",
   },
@@ -59,7 +59,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "region",
     also: ["cloud region"],
     plain:
-      "The physical place where a cloud provider actually runs your workload — a cluster of data centres in one country or area. You pick it when you set the service up.",
+      "The physical place where a cloud provider actually runs your workload. It is a cluster of data centres in one country or area. You pick it when you set the service up.",
     soWhat:
       "Most teams pick a region on price or speed and never look at the local energy mix. Changing it later usually means moving data, which is why the first choice matters.",
   },
@@ -68,7 +68,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "FinOps",
     match: "FinOps",
     plain:
-      "The practice of managing cloud spending — tracking what each team runs and what it costs, month by month.",
+      "The practice of managing cloud spending, by tracking what each team runs and what it costs, month by month.",
     soWhat:
       "It is already the place where cloud usage gets questioned. That makes it the cheapest place to add carbon as a second number next to cost.",
   },
@@ -115,7 +115,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     plain:
       "Power Usage Effectiveness. Total electricity entering a data centre, divided by the electricity that reaches the computers. PUE 1.5 means that for every 10 units of computing, 5 more go to cooling, power conversion and the building.",
     soWhat:
-      "In Germany this is now a statutory duty with dates attached, not a best-practice metric. It also says nothing about whether the computing was worth doing — a half-empty data centre can post an excellent PUE.",
+      "In Germany this is now a statutory duty with dates attached, not a best-practice metric. It also says nothing about whether the computing was worth doing. A half-empty data centre can post an excellent PUE.",
   },
   {
     id: "wake-on-lan",
@@ -142,7 +142,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "batch reports",
     also: ["batch job", "batch jobs", "batch"],
     plain:
-      "Work a computer does in one long run with nobody waiting for the result — overnight reports, backups, billing runs.",
+      "Work a computer does in one long run with nobody waiting for the result, such as overnight reports, backups and billing runs.",
     soWhat:
       "Because nobody is waiting, it can be moved to a different hour. That makes it the easiest work in the estate to shift onto cleaner electricity.",
   },
@@ -152,7 +152,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "load shift",
     also: ["off-peak", "carbon-aware"],
     plain:
-      "Moving flexible computing work to a time or a place where the electricity is cleaner. The work itself does not change — only the schedule or the location.",
+      "Moving flexible computing work to a time or a place where the electricity is cleaner. The work itself does not change. Only the schedule or the location changes.",
     soWhat:
       "Nothing is bought and no code is rewritten, which is rare. Reported reductions run from two to ten times for the work that is moved.",
   },
@@ -163,7 +163,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     plain:
       "A written rule stating how long each kind of file is kept, and when it is deleted.",
     soWhat:
-      "Without one, everything is kept forever. Storage then grows quietly until it is bought again at the next hardware refresh — the same data paid for twice.",
+      "Without one, everything is kept forever. Storage then grows quietly until it is bought again at the next hardware refresh, so the same data is paid for twice.",
   },
   {
     id: "canonical-store",
@@ -188,7 +188,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "KPI",
     also: ["KPIs"],
     plain:
-      "Key Performance Indicator — a number that a named person is accountable for and reports on a fixed rhythm.",
+      "Key Performance Indicator. It is a number that a named person is accountable for and reports on a fixed rhythm.",
     soWhat:
       "A number nobody reports is not a KPI, it is a statistic. The name attached to it is what makes it steer anything.",
   },
@@ -199,7 +199,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     plain:
       "The starting measurement, taken before you change anything.",
     soWhat:
-      "A target with no baseline can be neither met nor missed — only argued about. That, not the target itself, is the reputational risk.",
+      "A target with no baseline can be neither met nor missed. It can only be argued about. That, not the target itself, is the reputational risk.",
   },
   {
     id: "net-zero",
@@ -215,7 +215,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "Scope 3",
     match: "Scope 3",
     plain:
-      "Emissions that happen outside your own company but because of it — at suppliers, at cloud providers, inside the products you buy.",
+      "Emissions that happen outside your own company but because of it: at suppliers, at cloud providers, and inside the products you buy.",
     soWhat:
       "For most IT organisations it is the largest of the three scopes and the hardest to get data for. Moving a workload to the cloud moves it from Scope 2 into Scope 3: a reporting change, not a reduction.",
   },
@@ -225,7 +225,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "total cost of ownership",
     also: ["TCO"],
     plain:
-      "Total Cost of Ownership — the purchase price plus energy, support, repairs and disposal, across the whole service life.",
+      "Total Cost of Ownership. It is the purchase price plus energy, support, repairs and disposal, across the whole service life.",
     soWhat:
       "The cheapest device to buy is often not the cheapest to own. German Blue Angel criteria require TCO to be calculated at purchase for exactly this reason.",
   },
@@ -234,7 +234,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "E-waste",
     match: "e-waste",
     plain:
-      "Discarded electrical and electronic equipment — anything with a plug or a battery that has been thrown away.",
+      "Discarded electrical and electronic equipment. It is anything with a plug or a battery that has been thrown away.",
     soWhat:
       "About 62 million tonnes a year globally, of which roughly a fifth is formally collected and recycled. The rest is unaccounted for.",
   },
@@ -244,9 +244,9 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "SCI standard",
     also: ["SCI"],
     plain:
-      "Software Carbon Intensity — an international standard (ISO/IEC 21031) that scores emissions per unit of useful work: per transaction, per request.",
+      "Software Carbon Intensity. It is an international standard (ISO/IEC 21031) that scores emissions per unit of useful work: per transaction, per request.",
     soWhat:
-      "It deliberately ignores offsets. The score can only improve if the software, or where it runs, actually changes — which is why engineers trust it.",
+      "It deliberately ignores offsets. The score can only improve if the software, or where it runs, actually changes. That is why engineers trust it.",
   },
   {
     id: "refresh-cycle",
@@ -254,7 +254,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "refresh cycle",
     also: ["refresh cycles", "refresh"],
     plain:
-      "How often a company replaces a class of device — laptops every three years, scanners every year, and so on.",
+      "How often a company replaces a class of device, such as laptops every three years or scanners every year.",
     soWhat:
       "It is usually inherited from a supplier contract rather than chosen from the condition of the hardware. The contract renewal date is your intervention point.",
   },
@@ -264,7 +264,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     match: "shopfloor",
     also: ["shop floor"],
     plain:
-      "The production or warehouse area of a company, where the physical work happens — as opposed to the offices.",
+      "The production or warehouse area of a company, where the physical work happens, as opposed to the offices.",
   },
   {
     id: "utilisation",
@@ -280,7 +280,7 @@ export const GLOSSARY: GlossaryEntry[] = [
     term: "ESG",
     match: "ESG",
     plain:
-      "Environmental, Social, Governance — the reporting framework investors and regulators use. Regulated, numeric and audited.",
+      "Environmental, Social, Governance. It is the reporting framework investors and regulators use. Regulated, numeric and audited.",
     soWhat:
       "It is where your IT figures have to survive an auditor. Green IT produces the data; ESG consumes it.",
   },

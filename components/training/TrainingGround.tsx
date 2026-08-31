@@ -116,7 +116,7 @@ export function TrainingGround() {
             <h2 className="mb-2 text-h2 text-ink">Round complete</h2>
             <p className="mb-4 text-body text-ash">
               {correct} of {CARDS.length} matched on the first attempt. The number is not
-              the point — the ones you missed are. Those are the categories where your
+              the point. The ones you missed are. Those are the categories where your
               instinct and the framework disagree, and that is exactly what to check in
               your own organisation.
             </p>
@@ -144,7 +144,7 @@ export function TrainingGround() {
             ) : (
               <p className="mb-4 rounded-xl bg-lilac/60 p-3 text-body text-navy">
                 Nothing missed. Try the round again and argue the borderline cards out
-                loud — several of them defend a second category quite well.
+                loud, because several of them defend a second category quite well.
               </p>
             )}
 

@@ -26,12 +26,12 @@ export function TopBar() {
   return (
     <header className="sticky top-0 z-30 bg-navy text-paper">
       <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 md:px-6">
-        <Link href="/learn" className="flex items-center gap-3 rounded-md" aria-label="AION Green IT — go to Learn">
+        <Link href="/learn" className="flex items-center gap-3 rounded-md" aria-label="AION Green IT, go to Learn">
           <AionLogo className="h-6 w-20 text-paper" />
         </Link>
 
         <p className="min-w-0 flex-1 truncate text-caption text-lilac/90 md:text-body">
-          Module 1 — Green IT as a Lever for Climate Protection &amp; Competitiveness
+          Module 1: Green IT as a Lever for Climate Protection &amp; Competitiveness
         </p>
 
         <div className="flex items-center gap-5">

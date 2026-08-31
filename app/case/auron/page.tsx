@@ -16,9 +16,9 @@ export default function AuronPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Tab 5 · Case C"
+        eyebrow="Tab 5, Case C"
         title="Auron Digital Group"
-        intro="Building a Green IT decision architecture for a growing company. You are the IT strategy lead. The board carries ten findings — six titled panels holding the conditions your decision has to survive, and four points on the company scene holding the state of the IT itself."
+        intro="Building a Green IT decision architecture for a growing company. You are the IT strategy lead. The board holds ten findings. Six are titled panels showing the conditions your decision has to survive. Four are points on the company scene showing the state of the IT itself."
       />
 
       <CaseBoard

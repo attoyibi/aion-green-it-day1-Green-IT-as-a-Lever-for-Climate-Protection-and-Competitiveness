@@ -54,7 +54,7 @@ export const CARDS: PracticeCard[] = [
   {
     id: "t02",
     hint:
-      "The laptops still worked. Ask what was destroyed that had already been paid for — in cash and in carbon.",
+      "The laptops still worked. Ask what was destroyed that had already been paid for, in cash and in carbon.",
     setting:
       "A retail chain consolidating two offices into one over a single weekend, with a moving contractor paid by the hour.",
     terms: ["skip", "embodied-carbon"],
@@ -89,9 +89,9 @@ export const CARDS: PracticeCard[] = [
     fixBefore: "Region chosen on cost alone.",
     fixAfter: "Region weighted for carbon intensity as well as cost.",
     principle:
-      "Same workload, same code, different grid — emissions can differ by a multiple. Region is a decision, not a default.",
+      "Same workload, same code, different grid. Emissions can differ by a multiple. Region is a decision, not a default.",
     note: {
-      text: "Carbon-aware placement and scheduling is reported to cut workload emissions by 2–10x with no application change. The SCI standard (ISO/IEC 21031:2024) counts this properly and deliberately excludes offsets, so the score only improves through real change.",
+      text: "Carbon-aware placement and scheduling is reported to cut workload emissions by 2 to 10 times with no application change. The SCI standard (ISO/IEC 21031:2024) counts this properly and deliberately excludes offsets, so the score only improves through real change.",
       source: "sci",
     },
   },
@@ -113,7 +113,7 @@ export const CARDS: PracticeCard[] = [
     principle:
       "Changing a default changes thousands of decisions at once. Asking people to choose better changes almost none.",
     note: {
-      text: "The energy split for streaming is not where most people expect: viewing devices about 72%, transmission 23%, data centres 5%. Earlier figures blaming the network overstated it by up to 50x. Lowering the default resolution acts on the endpoint — the large share.",
+      text: "The energy split for streaming is not where most people expect: viewing devices about 72%, transmission 23%, data centres 5%. Earlier figures blaming the network overstated it by up to 50x. Lowering the default resolution acts on the endpoint, which is the large share.",
       source: "ieaStreaming",
     },
   },
@@ -316,7 +316,7 @@ export const CARDS: PracticeCard[] = [
     whatItIs: "An announcement without architecture.",
     whoItAffects: "Board and CIO.",
     fixBefore: "Press release.",
-    fixAfter: "Baseline, owner, budget and milestones — then the announcement.",
+    fixAfter: "Baseline, owner, budget and milestones, then the announcement.",
     principle:
       "A target with no baseline cannot be missed or met, only argued about. That is the reputational risk, not the target itself.",
   },

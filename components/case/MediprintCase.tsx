@@ -240,14 +240,14 @@ export function MediprintCase() {
             <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-purple bg-paper text-caption font-semibold text-purple">
               1
             </span>
-            One passage from the description — nine of them
+            A passage from the description. There are nine in total
           </span>
 
           <span className="flex items-center gap-2">
             <span className="flex h-5 min-w-[20px] items-center justify-center rounded-md border border-purple bg-paper px-1 text-[11px] font-semibold leading-none text-purple">
               i
             </span>
-            The building — brief and context
+            The building, with the brief and the context
           </span>
 
           <span className="flex items-center gap-2">
@@ -261,7 +261,7 @@ export function MediprintCase() {
                 </span>
               ))}
             </span>
-            The five arrows — topic areas
+            The five arrows, for the topic areas
           </span>
 
           <span className="text-ash">

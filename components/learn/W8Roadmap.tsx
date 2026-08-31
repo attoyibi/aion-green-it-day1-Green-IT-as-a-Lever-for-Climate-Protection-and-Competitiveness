@@ -84,7 +84,7 @@ export function W8Roadmap() {
     if (prereqQuarter < 0) {
       verdicts[measure.id] = {
         tone: "warn",
-        message: `${measure.requiresLabel} — not placed yet.`,
+        message: `${measure.requiresLabel} is not placed yet.`,
       };
     } else if (prereqQuarter > own) {
       verdicts[measure.id] = {
@@ -94,12 +94,12 @@ export function W8Roadmap() {
     } else if (prereqQuarter === own) {
       verdicts[measure.id] = {
         tone: "warn",
-        message: `${measure.requiresLabel} — same quarter, so no room between them.`,
+        message: `${measure.requiresLabel} is in the same quarter, so there is no room between them.`,
       };
     } else {
       verdicts[measure.id] = {
         tone: "good",
-        message: `${measure.requiresLabel} — in place by then.`,
+        message: `${measure.requiresLabel} is in place by then.`,
       };
     }
   }
@@ -196,7 +196,7 @@ export function W8Roadmap() {
           </p>
           <p className="mb-3 text-body text-ink">
             One defensible order, not the only one. What makes it defensible is the
-            reasoning under each step — that is the part worth arguing with, and the part
+            reasoning under each step. That is the part worth arguing with, and the part
             a board will ask you about.
           </p>
 
@@ -204,7 +204,7 @@ export function W8Roadmap() {
             {W8_REFERENCE.map((step) => (
               <li key={step.quarter} className="rounded-xl bg-paper p-3">
                 <p className="text-body font-semibold text-ink">
-                  {step.quarter} — {step.measures.map(label).join(" · ")}
+                  {step.quarter}: {step.measures.map(label).join(", ")}
                 </p>
                 <p className="mt-1 text-caption text-navy">
                   <span className="font-semibold">Why: </span>

@@ -91,11 +91,11 @@ export function PlacementBoard({
 
         {selectedId ? (
           <p className="mt-2 text-caption text-purple">
-            Now choose a target below, or press 1–{targets.length}.
+            Now choose a target below, or press 1 to {targets.length}.
           </p>
         ) : (
           <p className="mt-2 text-caption text-ash">
-            Select a card, or focus one and press 1–{targets.length}.
+            Select a card, or focus one and press 1 to {targets.length}.
           </p>
         )}
       </div>

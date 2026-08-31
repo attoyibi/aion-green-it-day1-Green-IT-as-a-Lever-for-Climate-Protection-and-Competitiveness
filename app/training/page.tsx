@@ -30,7 +30,7 @@ export default function TrainingPage() {
       <PageHeader
         eyebrow="Tab 2"
         title="Training Ground"
-        intro="Fifteen situations from practice, one at a time. Every company here is invented — none of them are the case companies."
+        intro="Fifteen situations from practice, one at a time. Every company here is invented. None of them are the companies you are assessed on."
       />
 
       <section
@@ -63,7 +63,7 @@ export default function TrainingPage() {
 
         <p className="mt-4 border-t border-line pt-4 text-caption text-navy">
           <span className="font-semibold">For the mentor: </span>
-          ask the room to commit out loud before the reveal — two participants disagreeing
+          ask the room to commit out loud before the reveal. Two participants disagreeing
           on a borderline card teaches more than the card does. Any underlined word opens
           its plain-language definition, and the full glossary is at the bottom.
         </p>

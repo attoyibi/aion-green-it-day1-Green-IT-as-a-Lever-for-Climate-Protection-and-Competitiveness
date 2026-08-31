@@ -38,7 +38,7 @@ export function CategoryDiagram() {
         {/* Straddles the frame line at y=8 so it reads as a label on the frame. */}
         <rect x="26" y="-4" width="406" height="26" rx="13" fill={G} />
         <text id="cat-diagram-g-label" x="42" y="13" fill="#FFFFFF" fontSize="12.5" fontWeight="600">
-          Organisation &amp; Governance — who decides, and by which rule
+          Organisation &amp; Governance: who decides, and by which rule
         </text>
 
         {/* The estate */}
@@ -47,7 +47,7 @@ export function CategoryDiagram() {
           Your IT
         </text>
         <text x="340" y="204" textAnchor="middle" fill="#6B6484" fontSize="12">
-          devices · servers · cloud
+          devices, servers, cloud
         </text>
 
         {/* Resources in, from the top */}

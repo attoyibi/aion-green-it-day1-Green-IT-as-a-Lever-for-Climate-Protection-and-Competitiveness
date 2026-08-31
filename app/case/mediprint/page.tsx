@@ -9,9 +9,9 @@ export default function MediprintPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Tab 3 · Case A"
+        eyebrow="Tab 3, Case A"
         title="MediPrint Solutions"
-        intro="An observation surface. The illustration carries everything: the building opens the company brief, the arrows open the topic areas, and nine markers each carry one passage from the description. The work assignment sits below it."
+        intro="Everything you need is in the illustration. Click the building to read the company brief, click an arrow to see a topic area, and click each of the nine markers to read one passage from the case description. Your assignment is below the picture."
       />
 
       {/* The artwork is the hero — no sidebar repeating what is already drawn on it. */}
@@ -33,7 +33,7 @@ export default function MediprintPage() {
             <code className="text-caption text-ash">mediprint/initiatives</code>
           </div>
           <p className="mb-4 text-body text-ash">
-            Task 2 asks you to work with these three options as they stand — open each
+            Task 2 asks you to work with these three options as they stand. Open each
             one to read it in full.
           </p>
           <div className="grid gap-3 md:grid-cols-3">
@@ -51,7 +51,7 @@ export default function MediprintPage() {
             <code className="text-caption text-ash">mediprint/conditions</code>
           </div>
           <p className="mb-4 text-body text-ash">
-            The setting the three initiatives sit in — not tagged to a topic area.
+            The setting the three initiatives sit in. These are not tagged to a topic area.
           </p>
           <ul className="flex flex-wrap gap-2">
             {CONDITIONS.map((condition) => (

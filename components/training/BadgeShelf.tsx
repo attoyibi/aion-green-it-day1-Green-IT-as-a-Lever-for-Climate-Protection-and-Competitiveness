@@ -33,7 +33,7 @@ function nextStep({
     return "All three matched. Nothing to do here.";
   }
   if (missed > 0) {
-    return `${missed} of these went into a different category. Finish the round — the summary at the end lists them to re-read.`;
+    return `${missed} of these went into a different category. Finish the round, and the summary at the end will list them so you can read them again.`;
   }
   if (ahead > 0) {
     return `${ahead} ${name} card${ahead === 1 ? "" : "s"} still ahead of you. Keep going through the deck.`;

@@ -45,7 +45,7 @@ function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean 
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
         {complete ? (
           <p className="text-caption text-good">
-            Nothing open here — all {group.total} {group.unit} done.
+            Nothing left open here. All {group.total} {group.unit} are done.
           </p>
         ) : (
           <button
