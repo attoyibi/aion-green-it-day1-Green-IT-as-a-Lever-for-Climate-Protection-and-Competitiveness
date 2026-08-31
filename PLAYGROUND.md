@@ -40,9 +40,9 @@ Two consequences worth knowing:
 | `/` | — | redirects to `/learn` |
 | `/learn` | Tab 1 | done — 11 widgets across L1/L2/L3, all interactive |
 | `/training` | Tab 2 | done — 15 reveal cards, XP, streak, category badges |
-| `/case/mediprint` | Tab 3 | Task 1 done — interactive hero, 9 markers, briefing. Task 2 slots open |
-| `/case/nordcom` | Tab 4 | frame only: brief, legend, fixed tab strip, tiles, context slots |
-| `/case/auron` | Tab 5 | frame only: brief, legend, map, chart, conditions, stakeholders slots |
+| `/case/mediprint` | Tab 3 | done — Task 1 interactive hero (9 markers, briefing) and Task 2 (initiative panels + conditions) |
+| `/case/nordcom` | Tab 4 | done — interactive board (9 findings), Task 3 briefing, first-step exercise |
+| `/case/auron` | Tab 5 | done — interactive board (10 findings), Task 4 briefing, capacity allocation |
 | `/task-map` | Tab 6 | done — table from `data/task-map.ts` |
 
 ## Built
@@ -67,21 +67,71 @@ Two consequences worth knowing:
   narrower screens. Underneath: the
   "Show all facts as list" fallback and the Task 1 briefing, whose lines link
   back to the marker they appear on.
+- MediPrint Task 2: "Three initiatives on the table" renders the three
+  `init-A`/`init-B`/`init-C` options from section 6.A as `InitiativePanel`
+  cards — each opens the verbatim initiative text in a modal (`InfoDialog`),
+  no ranking or recommendation shown. "General conditions" renders the five
+  `cond-*` tiles as flat, non-category `ConditionTile` pills. Both live in
+  `app/case/mediprint/page.tsx`, sourced from `INITIATIVES`/`CONDITIONS` in
+  `data/mediprint.ts`.
 
 ## Not built yet
 
-Everything behind a `Placeholder` slot. Each slot prints its own id, so a
-slot on screen maps straight to the section of `README.md` that fills it:
+Nothing is behind a `Placeholder` slot any more — `grep -r Placeholder app/`
+returns no matches. Case B and Case C were rebuilt on the `CaseBoard`
+component (see "Build Case B and Case C as interactive boards on the new
+artwork" in git log) rather than the 5-tab dashboard / stakeholder-card
+layout `README.md` section 6.B/6.C originally specified; that rebuild is
+the current standard and is what `MASTER-PROMPT.txt` documents going
+forward. `README.md` section 6.B/6.C is the original build prompt and is
+superseded — treat `data/nordcom.ts` / `data/auron.ts` and the `CaseBoard`
+components as the source of truth for what those two cases actually say.
 
-| Slot id | Fill from |
-| --- | --- |
-| `mediprint/initiatives`, `mediprint/conditions` | section 6.A, Task 2 |
-| `nordcom/*` | section 6.B |
-| `auron/*` | section 6.C |
+**Fixed defect:** the Auron hero image (`public/assets/auron-hero.jpeg`)
+carried Indonesian city codes ("JKT" x2, "SBY", "MDN", "YOG") on the
+multi-site skyline panel (finding 7, "Growth across several sites") — the
+"locale bleed" generator failure `MASTER-PROMPT.txt` documents under "Known
+generator failure modes" (~line 793). It was written down there as a
+lesson for the *next* build's image prompts, but the flawed image that
+prompted the note was never itself regenerated. NordCom's hero avoids the
+same failure by naming "Berlin, Germany" directly on the artwork; Auron's
+never named a country in `BRIEF` or `HOTSPOTS`, so the stray codes read as
+an unintended, unexplained locale. Patched in place (pixel-edited, not
+regenerated) — each of the five tags now reads a neutral single letter
+(A–E) in the same yellow-tag-with-black-border style, redrawn in Arial
+Bold to match the artwork's lettering. No hotspot coordinates changed, so
+every marker still lines up.
 
-Still missing as files: `data/nordcom.ts`, `data/auron.ts`, `FactModal`,
-and the remaining `/components/ui` primitives (Modal, Tabs, Button, Chip,
-Toggle), plus `lib/a11y.ts`.
+## Worksheet alignment (Case B / Case C)
+
+`Worksheet3_NordCom_L2.docx` / `AnswerKey_Worksheet3_NordCom_L2.docx` and
+`Worksheet4_Auron_L3.docx` / `AnswerKey_Worksheet4_Auron_L3.docx` are the
+real graded instruments for Task 3 and Task 4 — both link straight to this
+app's deployed URL and both print a "Reference Material" box that quotes
+every finding (F1–F9 / F1–F10) and every widget option (NordCom's AA1–AA4,
+Auron's M1–M6) as the thing a learner can cite by label. Checked every one
+against `data/nordcom.ts` / `data/auron.ts`:
+
+- The F#-to-marker-number correspondence is exact for both cases — F5 is
+  always marker 5 — so "click the numbered marker" in the worksheet's
+  instructions always works.
+- NordCom's four action areas and Auron's six roadmap measures (incl. point
+  costs) were already verbatim matches. Nothing to change there.
+- About half the individual finding sentences had drifted from the
+  worksheet's wording (paraphrase-level, not meaning-level) — leftover from
+  the Case B/C rewrite happening after the worksheets were written. Brought
+  `BRIEF`, `CONTEXT` and the `fact` strings on both cases back to the
+  worksheet's exact wording.
+- One real content gap, not just wording: NordCom finding 3
+  (`hs-procurement`) carried a second "Resources" topic-area chip that the
+  worksheet's reference material doesn't list (it tags F3 as Organisation &
+  Governance only) — dropped the secondary chip.
+- NordCom finding 8 (`hs-decentralised`) was missing a clarifying detail the
+  worksheet includes — "(each site orders its own)" — added it back.
+
+If either worksheet is revised later, re-diff its Reference Material box
+against these two files — that box is the part graded, and it now matches
+on-screen strings 1:1.
 
 ## What is still open
 

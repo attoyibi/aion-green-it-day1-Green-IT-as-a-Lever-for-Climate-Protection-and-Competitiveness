@@ -16,7 +16,7 @@ export const HERO_IMAGE: HeroImage = {
 export const BRIEF: CaseBrief = {
   name: "Auron Digital Group",
   lines: [
-    "You take the role of IT strategy leader or CTO consultant for Auron Digital Group. The company is growing fast, has several sites, rising energy costs, a non-uniform IT landscape, and increasing pressure from customers and the supervisory board to address sustainability in a way that can be traced.",
+    "You are the IT strategy lead (or CTO advisor) for Auron Digital Group. Auron is a strongly growing company with several sites, rising energy costs, an inconsistent IT landscape, and increasing pressure from customers and supervisory bodies to address sustainability in a comprehensible way.",
     "Maya, the IT strategy lead drawn at the centre of the board, is the person whose desk this lands on. From here, the decisions are yours.",
   ],
 };
@@ -26,9 +26,12 @@ export const DELIVERABLE =
   "A management proposal that is ready to be decided on.";
 
 export const CONTEXT: ContextTile[] = [
-  { id: "ctx-role", text: "Your role: IT strategy leader / CTO consultant." },
+  { id: "ctx-role", text: "Your role: IT strategy lead / CTO advisor." },
   { id: "ctx-sites", text: "Several sites, drawn as site codes across the skyline." },
-  { id: "ctx-trace", text: "Sustainability must be addressed traceably, not asserted." },
+  {
+    id: "ctx-trace",
+    text: "Sustainability must be addressed in a comprehensible way, not merely asserted.",
+  },
 ];
 
 /** The board's title banner, which names the company and the status. */
@@ -58,7 +61,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 21.5,
     panel: { x: 54.5, y: 7.3, w: 22, h: 28.4 },
     categories: ["G", "E"],
-    fact: "A fast-growing business model.",
+    fact: "A strongly growing business model.",
     onTheImage:
       "A rising chart on the wall and staff moving at speed, with growth treated as the given condition.",
   },
@@ -69,7 +72,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 21.5,
     panel: { x: 77.2, y: 7.3, w: 22.3, h: 28.4 },
     categories: ["G"],
-    fact: "Differing interests between IT, purchasing, finance and management.",
+    fact: "Differing interests of IT, purchasing, finance and management.",
     onTheImage:
       "Five people around one table calling for profit, new technology, lower cost and affordability at once, labelled management and purchasing.",
   },
@@ -102,7 +105,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 84.1,
     panel: { x: 54.5, y: 68.7, w: 22, h: 30.8 },
     categories: ["G"],
-    fact: "Time pressure from market demands and reporting obligations.",
+    fact: "Time pressure from market requirements and reporting obligations.",
     onTheImage:
       "A clock beside a sustainability reporting deadline marked as due now.",
   },
@@ -114,7 +117,7 @@ export const HOTSPOTS: Hotspot[] = [
     panel: { x: 77.2, y: 68.7, w: 22.3, h: 30.8 },
     categories: ["G"],
     fact:
-      "A desire for quick success, together with the danger of symbolic single actions.",
+      "A desire for quick wins, but the danger of symbolic individual actions.",
     onTheImage:
       "Confetti over a server with a green label stuck on it, and an unconvinced colleague calling it only symbolic.",
   },
@@ -298,8 +301,6 @@ export const MEASURES: Measure[] = [
 export const ALLOCATION_NOTES = {
   underspent:
     "Capacity is left unused. Unspent capacity is not saved for later in this exercise — it is simply not used.",
-  overspent:
-    "This is over capacity. The exercise does not let you fund everything, which is the condition management is actually in.",
   complete:
     "Capacity is committed. What you left out is now the substance of your proposal, not an omission from it.",
   noOwner:

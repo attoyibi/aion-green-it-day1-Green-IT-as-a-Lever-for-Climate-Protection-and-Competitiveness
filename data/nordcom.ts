@@ -15,8 +15,8 @@ export const HERO_IMAGE: HeroImage = {
 export const BRIEF: CaseBrief = {
   name: "NordCom Services GmbH",
   lines: [
-    "A mid-size IT service provider with 600 employees. The company runs a hybrid IT structure, uses cloud services, operates a small internal data centre, and procures user devices decentrally.",
-    "On the customer side, the demand for evidence of sustainability keeps rising. At the same time there is cost pressure, supply bottlenecks and a high project load.",
+    "A medium-sized IT service provider with 600 employees. The company operates hybrid IT structures, uses cloud services, runs a small internal data centre, and procures end devices in a decentralised way.",
+    "On the customer side, requirements for evidence of sustainability are increasing. At the same time there is cost pressure, supply bottlenecks, and a heavy project workload.",
   ],
 };
 
@@ -24,7 +24,7 @@ export const BRIEF: CaseBrief = {
 export const CONTEXT: ContextTile[] = [
   { id: "ctx-cost", text: "Cost pressure." },
   { id: "ctx-supply", text: "Supply bottlenecks." },
-  { id: "ctx-projects", text: "High project load." },
+  { id: "ctx-projects", text: "Heavy project workload." },
 ];
 
 /** The company block on the left of the board: building, profile tag and city. */
@@ -63,7 +63,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 17.6,
     panel: { x: 77.2, y: 1.1, w: 22.5, h: 33 },
     categories: ["R", "U"],
-    fact: "User devices are replaced frequently although they are still technically usable.",
+    fact: "End devices are frequently replaced although they would still be technically usable.",
     onTheImage:
       "Stacked laptops tagged for disposal after only two years of use, while a colleague still works on an older one.",
   },
@@ -73,8 +73,8 @@ export const HOTSPOTS: Hotspot[] = [
     x: 65.1,
     y: 51.1,
     panel: { x: 53.7, y: 34.8, w: 22.8, h: 32.6 },
-    categories: ["G", "R"],
-    fact: "Sustainability criteria are absent from IT procurement.",
+    categories: ["G"],
+    fact: "Sustainability criteria are missing in IT procurement.",
     onTheImage:
       "Two buyers compare laptops on price and delivery speed, with ecolabels and efficiency set aside.",
   },
@@ -85,7 +85,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 51.1,
     panel: { x: 77.2, y: 34.8, w: 22.5, h: 32.6 },
     categories: ["G"],
-    fact: "There are no Green IT KPIs and no clear responsibility.",
+    fact: "There are no Green IT KPIs and no clear responsibilities.",
     onTheImage:
       "A blank whiteboard headed Green IT Report, and nobody in the room able to say who owns it.",
   },
@@ -97,7 +97,7 @@ export const HOTSPOTS: Hotspot[] = [
     panel: { x: 53.7, y: 68.3, w: 22.8, h: 30.7 },
     categories: ["G"],
     fact:
-      "A large customer demands reliable statements about the contribution of IT to sustainability.",
+      "A major customer demands robust statements on IT's contribution to sustainability.",
     onTheImage:
       "A customer on a video call asking for clear proof of Green IT, with the alternative named: another vendor.",
   },
@@ -108,7 +108,7 @@ export const HOTSPOTS: Hotspot[] = [
     y: 83.7,
     panel: { x: 77.2, y: 68.3, w: 22.5, h: 30.7 },
     categories: ["G"],
-    fact: "Management wants quick results, but not symbolic politics.",
+    fact: "Management wants quick results, but no symbolic politics.",
     onTheImage:
       "A manager asking for quick and real results rather than empty public relations.",
   },
@@ -129,7 +129,7 @@ export const HOTSPOTS: Hotspot[] = [
     x: 48,
     y: 27.5,
     categories: ["G"],
-    fact: "User devices are procured decentrally.",
+    fact: "End devices are procured in a decentralised way (each site orders its own).",
     onTheImage:
       "Two colleagues choosing devices at their own desk, drawn as a third input to the same IT structure.",
   },
@@ -139,7 +139,7 @@ export const HOTSPOTS: Hotspot[] = [
     x: 31,
     y: 89,
     categories: ["G"],
-    fact: "On the customer side, the demand for evidence of sustainability keeps rising.",
+    fact: "Rising customer demand for evidence of sustainability across the market.",
     onTheImage:
       "A banner across the foot of the company scene, above a growing stack of customer paperwork.",
   },

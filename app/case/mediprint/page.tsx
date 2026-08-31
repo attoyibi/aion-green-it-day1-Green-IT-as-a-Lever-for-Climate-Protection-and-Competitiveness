@@ -1,7 +1,9 @@
 import { PageHeader } from "@/components/ui/PageHeader";
-import { Placeholder } from "@/components/ui/Placeholder";
 import { MediprintCase } from "@/components/case/MediprintCase";
 import { OpenItems } from "@/components/ui/OpenItems";
+import { InitiativePanel } from "@/components/case/InitiativePanel";
+import { ConditionTile } from "@/components/case/ConditionTile";
+import { CONDITIONS, INITIATIVES } from "@/data/mediprint";
 
 export default function MediprintPage() {
   return (
@@ -23,12 +25,40 @@ export default function MediprintPage() {
           showLinks={false}
         />
 
-        <Placeholder slotId="mediprint/initiatives" title="Three initiatives on the table">
-          Task 2 surface. Three read-only panels, each opening the initiative text in a modal.
-        </Placeholder>
-        <Placeholder slotId="mediprint/conditions" title="General conditions">
-          Task 2 surface. Five flat pills describing the setting the initiatives sit in.
-        </Placeholder>
+        <section aria-labelledby="mediprint-initiatives-title" className="card p-4 md:p-5">
+          <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 id="mediprint-initiatives-title" className="text-h3 text-ink">
+              Three initiatives on the table
+            </h2>
+            <code className="text-caption text-ash">mediprint/initiatives</code>
+          </div>
+          <p className="mb-4 text-body text-ash">
+            Task 2 asks you to work with these three options as they stand — open each
+            one to read it in full.
+          </p>
+          <div className="grid gap-3 md:grid-cols-3">
+            {INITIATIVES.map((initiative) => (
+              <InitiativePanel key={initiative.id} initiative={initiative} />
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="mediprint-conditions-title" className="card p-4 md:p-5">
+          <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 id="mediprint-conditions-title" className="text-h3 text-ink">
+              General conditions
+            </h2>
+            <code className="text-caption text-ash">mediprint/conditions</code>
+          </div>
+          <p className="mb-4 text-body text-ash">
+            The setting the three initiatives sit in — not tagged to a topic area.
+          </p>
+          <ul className="flex flex-wrap gap-2">
+            {CONDITIONS.map((condition) => (
+              <ConditionTile key={condition.id} condition={condition} />
+            ))}
+          </ul>
+        </section>
       </div>
     </>
   );

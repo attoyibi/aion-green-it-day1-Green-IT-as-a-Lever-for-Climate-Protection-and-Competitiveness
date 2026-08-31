@@ -2,9 +2,9 @@
 // N1: every string here ships verbatim. Do not paraphrase or translate.
 
 import type { CategoryCode } from "./categories";
-import type { ContextTile, Hotspot, Zone } from "./case-shared";
+import type { ContextTile, Hotspot, Initiative, Zone } from "./case-shared";
 
-export type { ContextTile, Hotspot, Zone };
+export type { ContextTile, Hotspot, Initiative, Zone };
 
 export const HERO_IMAGE = {
   src: "/assets/mediprint-hero.jpeg",
@@ -157,5 +157,47 @@ export const CATEGORY_ZONES: (Zone & { code: CategoryCode })[] = [
     y: 57.5,
     w: 16,
     h: 10,
+  },
+];
+
+// --- Task 2 support panels, rendered below the hero on the same page. ---
+
+/** "Three initiatives on the table" — read-only, no ranking, no recommendation. */
+export const INITIATIVES: Initiative[] = [
+  {
+    id: "init-A",
+    title: "Initiative A — New devices",
+    body: "Replacing all workplace devices with new energy-efficient models.",
+  },
+  {
+    id: "init-B",
+    title: "Initiative B — Rules for devices & procurement",
+    body: "Introducing rules for device service life, reuse and sustainable procurement.",
+  },
+  {
+    id: "init-C",
+    title: "Initiative C — Green IT steering committee",
+    body: "Establishing a Green IT steering committee with metrics, responsibilities and targets.",
+  },
+];
+
+/** "General conditions" — flat pills, non-category, non-hotspot. */
+export const CONDITIONS: ContextTile[] = [
+  { id: "cond-budget", text: "The budget is limited." },
+  {
+    id: "cond-data",
+    text: "The data situation regarding energy consumption is incomplete.",
+  },
+  {
+    id: "cond-board",
+    text: "The board demands results that are visible in the short term.",
+  },
+  {
+    id: "cond-capacity",
+    text: "The IT department's staff capacity is heavily utilised.",
+  },
+  {
+    id: "cond-purchasing",
+    text: "Purchasing is sceptical about new requirements.",
   },
 ];

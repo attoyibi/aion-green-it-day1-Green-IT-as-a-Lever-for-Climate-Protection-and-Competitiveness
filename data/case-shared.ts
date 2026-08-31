@@ -48,6 +48,9 @@ export type Hotspot = {
 
 export type ContextTile = { id: string; text: string };
 
+/** A read-only option on the table — no ranking, no recommendation. */
+export type Initiative = { id: string; title: string; body: string };
+
 export type CaseBrief = {
   name: string;
   lines: string[];
