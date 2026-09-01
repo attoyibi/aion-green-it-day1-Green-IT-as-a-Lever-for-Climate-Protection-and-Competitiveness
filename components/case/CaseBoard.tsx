@@ -307,24 +307,33 @@ export function CaseBoard({
           </button>
 
           {showList ? (
-            <ol className="mt-3 grid gap-2 md:grid-cols-2">
-              {hotspots.map((spot, index) => (
-                <li key={spot.id} id={spot.id} className="card p-4">
-                  <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="text-h3 text-ink">
-                      {index + 1}. {spot.label}
-                    </h3>
-                    <code className="text-caption text-ash">{spot.id}</code>
-                  </div>
-                  <p className="mb-2 text-body text-ink">{spot.fact}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {spot.categories.map((code) => (
-                      <CategoryChip key={code} code={code} variant="topic" />
-                    ))}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <>
+              <p className="mt-3 text-caption text-ash">
+                F1–F{hotspots.length} match the worksheet&rsquo;s citation labels, in the
+                same order as the numbered markers above.
+              </p>
+              <ol className="mt-2 grid gap-2 md:grid-cols-2">
+                {hotspots.map((spot, index) => (
+                  <li key={spot.id} id={spot.id} className="card p-4">
+                    <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="flex items-center gap-2 text-h3 text-ink">
+                        <span className="inline-flex h-6 min-w-[30px] shrink-0 items-center justify-center rounded-md border border-purple bg-lilac px-1.5 text-caption font-semibold text-purple">
+                          F{index + 1}
+                        </span>
+                        {index + 1}. {spot.label}
+                      </h3>
+                      <code className="text-caption text-ash">{spot.id}</code>
+                    </div>
+                    <p className="mb-2 text-body text-ink">{spot.fact}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {spot.categories.map((code) => (
+                        <CategoryChip key={code} code={code} variant="topic" />
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </>
           ) : null}
         </div>
       </section>
