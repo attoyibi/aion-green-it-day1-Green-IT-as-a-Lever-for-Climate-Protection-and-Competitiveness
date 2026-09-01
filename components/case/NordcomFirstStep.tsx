@@ -37,8 +37,13 @@ export function NordcomFirstStep() {
         the real decision management is asking you for.
       </p>
 
+      <p className="mb-2 text-caption text-ash">
+        AA1&ndash;AA4 match the worksheet&rsquo;s citation labels, in the same order
+        as the cards below.
+      </p>
+
       <div className="mb-4 grid gap-3 md:grid-cols-2">
-        {ACTION_AREAS.map((area) => {
+        {ACTION_AREAS.map((area, index) => {
           const isPicked = picked === area.id;
           const isCommitted = committed === area.id;
 
@@ -73,7 +78,12 @@ export function NordcomFirstStep() {
                     <span className="h-1.5 w-1.5 rounded-full bg-paper" />
                   ) : null}
                 </span>
-                <h3 className="text-body font-semibold text-ink">{area.title}</h3>
+                <h3 className="flex items-center gap-2 text-body font-semibold text-ink">
+                  <span className="inline-flex h-6 min-w-[36px] shrink-0 items-center justify-center rounded-md border border-purple bg-lilac px-1.5 text-caption font-semibold text-purple">
+                    AA{index + 1}
+                  </span>
+                  {area.title}
+                </h3>
               </div>
               <p className="pl-6 text-caption text-ash">{area.summary}</p>
             </button>
@@ -102,7 +112,9 @@ export function NordcomFirstStep() {
       {chosen ? (
         <div className="space-y-3" aria-live="polite">
           <div className="rounded-2xl border border-line bg-lilac/50 p-4">
-            <h3 className="mb-2 text-h3 text-ink">You chose: {chosen.title}</h3>
+            <h3 className="mb-2 text-h3 text-ink">
+              You chose: AA{ACTION_AREAS.indexOf(chosen) + 1}, {chosen.title}
+            </h3>
 
             <h4 className="mb-1 text-caption font-semibold uppercase tracking-wide text-ash">
               What this buys you

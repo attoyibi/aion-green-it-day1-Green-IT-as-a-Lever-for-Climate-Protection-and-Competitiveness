@@ -80,7 +80,7 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hs-kpi",
-    label: "No Green IT KPIs and no accountability",
+    label: "No Green IT KPIs and no clear responsibilities",
     x: 88.5,
     y: 51.1,
     panel: { x: 77.2, y: 34.8, w: 22.5, h: 32.6 },
@@ -91,7 +91,7 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hs-customer",
-    label: "Pressure from a large customer",
+    label: "Pressure from a major customer",
     x: 65.1,
     y: 83.7,
     panel: { x: 53.7, y: 68.3, w: 22.8, h: 30.7 },

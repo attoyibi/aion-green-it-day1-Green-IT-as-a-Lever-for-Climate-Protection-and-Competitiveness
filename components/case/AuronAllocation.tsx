@@ -98,8 +98,13 @@ export function AuronAllocation() {
         </div>
       </div>
 
+      <p className="mb-2 text-caption text-ash">
+        M1&ndash;M6 match the worksheet&rsquo;s citation labels, in the same order as
+        the measures below.
+      </p>
+
       <ul className="mb-4 space-y-2">
-        {MEASURES.map((measure) => {
+        {MEASURES.map((measure, index) => {
           const isOn = funded.includes(measure.id);
           const wouldOverrun = !isOn && spent + measure.cost > CAPACITY_TOTAL;
 
@@ -133,7 +138,10 @@ export function AuronAllocation() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="text-body font-semibold text-ink">
+                      <h3 className="flex items-center gap-2 text-body font-semibold text-ink">
+                        <span className="inline-flex h-6 min-w-[32px] shrink-0 items-center justify-center rounded-md border border-purple bg-lilac px-1.5 text-caption font-semibold text-purple">
+                          M{index + 1}
+                        </span>
                         {measure.title}
                       </h3>
                       <span
@@ -198,7 +206,10 @@ export function AuronAllocation() {
               <ul className="space-y-3">
                 {unfunded.map((measure) => (
                   <li key={measure.id} className="border-l-2 border-line pl-3">
-                    <h4 className="text-body font-semibold text-ink">
+                    <h4 className="flex items-center gap-2 text-body font-semibold text-ink">
+                      <span className="inline-flex h-6 min-w-[32px] shrink-0 items-center justify-center rounded-md border border-purple bg-lilac px-1.5 text-caption font-semibold text-purple">
+                        M{MEASURES.indexOf(measure) + 1}
+                      </span>
                       {measure.title}
                     </h4>
                     <p className="text-caption text-ash">{measure.exposes}</p>

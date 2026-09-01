@@ -56,7 +56,7 @@ export const COMPANY_ZONE: Zone = {
 export const HOTSPOTS: Hotspot[] = [
   {
     id: "hs-growth-model",
-    label: "Fast-growing business model",
+    label: "Strongly growing business model",
     x: 65.5,
     y: 21.5,
     panel: { x: 54.5, y: 7.3, w: 22, h: 28.4 },
@@ -100,7 +100,7 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hs-time-pressure",
-    label: "Time pressure from market demands",
+    label: "Time pressure from market requirements",
     x: 65.5,
     y: 84.1,
     panel: { x: 54.5, y: 68.7, w: 22, h: 30.8 },
@@ -111,7 +111,7 @@ export const HOTSPOTS: Hotspot[] = [
   },
   {
     id: "hs-symbolic",
-    label: "Quick success and the risk of symbolic action",
+    label: "Quick wins and the danger of symbolic action",
     x: 88.4,
     y: 84.1,
     panel: { x: 77.2, y: 68.7, w: 22.3, h: 30.8 },
