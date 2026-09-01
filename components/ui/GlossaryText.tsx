@@ -1,7 +1,21 @@
 "use client";
 
 import { Fragment, type ReactNode } from "react";
-import { GLOSSARY_BY_ID, type GlossaryEntry } from "@/data/glossary";
+import { GLOSSARY_BY_ID, GLOSSARY_BY_ID_DE, type GlossaryEntry } from "@/data/glossary";
+import { fmt, useLocale } from "@/lib/locale";
+
+const COPY = {
+  en: {
+    whatIs: "What is {term}?",
+    close: "Close",
+    whyItMatters: "Why it matters: ",
+  },
+  de: {
+    whatIs: "Was ist {term}?",
+    close: "Schließen",
+    whyItMatters: "Warum das wichtig ist: ",
+  },
+};
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -15,12 +29,22 @@ type Hit = { start: number; end: number; id: string };
  * Links only the terms a card explicitly declares, so no unrelated word is
  * ever caught by accident. The first occurrence of each term is linked once —
  * marking every repeat turns the sentence into noise.
+ *
+ * `glossaryById` is passed in rather than read from the module import
+ * directly, so the caller can hand it the German lookup (GLOSSARY_BY_ID_DE)
+ * when the text being scanned is itself German — matching stays exact-string
+ * and case-insensitive, so some inflected German forms will not be caught;
+ * that is a known, accepted limitation, not something to fix here.
  */
-function findHits(text: string, termIds: string[]): Hit[] {
+function findHits(
+  text: string,
+  termIds: string[],
+  glossaryById: Record<string, GlossaryEntry>,
+): Hit[] {
   const hits: Hit[] = [];
 
   for (const id of termIds) {
-    const entry = GLOSSARY_BY_ID[id];
+    const entry = glossaryById[id];
     if (!entry) continue;
 
     for (const phrase of phrasesFor(entry)) {
@@ -50,7 +74,12 @@ type Props = {
 };
 
 export function GlossaryText({ text, termIds, activeId, onSelect }: Props) {
-  const hits = findHits(text, termIds);
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const glossaryById = isDe ? GLOSSARY_BY_ID_DE : GLOSSARY_BY_ID;
+
+  const hits = findHits(text, termIds, glossaryById);
   if (hits.length === 0) return <>{text}</>;
 
   const parts: ReactNode[] = [];
@@ -65,7 +94,7 @@ export function GlossaryText({ text, termIds, activeId, onSelect }: Props) {
         type="button"
         onClick={() => onSelect(hit.id)}
         aria-pressed={activeId === hit.id}
-        title={`What is ${GLOSSARY_BY_ID[hit.id].term}?`}
+        title={fmt(copy.whatIs, { term: glossaryById[hit.id].term })}
         className={
           activeId === hit.id
             ? "rounded bg-purple/15 font-semibold text-purple decoration-purple decoration-dotted underline-offset-4 underline"
@@ -98,7 +127,11 @@ export function TermPanel({
   termId: string;
   onClose: () => void;
 }) {
-  const entry = GLOSSARY_BY_ID[termId];
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const glossaryById = isDe ? GLOSSARY_BY_ID_DE : GLOSSARY_BY_ID;
+  const entry = glossaryById[termId];
   if (!entry) return null;
 
   return (
@@ -110,7 +143,7 @@ export function TermPanel({
           onClick={onClose}
           className="shrink-0 rounded-lg border border-line bg-paper px-2 py-1 text-caption text-ash transition-colors duration-200 hover:text-navy hover:underline"
         >
-          Close
+          {copy.close}
         </button>
       </div>
 
@@ -118,7 +151,7 @@ export function TermPanel({
 
       {entry.soWhat ? (
         <p className="mt-2 border-t border-line pt-2 text-body text-navy">
-          <span className="font-semibold">Why it matters: </span>
+          <span className="font-semibold">{copy.whyItMatters}</span>
           {entry.soWhat}
         </p>
       ) : null}

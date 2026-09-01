@@ -2,18 +2,40 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { W1 } from "@/data/learn";
+import { W1, W1_DE } from "@/data/learn";
 import { SOURCES } from "@/data/sources";
+import { useLocale } from "@/lib/locale";
 import { FieldNote } from "./FieldNote";
 import { WidgetShell } from "./WidgetShell";
 import { useWidget } from "./useWidget";
 
+const COPY = {
+  en: {
+    whereItStops: "Where it stops: ",
+    inPractice: "In practice: ",
+    actuallyHappened: "This actually happened",
+    whatItTeaches: "What it teaches: ",
+    source: "Source: ",
+  },
+  de: {
+    whereItStops: "Wo es endet: ",
+    inPractice: "In der Praxis: ",
+    actuallyHappened: "Das ist tatsächlich passiert",
+    whatItTeaches: "Was es lehrt: ",
+    source: "Quelle: ",
+  },
+};
+
 export function W1Comparator() {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+  const data = locale === "de" ? W1_DE : W1;
+
   const [opened, setOpened] = useState<string[]>([]);
   const [active, setActive] = useState<string | null>(null);
   const { complete } = useWidget(W1.id, W1.xp);
 
-  const done = opened.length === W1.cards.length;
+  const done = opened.length === data.cards.length;
   useEffect(() => {
     if (done) complete();
   }, [done, complete]);
@@ -25,13 +47,13 @@ export function W1Comparator() {
 
   return (
     <WidgetShell
-      meta={W1}
-      progress={opened.length / W1.cards.length}
+      meta={data}
+      progress={opened.length / data.cards.length}
       done={done}
-      closing={W1.closing}
+      closing={data.closing}
     >
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {W1.cards.map((card) => {
+        {data.cards.map((card) => {
           const isActive = active === card.id;
           return (
             <button
@@ -56,7 +78,7 @@ export function W1Comparator() {
       </div>
 
       {active
-        ? W1.cards
+        ? data.cards
             .filter((c) => c.id === active)
             .map((card) => (
               <div key={card.id} className="mt-3 rounded-xl border border-line p-4">
@@ -64,12 +86,12 @@ export function W1Comparator() {
                 <p className="mb-3 text-body text-ink">{card.definition}</p>
 
                 <p className="mb-3 rounded-xl bg-lilac/60 p-3 text-body text-navy">
-                  <span className="font-semibold">Where it stops: </span>
+                  <span className="font-semibold">{copy.whereItStops}</span>
                   {card.boundary}
                 </p>
 
                 <p className="text-caption text-ash">
-                  <span className="font-semibold">In practice: </span>
+                  <span className="font-semibold">{copy.inPractice}</span>
                   {card.inPractice}
                 </p>
 
@@ -78,7 +100,7 @@ export function W1Comparator() {
                 {card.cases?.length ? (
                   <div className="mt-3">
                     <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-purple">
-                      This actually happened
+                      {copy.actuallyHappened}
                     </p>
                     <ul className="space-y-3">
                       {card.cases.map((item) => (
@@ -91,11 +113,11 @@ export function W1Comparator() {
                           </h5>
                           <p className="mb-2 text-body text-ash">{item.what}</p>
                           <p className="text-body text-navy">
-                            <span className="font-semibold">What it teaches: </span>
+                            <span className="font-semibold">{copy.whatItTeaches}</span>
                             {item.lesson}
                           </p>
                           <p className="mt-2 text-caption text-ash">
-                            Source:{" "}
+                            {copy.source}
                             <a
                               href={SOURCES[item.source].url}
                               target="_blank"

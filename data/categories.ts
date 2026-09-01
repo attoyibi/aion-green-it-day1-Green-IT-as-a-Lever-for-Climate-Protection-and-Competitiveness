@@ -31,3 +31,26 @@ export const CATEGORY_BY_CODE: Record<CategoryCode, Category> = CATEGORIES.reduc
   },
   {} as Record<CategoryCode, Category>,
 );
+
+// German. Codes, tokens and colours are internal keys, not language — they
+// stay identical across locales. Only `name` changes.
+const NAME_DE: Record<CategoryCode, string> = {
+  E: "Energie",
+  R: "Ressourcen",
+  Em: "Emissionen",
+  U: "Nutzung",
+  G: "Organisation & Governance",
+};
+
+export const CATEGORIES_DE: Category[] = CATEGORIES.map((c) => ({
+  ...c,
+  name: NAME_DE[c.code],
+}));
+
+export const CATEGORY_BY_CODE_DE: Record<CategoryCode, Category> = CATEGORIES_DE.reduce(
+  (acc, c) => {
+    acc[c.code] = c;
+    return acc;
+  },
+  {} as Record<CategoryCode, Category>,
+);

@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
-import { PHASES, PROLOGUE, type Choice } from "@/data/meridian";
+import { PHASES, PHASES_DE, PROLOGUE, PROLOGUE_DE, type Choice } from "@/data/meridian";
 import { MERIDIAN_INITIAL, type Phase } from "@/lib/types";
 import { useProgress } from "@/lib/store";
+import { fmt, useLocale } from "@/lib/locale";
 import { ArtifactCard } from "./Artifacts";
 import { Collapsible } from "./Collapsible";
 import { Inbox } from "./Inbox";
@@ -15,8 +16,28 @@ import { Debrief } from "./Debrief";
 
 const ORDER: Phase[] = ["p1", "p2", "p3", "p4"];
 
-/** Openers are the material a decision is made on, so they stay in the phase. */
+/** Openers are the material a decision is made on, so they stay in the phase.
+ *  Ids are identical across locales, so this can stay keyed off the English array. */
 const openerIds = new Set(PHASES.flatMap((p) => p.opener));
+
+const COPY = {
+  en: {
+    showFullLayout: "Show the full layout",
+    readAsText: "Read this phase as text",
+    prologue: "Prologue",
+    estateHint: "{n} things about the IT estate you walked into",
+    phase2WithWeek: "Phase 2 · Week {week}",
+    youChose: "You chose: {title}",
+  },
+  de: {
+    showFullLayout: "Vollständiges Layout anzeigen",
+    readAsText: "Diese Phase als Text lesen",
+    prologue: "Prolog",
+    estateHint: "{n} Dinge über den IT-Bestand, den du übernommen hast",
+    phase2WithWeek: "Phase 2 · Woche {week}",
+    youChose: "Deine Wahl: {title}",
+  },
+};
 
 export function MeridianScenario({
   layout = "page",
@@ -24,6 +45,12 @@ export function MeridianScenario({
   /** "inline" drops the sticky rail for a strip, for use inside the Learn page. */
   layout?: "page" | "inline";
 }) {
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const phasesSrc = isDe ? PHASES_DE : PHASES;
+  const prologueSrc = isDe ? PROLOGUE_DE : PROLOGUE;
+
   const inline = layout === "inline";
   const state = useProgress((s) => s.scenario.meridian);
   const pickChoice = useProgress((s) => s.pickChoice);
@@ -50,13 +77,13 @@ export function MeridianScenario({
   const log = ORDER.flatMap((phase) => {
     const id = view.choices[phase];
     if (!id) return [];
-    const spec = PHASES.find((p) => p.id === phase);
+    const spec = phasesSrc.find((p) => p.id === phase);
     const choice = spec?.choices.find((c) => c.id === id);
     return choice ? [{ week: weekOf(phase, view), title: choice.title }] : [];
   });
 
   const pick = (phase: Phase, choice: Choice) => {
-    const spec = PHASES.find((p) => p.id === phase);
+    const spec = phasesSrc.find((p) => p.id === phase);
     if (!spec) return;
 
     // A conditional mood only applies when the stakeholder is in that state now.
@@ -101,25 +128,25 @@ export function MeridianScenario({
             onClick={() => setPlain(!plain)}
             className="rounded-xl border border-line px-3 py-1.5 text-caption font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
           >
-            {plain ? "Show the full layout" : "Read this phase as text"}
+            {plain ? copy.showFullLayout : copy.readAsText}
           </button>
         </div>
 
         {/* ------------------------------------------------ prologue */}
-        <section aria-label="Prologue" className="space-y-3">
+        <section aria-label={copy.prologue} className="space-y-3">
           <div className="card p-5">
-            <h2 className="text-h2 text-ink">{PROLOGUE.company.title}</h2>
-            <p className="mt-1 text-body text-ash">{PROLOGUE.company.subline}</p>
+            <h2 className="text-h2 text-ink">{prologueSrc.company.title}</h2>
+            <p className="mt-1 text-body text-ash">{prologueSrc.company.subline}</p>
 
-            <p className="mt-3 text-body text-ink">{PROLOGUE.company.growth}</p>
+            <p className="mt-3 text-body text-ink">{prologueSrc.company.growth}</p>
 
             <div className="mt-4">
               <Collapsible
-                label={PROLOGUE.company.estateTitle}
-                hint={`${PROLOGUE.company.estate.length} things about the IT estate you walked into`}
+                label={prologueSrc.company.estateTitle}
+                hint={fmt(copy.estateHint, { n: prologueSrc.company.estate.length })}
               >
                 <dl className="space-y-2">
-                  {PROLOGUE.company.estate.map((item) => (
+                  {prologueSrc.company.estate.map((item) => (
                     <div key={item.label}>
                       <dt className="text-body font-semibold text-ink">{item.label}</dt>
                       <dd className="text-caption text-ash">{item.text}</dd>
@@ -130,18 +157,18 @@ export function MeridianScenario({
             </div>
 
             <p className="mt-4 rounded-xl bg-lilac/60 p-3 text-body text-navy">
-              {PROLOGUE.role}
+              {prologueSrc.role}
             </p>
           </div>
 
           <p className="rounded-xl border border-line p-3 text-body font-semibold text-ink">
-            {PROLOGUE.situation}
+            {prologueSrc.situation}
           </p>
         </section>
 
         <Inbox
           ids={[
-            ...PROLOGUE.artifacts,
+            ...prologueSrc.artifacts,
             ...view.visibleArtifacts.filter((id) => !openerIds.has(id)),
           ]}
           plain={plain}
@@ -149,16 +176,16 @@ export function MeridianScenario({
 
         {/* ------------------------------------------------ phases */}
         {shown.map((phaseId) => {
-          const spec = PHASES.find((p) => p.id === phaseId);
+          const spec = phasesSrc.find((p) => p.id === phaseId);
           if (!spec) return null;
 
           const picked = view.choices[phaseId];
           const opener = spec.opener;
 
-          const heading = spec.banner.left.replace(
-            "Phase 2",
-            `Phase 2 · Week ${view.weekNow}`,
-          );
+          // "Phase 2" reads identically in English and German, so the dynamic
+          // week only needs substituting into the localized template.
+          const heading =
+            spec.id === "p2" ? fmt(copy.phase2WithWeek, { week: view.weekNow }) : spec.banner.left;
           const chosenTitle = spec.choices.find((c) => c.id === picked)?.title;
           const isCurrent = phaseId === shown[shown.length - 1] && !picked;
 
@@ -204,7 +231,7 @@ export function MeridianScenario({
               ) : (
                 <Collapsible
                   label={heading}
-                  hint={chosenTitle ? `You chose: ${chosenTitle}` : spec.banner.right}
+                  hint={chosenTitle ? fmt(copy.youChose, { title: chosenTitle }) : spec.banner.right}
                 >
                   <div className="space-y-3">{body}</div>
                 </Collapsible>

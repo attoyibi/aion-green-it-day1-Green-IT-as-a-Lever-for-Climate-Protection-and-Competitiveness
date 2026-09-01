@@ -1,6 +1,64 @@
+"use client";
+
 import { CATEGORY_BY_CODE } from "@/data/categories";
-import type { FigureArt } from "@/data/meridian";
+import { ENDINGS, ENDINGS_DE, type FigureArt } from "@/data/meridian";
 import type { EndingId } from "@/lib/types";
+import { useLocale } from "@/lib/locale";
+
+const COPY = {
+  en: {
+    shareOfEnergy: "Share of IT energy by area",
+    percent: "percent",
+    draftSlideTitle: "Draft presentation slide",
+    draftSlideDesc:
+      "A slide frame with an empty headline box and four empty bullet lines. Corner label: Marketing, draft version two.",
+    orgChartTitle: "Green IT ownership is unassigned",
+    orgChartDesc:
+      "An organisation chart with Board, CIO, IT Strategy Lead, Procurement Lead and Operations Lead filled in, and one highlighted empty box labelled Green IT ownership.",
+    board: "Board",
+    cio: "CIO",
+    itStrategy: "IT Strategy",
+    procurement: "Procurement",
+    operations: "Operations",
+    greenItOwnership: "Green IT ownership: ?",
+    endingIllustration: "Ending illustration",
+    endingDesc: {
+      "photo-op-trap": "A flat line under a bright spotlight.",
+      "slow-burn": "A single small candle burning steadily.",
+      overreach: "An arrow that overshoots its target and continues past the frame.",
+      "missed-opportunity": "An hourglass with all the sand at the bottom.",
+      "governance-win": "A relay baton passing from one hand to another.",
+      "quiet-architect": "Foundation stones set below ground level, with a clean structure standing on them.",
+      "quiet-drift": "An empty desk with a single chair pushed in.",
+    } as Record<EndingId, string>,
+  },
+  de: {
+    shareOfEnergy: "Anteil am IT-Energieverbrauch nach Bereich",
+    percent: "Prozent",
+    draftSlideTitle: "Entwurf einer Präsentationsfolie",
+    draftSlideDesc:
+      "Ein Folienrahmen mit leerer Headline-Box und vier leeren Aufzählungszeilen. Ecklabel: Marketing, Entwurf Version zwei.",
+    orgChartTitle: "Die Zuständigkeit für Green IT ist noch nicht zugewiesen",
+    orgChartDesc:
+      "Ein Organigramm mit ausgefüllten Boxen für Vorstand, CIO, IT Strategy Lead, Einkaufsleitung und Betriebsleitung, sowie einer hervorgehobenen leeren Box mit der Aufschrift Green-IT-Zuständigkeit.",
+    board: "Vorstand",
+    cio: "CIO",
+    itStrategy: "IT Strategy",
+    procurement: "Einkauf",
+    operations: "Operations",
+    greenItOwnership: "Green-IT-Zuständigkeit: ?",
+    endingIllustration: "Ending-Illustration",
+    endingDesc: {
+      "photo-op-trap": "Eine flache Linie unter einem grellen Scheinwerfer.",
+      "slow-burn": "Eine einzelne kleine Kerze, die gleichmäßig brennt.",
+      overreach: "Ein Pfeil, der sein Ziel überschießt und über den Rahmen hinaus weiterfliegt.",
+      "missed-opportunity": "Eine Sanduhr, bei der aller Sand unten liegt.",
+      "governance-win": "Ein Staffelstab, der von einer Hand zur anderen weitergereicht wird.",
+      "quiet-architect": "Fundamentsteine unterhalb der Erdoberfläche, darauf eine saubere Struktur.",
+      "quiet-drift": "Ein leerer Schreibtisch mit einem hineingeschobenen Stuhl.",
+    } as Record<EndingId, string>,
+  },
+};
 
 /** Shared frame: every scenario SVG is labelled for a screen reader (R7). */
 function Figure({
@@ -167,12 +225,14 @@ export function StackedBar({
   id: string;
   segments: { label: string; value: number; category: string }[];
 }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   let x = 0;
   return (
     <Figure
       id={id}
-      title="Share of IT energy by area"
-      desc={segments.map((s) => `${s.label}: ${s.value} percent`).join(". ")}
+      title={copy.shareOfEnergy}
+      desc={segments.map((s) => `${s.label}: ${s.value} ${copy.percent}`).join(". ")}
       viewBox="0 0 320 24"
     >
       {segments.map((s) => {
@@ -195,11 +255,13 @@ export function StackedBar({
 }
 
 export function SlideMockup({ id }: { id: string }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   return (
     <Figure
       id={id}
-      title="Draft presentation slide"
-      desc="A slide frame with an empty headline box and four empty bullet lines. Corner label: Marketing, draft version two."
+      title={copy.draftSlideTitle}
+      desc={copy.draftSlideDesc}
       viewBox="0 0 320 180"
     >
       <rect width="320" height="180" rx="8" fill="#FFF" stroke={LINE} />
@@ -216,6 +278,8 @@ export function SlideMockup({ id }: { id: string }) {
 }
 
 export function OrgChart({ id }: { id: string }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   const box = (x: number, y: number, w: number, label: string, on?: boolean) => (
     <g key={label}>
       <rect
@@ -238,25 +302,29 @@ export function OrgChart({ id }: { id: string }) {
   return (
     <Figure
       id={id}
-      title="Green IT ownership is unassigned"
-      desc="An organisation chart with Board, CIO, IT Strategy Lead, Procurement Lead and Operations Lead filled in, and one highlighted empty box labelled Green IT ownership."
+      title={copy.orgChartTitle}
+      desc={copy.orgChartDesc}
       viewBox="0 0 320 190"
     >
       <path d="M160 46v14M60 74h200M60 74v12M160 74v12M260 74v12M160 116v14" stroke={LINE} fill="none" />
-      {box(120, 16, 80, "Board")}
-      {box(120, 46, 80, "CIO")}
-      {box(20, 86, 80, "IT Strategy")}
-      {box(120, 86, 80, "Procurement")}
-      {box(220, 86, 80, "Operations")}
-      {box(100, 130, 120, "Green IT ownership: ?", true)}
+      {box(120, 16, 80, copy.board)}
+      {box(120, 46, 80, copy.cio)}
+      {box(20, 86, 80, copy.itStrategy)}
+      {box(120, 86, 80, copy.procurement)}
+      {box(220, 86, 80, copy.operations)}
+      {box(100, 130, 120, copy.greenItOwnership, true)}
     </Figure>
   );
 }
 
 export function EndingArt({ ending }: { ending: EndingId }) {
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const endings = isDe ? ENDINGS_DE : ENDINGS;
   const art: Record<EndingId, { desc: string; body: React.ReactNode }> = {
     "photo-op-trap": {
-      desc: "A flat line under a bright spotlight.",
+      desc: copy.endingDesc["photo-op-trap"],
       body: (
         <>
           <path d="M150 20l60 90H90z" fill="#F1B24A" opacity="0.25" />
@@ -265,7 +333,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     "slow-burn": {
-      desc: "A single small candle burning steadily.",
+      desc: copy.endingDesc["slow-burn"],
       body: (
         <>
           <rect x="138" y="70" width="24" height="52" rx="4" fill={L} stroke={LINE} />
@@ -275,7 +343,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     overreach: {
-      desc: "An arrow that overshoots its target and continues past the frame.",
+      desc: copy.endingDesc.overreach,
       body: (
         <>
           <circle cx="120" cy="80" r="26" fill="none" stroke={LINE} strokeWidth="3" />
@@ -285,7 +353,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     "missed-opportunity": {
-      desc: "An hourglass with all the sand at the bottom.",
+      desc: copy.endingDesc["missed-opportunity"],
       body: (
         <>
           <path d="M120 36h60l-30 40 30 40h-60l30-40z" fill="none" stroke={N} strokeWidth="2.5" />
@@ -294,7 +362,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     "governance-win": {
-      desc: "A relay baton passing from one hand to another.",
+      desc: copy.endingDesc["governance-win"],
       body: (
         <>
           <rect x="112" y="72" width="76" height="12" rx="6" fill="#2F9E5A" />
@@ -303,7 +371,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     "quiet-architect": {
-      desc: "Foundation stones set below ground level, with a clean structure standing on them.",
+      desc: copy.endingDesc["quiet-architect"],
       body: (
         <>
           <path d="M60 116h180" stroke={N} strokeWidth="2.5" />
@@ -316,7 +384,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
       ),
     },
     "quiet-drift": {
-      desc: "An empty desk with a single chair pushed in.",
+      desc: copy.endingDesc["quiet-drift"],
       body: (
         <>
           <rect x="80" y="86" width="140" height="8" rx="3" fill={N} opacity="0.6" />
@@ -330,7 +398,7 @@ export function EndingArt({ ending }: { ending: EndingId }) {
   return (
     <Figure
       id={`ending-${ending}`}
-      title={`Ending illustration: ${ending}`}
+      title={`${copy.endingIllustration}: ${endings[ending].name}`}
       desc={art[ending].desc}
       viewBox="0 0 300 150"
     >

@@ -178,6 +178,42 @@ The button opens `ConfirmDialog` rather than `window.confirm`, listing what
 will be cleared. The confirmation toast is rendered from `TopBar`, outside the
 boundary, so it survives the remount it just caused.
 
+## Language switcher
+
+A dropdown at the top right of `TopBar`, defaulting to English. Only the
+chrome is translated so far — top bar, left rail nav, footer, the reset
+dialog. Every Learn widget, Training card, case fact, worksheet-aligned
+string and the whole Meridian scenario are still English-only regardless of
+the selected language; that is the next, much bigger phase, not an oversight.
+
+Structure, to add a language:
+
+1. Write `data/dictionaries/<code>.ts`, typed as `Dictionary` (from
+   `data/dictionaries/en.ts`) — a missing key is a build error, not a silent
+   English fallback.
+2. Add one line each to `LOCALES` and `DICTIONARIES` in
+   `data/dictionaries/index.ts`. `LanguageSwitcher` renders whatever is in
+   `LOCALES`, so nothing else changes.
+
+`lib/locale.ts` holds the Zustand store (`useLocaleStore`, persisted to its
+own `aion-greenit-m1-locale` key — deliberately separate from progress, so
+switching language never touches XP or the reset flow) and two hooks:
+`useLocale()` and `useT()`. Both default to English until the persisted
+choice hydrates, same reasoning as the XP/streak readout in `TopBar` — this
+is `lib/useHydrated.ts`, factored out since locale needed the identical
+guard in five components.
+
+`<html lang>` can't be set from a cookie or the URL — this is a static
+export, there is no per-request server. `components/chrome/LocaleSync.tsx`
+sets `document.documentElement.lang` client-side once locale hydrates,
+mounted once in `app/layout.tsx`.
+
+`data/nav.ts` stores a dictionary `key` per route instead of literal label
+strings now, so `LeftRail` resolves the label through `t.nav[item.key]`.
+Anything that still imports literal strings for chrome text has not been
+migrated yet — search for the string before assuming it is missing from the
+dictionary.
+
 ## Judging the roadmap without scoring it
 
 W8 used to check one thing — whether a measure ran before its prerequisite —

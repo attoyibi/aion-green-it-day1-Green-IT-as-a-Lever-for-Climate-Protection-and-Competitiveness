@@ -2,6 +2,22 @@
 
 import { useState, type ReactNode } from "react";
 import type { WidgetMeta } from "@/data/learn";
+import { fmt, useLocale } from "@/lib/locale";
+
+const COPY = {
+  en: {
+    doneXp: "Done · +{xp} XP",
+    collapse: "Collapse",
+    open: "Open",
+    whyMatters: "Why this matters: ",
+  },
+  de: {
+    doneXp: "Fertig · +{xp} XP",
+    collapse: "Einklappen",
+    open: "Öffnen",
+    whyMatters: "Warum das wichtig ist: ",
+  },
+};
 
 type Props = {
   meta: WidgetMeta;
@@ -13,6 +29,9 @@ type Props = {
 };
 
 export function WidgetShell({ meta, progress, done, children, closing }: Props) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+
   // Collapsible so a learner working through one widget is not scrolling past
   // eight others to reach it.
   const [open, setOpen] = useState(true);
@@ -39,7 +58,7 @@ export function WidgetShell({ meta, progress, done, children, closing }: Props) 
                 : "rounded-full border border-line px-3 py-1 text-caption text-ash"
             }
           >
-            {done ? `Done · +${meta.xp} XP` : `${Math.round(progress * 100)}%`}
+            {done ? fmt(copy.doneXp, { xp: meta.xp }) : `${Math.round(progress * 100)}%`}
           </span>
           <button
             type="button"
@@ -48,7 +67,7 @@ export function WidgetShell({ meta, progress, done, children, closing }: Props) 
             onClick={() => setOpen(!open)}
             className="rounded-lg border border-line px-2 py-1 text-caption font-semibold text-navy transition-colors duration-200 hover:bg-lilac hover:underline"
           >
-            {open ? "Collapse" : "Open"}
+            {open ? copy.collapse : copy.open}
           </button>
         </div>
       </div>
@@ -56,7 +75,7 @@ export function WidgetShell({ meta, progress, done, children, closing }: Props) 
       {open ? (
         <div id={`${meta.id}-body`}>
           <p className="mb-4 rounded-xl bg-lilac/50 p-3 text-body text-navy">
-            <span className="font-semibold">Why this matters: </span>
+            <span className="font-semibold">{copy.whyMatters}</span>
             {meta.why}
           </p>
 

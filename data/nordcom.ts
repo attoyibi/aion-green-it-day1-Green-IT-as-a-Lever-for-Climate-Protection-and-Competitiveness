@@ -3,6 +3,7 @@
 // N3: nothing here may leak into /learn or /training.
 
 import type { CaseBrief, ContextTile, HeroImage, Hotspot, Zone } from "./case-shared";
+import { overlay, overlayById } from "@/lib/i18nData";
 
 export const HERO_IMAGE: HeroImage = {
   src: "/assets/nordcom-hero.jpeg",
@@ -272,3 +273,186 @@ export const KEY = {
   honesty:
     "The other three areas are not wrong, and two of them carry more measurable effect than this one. They are not first because none of them can be sized, defended or enforced until this one exists.",
 };
+
+// ---------------------------------------------------------------------------
+// German. Structure (ids, x/y, panel, categories, order) is never duplicated
+// here — only translatable text, merged onto the English source.
+// ---------------------------------------------------------------------------
+
+export const HERO_IMAGE_DE = overlay(HERO_IMAGE, {
+  alt: "Fallstudien-Tafel für NordCom Services GmbH. Links das Unternehmen: ein Bürogebäude in einer Stadt, ein Diagramm, das Cloud-Dienste und ein kleines internes Rechenzentrum mit dezentraler Beschaffung verbindet, sowie eine Führungskraft mit Unterlagen, beschriftet mit Kostendruck, Lieferkettenproblemen und hoher Projektauslastung. Rechts sechs betitelte Felder mit hohem Energieverbrauch, schnellem Gerätewechsel, Beschaffung ohne grüne Kriterien, fehlenden Green-IT-KPIs, Druck von einem Großkunden und der Forderung nach schnellen Ergebnissen statt symbolischer Gesten.",
+});
+
+export const BRIEF_DE: CaseBrief = overlay(BRIEF, {
+  lines: [
+    "Ein mittelständischer IT-Dienstleister mit 600 Mitarbeitenden. Das Unternehmen betreibt hybride IT-Strukturen, nutzt Cloud-Dienste, betreibt ein kleines internes Rechenzentrum und beschafft Endgeräte dezentral.",
+    "Auf Kundenseite steigen die Anforderungen an Nachweise zur Nachhaltigkeit. Gleichzeitig bestehen Kostendruck, Lieferengpässe und eine hohe Projektauslastung.",
+  ],
+});
+
+export const CONTEXT_DE = overlayById(CONTEXT, {
+  "ctx-cost": { text: "Kostendruck." },
+  "ctx-supply": { text: "Lieferengpässe." },
+  "ctx-projects": { text: "Hohe Projektauslastung." },
+});
+
+export const COMPANY_ZONE_DE = overlay(COMPANY_ZONE, {
+  label: "NordCom Services GmbH: Kurzprofil und Kontext",
+});
+
+export const HOTSPOTS_DE = overlayById(HOTSPOTS, {
+  "hs-energy": {
+    label: "Hoher Energieverbrauch",
+    fact: "Hoher Stromverbrauch im internen IT-Betrieb.",
+    onTheImage:
+      "Eine Führungskraft hält eine Stromrechnung neben einem ansteigenden Balkendiagramm, im Hintergrund ist der beleuchtete Serverraum zu sehen.",
+  },
+  "hs-devices": {
+    label: "Schneller Gerätewechsel",
+    fact: "Endgeräte werden häufig ausgetauscht, obwohl sie technisch noch nutzbar wären.",
+    onTheImage:
+      "Gestapelte Laptops, nach nur zwei Jahren Nutzung zur Entsorgung markiert, während ein Kollege noch an einem älteren Gerät arbeitet.",
+  },
+  "hs-procurement": {
+    label: "Beschaffung ohne grüne Kriterien",
+    fact: "In der IT-Beschaffung fehlen Nachhaltigkeitskriterien.",
+    onTheImage:
+      "Zwei Einkäufer vergleichen Laptops nach Preis und Lieferzeit, Umweltsiegel und Effizienz bleiben unberücksichtigt.",
+  },
+  "hs-kpi": {
+    label: "Keine Green-IT-KPIs und keine klaren Zuständigkeiten",
+    fact: "Es gibt keine Green-IT-KPIs und keine klaren Zuständigkeiten.",
+    onTheImage:
+      "Ein leeres Whiteboard mit der Überschrift Green-IT-Report, niemand im Raum kann sagen, wer dafür zuständig ist.",
+  },
+  "hs-customer": {
+    label: "Druck von einem Großkunden",
+    fact: "Ein Großkunde fordert belastbare Aussagen zum Beitrag der IT zur Nachhaltigkeit.",
+    onTheImage:
+      "Ein Kunde fordert in einer Videokonferenz klare Nachweise für Green IT, die Alternative wird benannt: ein anderer Anbieter.",
+  },
+  "hs-quick-results": {
+    label: "Schnelle Ergebnisse statt Symbolpolitik",
+    fact: "Das Management will schnelle Ergebnisse, aber keine Symbolpolitik.",
+    onTheImage:
+      "Eine Führungskraft fordert schnelle, echte Ergebnisse statt leerer Öffentlichkeitsarbeit.",
+  },
+  "hs-hybrid": {
+    label: "Hybride IT-Struktur",
+    fact: "Das Unternehmen betreibt eine hybride IT-Struktur: Cloud-Dienste neben einem kleinen internen Rechenzentrum.",
+    onTheImage:
+      "Ein Diagramm, das eine Cloud und einen Serverschrank verbindet, mit Pfeilen in dasselbe kleine Rechenzentrum.",
+  },
+  "hs-decentralised": {
+    label: "Dezentrale Beschaffung",
+    fact: "Endgeräte werden dezentral beschafft (jeder Standort bestellt eigenständig).",
+    onTheImage:
+      "Zwei Kollegen wählen Geräte am eigenen Schreibtisch aus, dargestellt als dritter Zufluss in dieselbe IT-Struktur.",
+  },
+  "hs-demand": {
+    label: "Steigende Kundennachfrage",
+    fact: "Steigende Kundennachfrage nach Nachhaltigkeitsnachweisen im gesamten Markt.",
+    onTheImage:
+      "Ein Banner am unteren Rand der Unternehmensszene, über einem wachsenden Stapel Kundenunterlagen.",
+  },
+});
+
+export const TASK3_DE = overlay(TASK3, {
+  number: "Aufgabe 3, Stufe 2: Anwendung",
+  title: "Green IT zwischen Kostendruck und Wettbewerbsfähigkeit",
+  lead: "Du berätst die Geschäftsführung von NordCom Services GmbH. Alles, was du brauchst, steht oben auf der Tafel: neun Befunde und der Rahmen, in dem sie stehen. Mehr wird nicht vorgegeben, und mehr wird nicht gebraucht.",
+  assignment: overlayById(TASK3.assignment, {
+    "t3-1": {
+      text: "Analysiere die Ausgangslage aus den Perspektiven Betrieb, Beschaffung, Nutzung, Governance und Wettbewerbsfähigkeit.",
+      hint: "Du hast fünf Perspektiven und neun Befunde. Ein Befund kann zu mehr als einer Perspektive gehören, und eine Perspektive kann mehrere Befunde enthalten.",
+    },
+    "t3-2": {
+      text: "Bestimme vier Handlungsfelder, die zu Prioritäten werden.",
+      hint: "Fasse die Befunde zusammen. Du willst vier Felder, nicht neun Maßnahmen. Wenn du bei neun landest, hast du Symptome statt Handlungsfelder aufgelistet.",
+    },
+    "t3-3": {
+      text: "Erarbeite eine erste Green-IT-Empfehlung für die Geschäftsführung mit kurzfristigen und mittelfristigen Schritten.",
+      hint: "Kurzfristig bedeutet, dass du es jetzt mit dem vorhandenen Personal beginnen könntest. Mittelfristig bedeutet, dass zuerst eine Entscheidung, ein Budget oder ein Lieferant nötig ist.",
+    },
+    "t3-4": {
+      text: "Entscheide, welcher Schritt zuerst umgesetzt werden soll.",
+      hint: "Wähle einen Schritt. Das Feld unten erfasst deine Wahl und reagiert darauf, bevor es dir die Musterlösung zeigt.",
+    },
+    "t3-5": {
+      text: "Begründe deine Entscheidung hinsichtlich Wirkung, Risiko und Umsetzbarkeit.",
+      hint: "Berücksichtige alle drei. Ein Schritt mit hoher Wirkung, aber ohne Umsetzbarkeit, ist ein Wunsch, keine Entscheidung.",
+    },
+    "t3-6": {
+      text: "Formuliere einen Vorschlag, wie Verantwortung und Steuerung organisatorisch verankert werden.",
+      hint: "Sage, wer entscheidet, wer berichtet und wie oft. Ein Name allein, ohne Berichtsweg, ist keine Verankerung.",
+    },
+  }),
+  objectiveHeading: "Ziel",
+  objective:
+    "Die Teilnehmenden lernen, Green IT managementgerecht zu analysieren, statt sie nur technisch zu betrachten.",
+});
+
+export const ACTION_AREAS_DE: ActionArea[] = overlayById(ACTION_AREAS, {
+  "aa-governance": {
+    title: "Green-IT-Governance mit klaren Rollen und einem Zielbild aufbauen",
+    summary:
+      "Eine verantwortliche Person benennen, Mindestindikatoren festlegen und vereinbaren, worauf das Unternehmen zusteuert.",
+    strength:
+      "Es schafft die Grundlage, auf der jede spätere Entscheidung aufbaut, und ist die einzige Maßnahme hier, die im Start fast nichts kostet.",
+    tradeoff:
+      "Es bringt in den ersten Wochen keine sichtbare Einsparung. Das Management wollte schnelle Ergebnisse, und eine Rollenbeschreibung wirkt nicht danach. Wenn du dich dafür entscheidest, verknüpfe es mit der Datenerhebung, damit dein erstes Ergebnis eine Zahl ist und kein Organigramm.",
+  },
+  "aa-transparency": {
+    title: "Transparenz über Energie- und Ressourcenverbrauch schaffen",
+    summary:
+      "Erfassen, wie viel das interne Rechenzentrum verbraucht und welche Geräte an den Standorten vorhanden sind und wie alt sie sind.",
+    strength:
+      "Es beantwortet die Kundenanfrage mit Nachweisen statt Absichtserklärungen und macht jede spätere Aussage belastbar.",
+    tradeoff:
+      "Zahlen ohne Verantwortliche landen auf niemandes Schreibtisch. Ohne parallel vereinbarte Rollen wird eine Datenbasis einmal erhoben, nur von der erhebenden Person gelesen und ist veraltet, bevor jemand danach handelt.",
+  },
+  "aa-procurement": {
+    title: "Nachhaltige Beschaffung vorbereiten und Gerätelebenszyklen verlängern",
+    summary:
+      "Beschaffungsrichtlinien entwerfen und eine Lebensdauerstrategie für Geräte festlegen, die noch nutzbar ausgetauscht werden.",
+    strength:
+      "Es adressiert die sichtbarste Verschwendung auf der Tafel, und die Gerätelebensdauer ist der Hebel mit der klarsten Wirkung auf Ressourcen.",
+    tradeoff:
+      "Die Beschaffung ist hier dezentral organisiert. Eine Richtlinie in dieser Struktur ist nur ein Dokument, keine Kontrolle. Solange niemand die Befugnis hat, sie durchzusetzen, kauft jedes Team weiter wie bisher.",
+  },
+  "aa-infrastructure": {
+    title: "Infrastruktur und Cloud-Nutzung schrittweise optimieren",
+    summary:
+      "Die hybride Struktur durcharbeiten: was im kleinen Rechenzentrum läuft, was in der Cloud läuft und was doppelt läuft.",
+    strength:
+      "Hier liegt der eigentliche Energieverbrauch auf der Tafel, deshalb ist das Einsparpotenzial hier am größten.",
+    tradeoff:
+      "Es ist eine Investitionsentscheidung, und dir fehlt eine Datenbasis, um sie zu bemessen. Dies zuerst zu wählen ist genau die überstürzte Einzelinvestition, vor der der Fall warnt: Gelingt sie, kannst du es nicht belegen, misslingt sie, kannst du nicht sagen, um wie viel.",
+  },
+});
+
+export const KEY_DE = overlay(KEY, {
+  core: "Der größte Hebel liegt nicht in einer einzelnen überstürzten Investition, sondern zuerst im Aufbau der Steuerungsfähigkeit.",
+  firstStep:
+    "Green-IT-Governance gemeinsam mit der Datenerhebung aufbauen, bevor größere Investitionen getätigt werden.",
+  reasons: [
+    "Es schafft eine Entscheidungsgrundlage.",
+    "Es verhindert Fehlinvestitionen.",
+    "Es ermöglicht, Prioritäten zu setzen.",
+    "Es verbessert die Argumentationsfähigkeit nach innen und außen.",
+  ],
+  shortTerm: [
+    "Eine verantwortliche Person benennen.",
+    "Mindestindikatoren festlegen.",
+    "Geräteinventar und Nutzungsdauern erfassen.",
+    "Beschaffungsrichtlinien entwerfen.",
+  ],
+  mediumTerm: [
+    "Eine Lebensdauerstrategie für Geräte.",
+    "Energieoptimierung im IT-Betrieb.",
+    "Einbindung in ESG- und Nachhaltigkeitsberichterstattung.",
+    "Eine Investitions-Roadmap für die priorisierten Maßnahmen.",
+  ],
+  honesty:
+    "Die anderen drei Handlungsfelder sind nicht falsch, und zwei von ihnen haben eine messbarere Wirkung als dieses. Sie stehen nicht an erster Stelle, weil keines von ihnen bemessen, verteidigt oder durchgesetzt werden kann, solange dieses hier nicht existiert.",
+});

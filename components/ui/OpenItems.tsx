@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useCompletion, type CompletionGroup } from "@/lib/completion";
+import { fmt, useT } from "@/lib/locale";
 
 function Bar({ done, total }: { done: number; total: number }) {
   const pct = total === 0 ? 0 : Math.round((done / total) * 100);
@@ -27,6 +28,7 @@ function Bar({ done, total }: { done: number; total: number }) {
 }
 
 function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean }) {
+  const t = useT();
   const [open, setOpen] = useState(false);
   const remaining = group.items.filter((i) => !i.done);
   const complete = remaining.length === 0;
@@ -36,7 +38,9 @@ function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean 
       <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <p className="text-body font-semibold text-ink">{group.label}</p>
         <p className={clsx("text-caption", complete ? "text-good" : "text-ash")}>
-          {complete ? "Complete" : `${group.done} of ${group.total}`}
+          {complete
+            ? t.openItems.complete
+            : fmt(t.openItems.doneOfTotal, { done: group.done, total: group.total })}
         </p>
       </div>
 
@@ -45,7 +49,7 @@ function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean 
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
         {complete ? (
           <p className="text-caption text-good">
-            Nothing left open here. All {group.total} {group.unit} are done.
+            {fmt(t.openItems.allDone, { total: group.total, unit: group.unit })}
           </p>
         ) : (
           <button
@@ -54,9 +58,7 @@ function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean 
             onClick={() => setOpen(!open)}
             className="rounded text-caption font-semibold text-purple underline underline-offset-2 hover:text-navy"
           >
-            {open
-              ? "Hide what is open"
-              : `Show the ${remaining.length} still open`}
+            {open ? t.openItems.hideWhatIsOpen : fmt(t.openItems.showStillOpen, { n: remaining.length })}
           </button>
         )}
 
@@ -65,7 +67,7 @@ function Group({ group, showLink }: { group: CompletionGroup; showLink: boolean 
             href={group.href}
             className="rounded text-caption text-purple underline underline-offset-2 hover:text-navy"
           >
-            Go there →
+            {t.openItems.goThere}
           </Link>
         ) : null}
       </div>
@@ -97,6 +99,7 @@ type Props = {
 
 /** Answers "what is still open" — for one tab, or for the whole module. */
 export function OpenItems({ only, title, intro, showLinks = true }: Props) {
+  const t = useT();
   const { groups, done, total } = useCompletion();
 
   // Persisted counts only exist on the client; render the empty shape until
@@ -112,7 +115,7 @@ export function OpenItems({ only, title, intro, showLinks = true }: Props) {
     <section aria-labelledby="open-items-title" className="card p-4">
       <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
         <h2 id="open-items-title" className="text-h3 text-ink">
-          {title ?? "What is still open"}
+          {title ?? t.openItems.defaultTitle}
         </h2>
         <p className="text-readout tabular-nums text-ink">
           {shownDone} / {shownTotal}

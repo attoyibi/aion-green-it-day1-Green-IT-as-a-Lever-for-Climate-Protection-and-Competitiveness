@@ -5,15 +5,52 @@ import Link from "next/link";
 import clsx from "clsx";
 import {
   DEBRIEF_MESSAGE,
+  DEBRIEF_MESSAGE_DE,
   ENDINGS,
+  ENDINGS_DE,
   PHASES,
+  PHASES_DE,
   SIGNAL_LABELS,
+  SIGNAL_LABELS_DE,
 } from "@/data/meridian";
 import { computeEnding, computeSignals, type MeridianState, type Phase } from "@/lib/types";
+import { fmt, useLocale } from "@/lib/locale";
 import { EndingArt } from "./ScenarioArt";
 
-const titleOf = (phase: Phase, choiceId: string | null) =>
-  PHASES.find((p) => p.id === phase)?.choices.find((c) => c.id === choiceId)?.title ?? "Not chosen";
+const COPY = {
+  en: {
+    notChosen: "Not chosen",
+    twelveWeeksLater: "Twelve weeks later",
+    thePathYouTook: "The path you took",
+    signals: "Signals",
+    signalsShapeEndings: "Signals shape endings, not individual choices.",
+    whatIf: "What if",
+    ifHadBeen: 'If {phase} had been "{title}"',
+    showLess: "Show less",
+    readIt: "Read it",
+    continueToL3: "Continue to L3: Management decision →",
+    exploreTheCaseTabs: "Explore the case tabs",
+    resetAndReplay: "Reset and replay",
+  },
+  de: {
+    notChosen: "Nicht gewählt",
+    twelveWeeksLater: "Zwölf Wochen später",
+    thePathYouTook: "Der Weg, den du genommen hast",
+    signals: "Signale",
+    signalsShapeEndings: "Signale formen die Endings, nicht einzelne Entscheidungen.",
+    whatIf: "Was wäre, wenn",
+    ifHadBeen: 'Wenn {phase} „{title}“ gewesen wäre',
+    showLess: "Weniger anzeigen",
+    readIt: "Lesen",
+    continueToL3: "Weiter zu L3: Management-Entscheidung →",
+    exploreTheCaseTabs: "Die Fall-Tabs erkunden",
+    resetAndReplay: "Zurücksetzen und neu spielen",
+  },
+};
+
+function titleOf(phasesSrc: typeof PHASES, phase: Phase, choiceId: string | null, notChosen: string) {
+  return phasesSrc.find((p) => p.id === phase)?.choices.find((c) => c.id === choiceId)?.title ?? notChosen;
+}
 
 /** NS5 / R4: the only surface where reveal vocabulary is allowed. */
 export function Debrief({
@@ -23,6 +60,14 @@ export function Debrief({
   state: MeridianState;
   onReplay: () => void;
 }) {
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const phasesSrc = isDe ? PHASES_DE : PHASES;
+  const endingsSrc = isDe ? ENDINGS_DE : ENDINGS;
+  const signalLabelsSrc = isDe ? SIGNAL_LABELS_DE : SIGNAL_LABELS;
+  const debriefMessageSrc = isDe ? DEBRIEF_MESSAGE_DE : DEBRIEF_MESSAGE;
+
   const [open, setOpen] = useState<string | null>(null);
 
   const ending = state.ending ?? computeEnding(state.choices, state.weekNow);
@@ -44,16 +89,16 @@ export function Debrief({
     <div className="mx-auto w-full max-w-4xl space-y-6">
       <section className="card p-6">
         <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-purple">
-          Twelve weeks later
+          {copy.twelveWeeksLater}
         </p>
-        <h2 className="mb-3 text-h1 text-ink">{ENDINGS[ending].name}</h2>
+        <h2 className="mb-3 text-h1 text-ink">{endingsSrc[ending].name}</h2>
         <div className="mb-4 max-w-md">
           <EndingArt ending={ending} />
         </div>
-        <p className="mb-4 text-body text-ink">{ENDINGS[ending].body}</p>
+        <p className="mb-4 text-body text-ink">{endingsSrc[ending].body}</p>
 
         <ol className="space-y-2">
-          {ENDINGS[ending].beats.map((beat) => (
+          {endingsSrc[ending].beats.map((beat) => (
             <li key={beat} className="flex gap-3 text-body text-navy">
               <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-purple" />
               {beat}
@@ -63,7 +108,7 @@ export function Debrief({
       </section>
 
       <section className="card p-5">
-        <h3 className="mb-3 text-h3 text-ink">The path you took</h3>
+        <h3 className="mb-3 text-h3 text-ink">{copy.thePathYouTook}</h3>
         <ol className="flex flex-wrap items-stretch gap-2">
           {path.map((phase, i) => (
             <li key={phase} className="flex min-w-[150px] flex-1 items-center gap-2">
@@ -71,7 +116,9 @@ export function Debrief({
                 <p className="text-caption uppercase tracking-wide text-ash">
                   {phase.toUpperCase()}
                 </p>
-                <p className="text-body text-ink">{titleOf(phase, state.choices[phase])}</p>
+                <p className="text-body text-ink">
+                  {titleOf(phasesSrc, phase, state.choices[phase], copy.notChosen)}
+                </p>
               </div>
               {i < path.length - 1 ? (
                 <span aria-hidden="true" className="text-h3 text-ash">
@@ -84,9 +131,9 @@ export function Debrief({
       </section>
 
       <section className="card p-5">
-        <h3 className="mb-3 text-h3 text-ink">Signals</h3>
+        <h3 className="mb-3 text-h3 text-ink">{copy.signals}</h3>
         <ul className="space-y-2">
-          {SIGNAL_LABELS.map(({ key, label }) => {
+          {signalLabelsSrc.map(({ key, label }) => {
             const n = signals[key];
             return (
               <li key={key} className="flex items-center gap-3">
@@ -109,27 +156,27 @@ export function Debrief({
             );
           })}
         </ul>
-        <p className="mt-3 text-caption text-ash">
-          Signals shape endings, not individual choices.
-        </p>
+        <p className="mt-3 text-caption text-ash">{copy.signalsShapeEndings}</p>
       </section>
 
       <section className="card p-5">
-        <h3 className="mb-3 text-h3 text-ink">What if</h3>
+        <h3 className="mb-3 text-h3 text-ink">{copy.whatIf}</h3>
         <div className="grid gap-3 md:grid-cols-2">
           {whatIfs.map((w) => {
             const isOpen = open === `${w.phase}-${w.letter}`;
             return (
               <div key={`${w.phase}-${w.letter}`} className="rounded-xl border border-line p-3">
                 <p className="mb-1 text-caption text-ash">
-                  If {w.phase.toUpperCase()} had been “
-                  {titleOf(w.phase, `${w.phase}-${w.letter}`)}”
+                  {fmt(copy.ifHadBeen, {
+                    phase: w.phase.toUpperCase(),
+                    title: titleOf(phasesSrc, w.phase, `${w.phase}-${w.letter}`, copy.notChosen),
+                  })}
                 </p>
-                <p className="mb-2 text-body font-semibold text-ink">{ENDINGS[w.id].name}</p>
+                <p className="mb-2 text-body font-semibold text-ink">{endingsSrc[w.id].name}</p>
                 <p className="text-body text-ash">
                   {isOpen
-                    ? ENDINGS[w.id].body
-                    : `${ENDINGS[w.id].body.split(". ")[0]}.`}
+                    ? endingsSrc[w.id].body
+                    : `${endingsSrc[w.id].body.split(". ")[0]}.`}
                 </p>
                 <button
                   type="button"
@@ -137,7 +184,7 @@ export function Debrief({
                   onClick={() => setOpen(isOpen ? null : `${w.phase}-${w.letter}`)}
                   className="mt-2 rounded text-caption font-semibold text-purple underline underline-offset-2 hover:text-navy"
                 >
-                  {isOpen ? "Show less" : "Read it"}
+                  {isOpen ? copy.showLess : copy.readIt}
                 </button>
               </div>
             );
@@ -146,7 +193,7 @@ export function Debrief({
       </section>
 
       <section className="card border-l-4 border-purple p-5">
-        {DEBRIEF_MESSAGE.map((p) => (
+        {debriefMessageSrc.map((p) => (
           <p key={p} className="mb-3 text-body text-ink last:mb-0">
             {p}
           </p>
@@ -158,20 +205,20 @@ export function Debrief({
           href="#l3"
           className="rounded-xl bg-purple px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-navy"
         >
-          Continue to L3: Management decision →
+          {copy.continueToL3}
         </a>
         <Link
           href="/task-map"
           className="rounded-xl border border-line px-4 py-2 text-body font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
         >
-          Explore the case tabs
+          {copy.exploreTheCaseTabs}
         </Link>
         <button
           type="button"
           onClick={onReplay}
           className="rounded-xl border border-line px-4 py-2 text-body font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
         >
-          Reset and replay
+          {copy.resetAndReplay}
         </button>
 
       </div>

@@ -4,11 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import {
   W8,
+  W8_DE,
   W8_PROFILES,
+  W8_PROFILES_DE,
   W8_REFERENCE,
+  W8_REFERENCE_DE,
   W8_TRADEOFFS,
+  W8_TRADEOFFS_DE,
   type RoadmapProfile,
 } from "@/data/learn";
+import { fmt, useLocale } from "@/lib/locale";
 import { WidgetShell } from "./WidgetShell";
 import { PlacementBoard, type Verdict } from "./PlacementBoard";
 import { useWidget } from "./useWidget";
@@ -19,9 +24,61 @@ const TONE: Record<RoadmapProfile["tone"], string> = {
   danger: "border-danger bg-danger/10",
 };
 
-const label = (id: string) => W8.measures.find((m) => m.id === id)?.text ?? id;
+const COPY = {
+  en: {
+    hideKey: "Hide the answer key",
+    showKey: "Stuck? Show the answer key",
+    clearBoard: "Clear the board and try another order",
+    answerKeyHeading: "Answer key",
+    keyIntro:
+      "One defensible order, not the only one. What makes it defensible is the reasoning under each step. That is the part worth arguing with, and the part a board will ask you about.",
+    why: "Why: ",
+    layOut: "Lay this order out on the board",
+    hideTradeoffs: "Hide the trade-offs",
+    whatDoesCost: "What does this ordering cost me?",
+    planReadsAs: "Your plan reads as",
+    whatItCosts: "What it costs: ",
+    measureByMeasure: "Measure by measure",
+    compareKey: "Compare with the answer key →",
+    compareKeyRest: "One defensible order, with the reason each step sits where it does.",
+    notPlacedYet: "{req} is not placed yet.",
+    runsBefore: 'Runs before "{prereq}", which it depends on. Expect to redo this one.',
+    sameQuarter: "{req} is in the same quarter, so there is no room between them.",
+    inPlaceByThen: "{req} is in place by then.",
+  },
+  de: {
+    hideKey: "Musterlösung verbergen",
+    showKey: "Nicht weiter? Musterlösung anzeigen",
+    clearBoard: "Board leeren und eine andere Reihenfolge versuchen",
+    answerKeyHeading: "Musterlösung",
+    keyIntro:
+      "Eine vertretbare Reihenfolge, nicht die einzige. Vertretbar wird sie durch die Begründung hinter jedem Schritt. Das ist der Teil, über den sich streiten lässt – und der Teil, nach dem dich ein Vorstand fragen wird.",
+    why: "Warum: ",
+    layOut: "Diese Reihenfolge auf dem Board anlegen",
+    hideTradeoffs: "Abwägungen verbergen",
+    whatDoesCost: "Was kostet mich diese Reihenfolge?",
+    planReadsAs: "Dein Plan liest sich als",
+    whatItCosts: "Was es kostet: ",
+    measureByMeasure: "Maßnahme für Maßnahme",
+    compareKey: "Mit der Musterlösung vergleichen →",
+    compareKeyRest: "Eine vertretbare Reihenfolge, mit der Begründung, warum jeder Schritt dort sitzt.",
+    notPlacedYet: "{req} ist noch nicht platziert.",
+    runsBefore: "Läuft vor „{prereq}“, wovon sie abhängt. Erwarte, dass du sie wiederholen musst.",
+    sameQuarter: "{req} liegt im selben Quartal, es gibt also keinen Abstand dazwischen.",
+    inPlaceByThen: "{req} steht bis dahin fest.",
+  },
+};
 
 export function W8Roadmap() {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+  const data = locale === "de" ? W8_DE : W8;
+  const profiles = locale === "de" ? W8_PROFILES_DE : W8_PROFILES;
+  const reference = locale === "de" ? W8_REFERENCE_DE : W8_REFERENCE;
+  const tradeoffs = locale === "de" ? W8_TRADEOFFS_DE : W8_TRADEOFFS;
+
+  const label = (id: string) => data.measures.find((m) => m.id === id)?.text ?? id;
+
   const [placements, setPlacements] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<string | null>(null);
   const [showTradeoffs, setShowTradeoffs] = useState(false);
@@ -29,7 +86,7 @@ export function W8Roadmap() {
   const { complete } = useWidget(W8.id, W8.xp);
 
   const placedCount = Object.keys(placements).length;
-  const done = placedCount === W8.measures.length;
+  const done = placedCount === data.measures.length;
 
   useEffect(() => {
     if (done) complete();
@@ -56,7 +113,7 @@ export function W8Roadmap() {
   /** Lay the reference order out on the board, so it can be seen in place. */
   const fillWithReference = () => {
     const next: Record<string, string> = {};
-    for (const step of W8_REFERENCE) {
+    for (const step of reference) {
       for (const id of step.measures) next[id] = step.quarter;
     }
     setPlacements(next);
@@ -64,12 +121,12 @@ export function W8Roadmap() {
     setShowTradeoffs(false);
   };
 
-  const quarterIndex = (id: string | undefined) => (id ? W8.quarters.indexOf(id) : -1);
+  const quarterIndex = (id: string | undefined) => (id ? data.quarters.indexOf(id) : -1);
 
   // Ordering, not correctness: a measure placed before its prerequisite is a
   // re-run waiting to happen, and the widget says so rather than scoring it.
   const verdicts: Record<string, Verdict> = {};
-  for (const measure of W8.measures) {
+  for (const measure of data.measures) {
     const own = quarterIndex(placements[measure.id]);
     if (own < 0) continue;
 
@@ -78,28 +135,28 @@ export function W8Roadmap() {
       continue;
     }
 
-    const prereq = W8.measures.find((m) => m.id === measure.requires);
+    const prereq = data.measures.find((m) => m.id === measure.requires);
     const prereqQuarter = quarterIndex(placements[measure.requires]);
 
     if (prereqQuarter < 0) {
       verdicts[measure.id] = {
         tone: "warn",
-        message: `${measure.requiresLabel} is not placed yet.`,
+        message: fmt(copy.notPlacedYet, { req: measure.requiresLabel }),
       };
     } else if (prereqQuarter > own) {
       verdicts[measure.id] = {
         tone: "danger",
-        message: `Runs before “${prereq?.text}”, which it depends on. Expect to redo this one.`,
+        message: fmt(copy.runsBefore, { prereq: prereq?.text ?? "" }),
       };
     } else if (prereqQuarter === own) {
       verdicts[measure.id] = {
         tone: "warn",
-        message: `${measure.requiresLabel} is in the same quarter, so there is no room between them.`,
+        message: fmt(copy.sameQuarter, { req: measure.requiresLabel }),
       };
     } else {
       verdicts[measure.id] = {
         tone: "good",
-        message: `${measure.requiresLabel} is in place by then.`,
+        message: fmt(copy.inPlaceByThen, { req: measure.requiresLabel }),
       };
     }
   }
@@ -107,28 +164,28 @@ export function W8Roadmap() {
   const analysis = useMemo(() => {
     if (!done) return null;
 
-    const perQuarter = W8.quarters.map(
-      (q) => W8.measures.filter((m) => placements[m.id] === q).length,
+    const perQuarter = data.quarters.map(
+      (q) => data.measures.filter((m) => placements[m.id] === q).length,
     );
 
-    const violations = W8.measures.filter((m) => {
+    const violations = data.measures.filter((m) => {
       if (!m.requires) return false;
       return quarterIndex(placements[m.requires]) > quarterIndex(placements[m.id]);
     });
 
-    const stacked = W8.measures.filter((m) => {
+    const stacked = data.measures.filter((m) => {
       if (!m.requires) return false;
       return quarterIndex(placements[m.requires]) === quarterIndex(placements[m.id]);
     });
 
     // Late means the second half of the year, where a measure stops steering
     // anything within the year it was planned for.
-    const late = W8.measures.filter((m) => quarterIndex(placements[m.id]) >= 2);
+    const late = data.measures.filter((m) => quarterIndex(placements[m.id]) >= 2);
     const firstHalf = perQuarter[0] + perQuarter[1];
 
     let profileId = "evenly-paced";
     if (violations.length > 0) profileId = "out-of-sequence";
-    else if (perQuarter.some((n) => n === W8.measures.length)) profileId = "all-at-once";
+    else if (perQuarter.some((n) => n === data.measures.length)) profileId = "all-at-once";
     else if (firstHalf <= 1) profileId = "back-loaded";
     else if (perQuarter[0] >= 4) profileId = "front-loaded";
     else if (
@@ -138,12 +195,11 @@ export function W8Roadmap() {
     )
       profileId = "foundation-first";
 
-    const profile =
-      W8_PROFILES.find((p) => p.id === profileId) ?? W8_PROFILES[W8_PROFILES.length - 1];
+    const profile = profiles.find((p) => p.id === profileId) ?? profiles[profiles.length - 1];
 
     // One line per measure: what this particular placement costs, or earns.
-    const notes = W8.measures.map((m) => {
-      const tradeoff = W8_TRADEOFFS.find((t) => t.id === m.id);
+    const notes = data.measures.map((m) => {
+      const tradeoff = tradeoffs.find((t) => t.id === m.id);
       const own = quarterIndex(placements[m.id]);
       const isStacked = stacked.some((s) => s.id === m.id);
       const isLate = own >= 2;
@@ -159,14 +215,14 @@ export function W8Roadmap() {
     });
 
     return { profile, notes: notes.filter(Boolean), violations, late };
-  }, [done, placements]);
+  }, [done, placements, data.quarters, data.measures, profiles, tradeoffs]);
 
   return (
     <WidgetShell
-      meta={W8}
-      progress={placedCount / W8.measures.length}
+      meta={data}
+      progress={placedCount / data.measures.length}
       done={done}
-      closing={W8.closing}
+      closing={data.closing}
     >
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <button
@@ -175,7 +231,7 @@ export function W8Roadmap() {
           onClick={() => setShowKey(!showKey)}
           className="rounded-xl border border-line px-3 py-2 text-caption font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
         >
-          {showKey ? "Hide the answer key" : "Stuck? Show the answer key"}
+          {showKey ? copy.hideKey : copy.showKey}
         </button>
 
         {placedCount > 0 ? (
@@ -184,7 +240,7 @@ export function W8Roadmap() {
             onClick={clearBoard}
             className="rounded-xl border border-line px-3 py-2 text-caption font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
           >
-            Clear the board and try another order
+            {copy.clearBoard}
           </button>
         ) : null}
       </div>
@@ -192,22 +248,18 @@ export function W8Roadmap() {
       {showKey ? (
         <div className="mb-4 rounded-xl border-l-4 border-purple bg-lilac/40 p-4">
           <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-purple">
-            Answer key
+            {copy.answerKeyHeading}
           </p>
-          <p className="mb-3 text-body text-ink">
-            One defensible order, not the only one. What makes it defensible is the
-            reasoning under each step. That is the part worth arguing with, and the part
-            a board will ask you about.
-          </p>
+          <p className="mb-3 text-body text-ink">{copy.keyIntro}</p>
 
           <ol className="space-y-2">
-            {W8_REFERENCE.map((step) => (
+            {reference.map((step) => (
               <li key={step.quarter} className="rounded-xl bg-paper p-3">
                 <p className="text-body font-semibold text-ink">
                   {step.quarter}: {step.measures.map(label).join(", ")}
                 </p>
                 <p className="mt-1 text-caption text-navy">
-                  <span className="font-semibold">Why: </span>
+                  <span className="font-semibold">{copy.why}</span>
                   {step.why}
                 </p>
               </li>
@@ -219,18 +271,18 @@ export function W8Roadmap() {
             onClick={fillWithReference}
             className="mt-3 rounded-xl bg-purple px-4 py-2 text-caption font-semibold text-paper transition-colors duration-200 hover:bg-navy"
           >
-            Lay this order out on the board
+            {copy.layOut}
           </button>
         </div>
       ) : null}
 
       <PlacementBoard
-        items={W8.measures.map((m) => ({
+        items={data.measures.map((m) => ({
           id: m.id,
           text: m.text,
           trailing: m.requiresLabel,
         }))}
-        targets={W8.quarters.map((q) => ({ id: q, label: q }))}
+        targets={data.quarters.map((q) => ({ id: q, label: q }))}
         placements={placements}
         verdicts={verdicts}
         selectedId={selected}
@@ -247,28 +299,26 @@ export function W8Roadmap() {
             onClick={() => setShowTradeoffs(!showTradeoffs)}
             className="rounded-xl bg-purple px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-navy"
           >
-            {showTradeoffs
-              ? "Hide the trade-offs"
-              : "What does this ordering cost me?"}
+            {showTradeoffs ? copy.hideTradeoffs : copy.whatDoesCost}
           </button>
 
           {showTradeoffs && analysis ? (
             <div className="mt-3 space-y-3">
               <div className={clsx("rounded-xl border-l-4 p-4", TONE[analysis.profile.tone])}>
                 <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-ash">
-                  Your plan reads as
+                  {copy.planReadsAs}
                 </p>
                 <h4 className="mb-2 text-h3 text-ink">{analysis.profile.label}</h4>
                 <p className="mb-2 text-body text-ink">{analysis.profile.what}</p>
                 <p className="text-body text-navy">
-                  <span className="font-semibold">What it costs: </span>
+                  <span className="font-semibold">{copy.whatItCosts}</span>
                   {analysis.profile.cost}
                 </p>
               </div>
 
               <div>
                 <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-                  Measure by measure
+                  {copy.measureByMeasure}
                 </p>
                 <ul className="space-y-2">
                   {analysis.notes.map((note) =>
@@ -300,8 +350,7 @@ export function W8Roadmap() {
                 onClick={() => setShowKey(true)}
                 className="w-full rounded-xl border border-line p-3 text-left text-body text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac"
               >
-                <span className="font-semibold">Compare with the answer key →</span>{" "}
-                One defensible order, with the reason each step sits where it does.
+                <span className="font-semibold">{copy.compareKey}</span> {copy.compareKeyRest}
               </button>
             </div>
           ) : null}

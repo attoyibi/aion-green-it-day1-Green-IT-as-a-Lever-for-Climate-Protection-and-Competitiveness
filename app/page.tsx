@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useT } from "@/lib/locale";
 
 /**
  * The root sends people to /learn. A static export has no server to issue a
@@ -11,6 +12,7 @@ import { useRouter } from "next/navigation";
  */
 export default function Home() {
   const router = useRouter();
+  const t = useT();
 
   useEffect(() => {
     router.replace("/learn");
@@ -18,12 +20,12 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-md p-8 text-center">
-      <p className="mb-3 text-body text-ash">Opening the module…</p>
+      <p className="mb-3 text-body text-ash">{t.home.opening}</p>
       <Link
         href="/learn"
         className="rounded text-body font-semibold text-purple underline underline-offset-2"
       >
-        Continue to Learn
+        {t.home.continueToLearn}
       </Link>
     </div>
   );

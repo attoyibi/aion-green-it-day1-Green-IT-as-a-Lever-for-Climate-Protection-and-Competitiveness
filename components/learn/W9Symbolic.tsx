@@ -2,28 +2,38 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { W9, type StatementTag } from "@/data/learn";
+import { W9, W9_DE, type StatementTag } from "@/data/learn";
+import { fmt, useLocale } from "@/lib/locale";
 import { WidgetShell } from "./WidgetShell";
 import { useWidget } from "./useWidget";
 
+const COPY = {
+  en: { usuallyFiledAs: "Usually filed as {tag}. " },
+  de: { usuallyFiledAs: "Wird meist als {tag} eingeordnet. " },
+};
+
 export function W9Symbolic() {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+  const data = locale === "de" ? W9_DE : W9;
+
   const [answers, setAnswers] = useState<Record<string, StatementTag>>({});
   const { complete } = useWidget(W9.id, W9.xp);
 
-  const done = Object.keys(answers).length === W9.statements.length;
+  const done = Object.keys(answers).length === data.statements.length;
   useEffect(() => {
     if (done) complete();
   }, [done, complete]);
 
   return (
     <WidgetShell
-      meta={W9}
-      progress={Object.keys(answers).length / W9.statements.length}
+      meta={data}
+      progress={Object.keys(answers).length / data.statements.length}
       done={done}
-      closing={W9.closing}
+      closing={data.closing}
     >
       <div className="mb-4 grid gap-2 md:grid-cols-3">
-        {W9.tags.map((tag) => (
+        {data.tags.map((tag) => (
           <div key={tag.id} className="rounded-xl border border-line p-3">
             <p className="text-body font-semibold text-ink">{tag.label}</p>
             <p className="mt-1 text-caption text-ash">{tag.hint}</p>
@@ -32,7 +42,7 @@ export function W9Symbolic() {
       </div>
 
       <ol className="space-y-3">
-        {W9.statements.map((statement, index) => {
+        {data.statements.map((statement, index) => {
           const answer = answers[statement.id];
           const right = answer === statement.answer;
 
@@ -44,7 +54,7 @@ export function W9Symbolic() {
               </p>
 
               <div className="flex flex-wrap gap-2">
-                {W9.tags.map((tag) => (
+                {data.tags.map((tag) => (
                   <button
                     key={tag.id}
                     type="button"
@@ -79,9 +89,9 @@ export function W9Symbolic() {
                 >
                   {right
                     ? statement.why
-                    : `Usually filed as ${
-                        W9.tags.find((t) => t.id === statement.answer)?.label
-                      }. ${statement.why}`}
+                    : fmt(copy.usuallyFiledAs, {
+                        tag: data.tags.find((t) => t.id === statement.answer)?.label ?? "",
+                      }) + statement.why}
                 </p>
               ) : null}
             </li>

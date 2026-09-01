@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import { fmt, useLocale } from "@/lib/locale";
 
 export type BoardItem = { id: string; text: string; trailing?: string };
 export type BoardTarget = { id: string; label: string; hint?: string };
@@ -12,6 +13,23 @@ const TONE: Record<Verdict["tone"], string> = {
   warn: "border-warn bg-warn/10 text-ink",
   danger: "border-danger bg-danger/10 text-ink",
   neutral: "border-line bg-lilac/60 text-ink",
+};
+
+const COPY = {
+  en: {
+    toPlace: "To place ({n} left)",
+    everythingPlaced: "Everything is placed. Read the verdicts below, then move on.",
+    nowChoose: "Now choose a target below, or press 1 to {n}.",
+    selectCard: "Select a card, or focus one and press 1 to {n}.",
+    moveBack: "Move back",
+  },
+  de: {
+    toPlace: "Zu platzieren ({n} übrig)",
+    everythingPlaced: "Alles ist platziert. Lies die Bewertungen unten, dann geh weiter.",
+    nowChoose: "Wähle jetzt unten ein Ziel, oder drücke 1 bis {n}.",
+    selectCard: "Wähle eine Karte aus, oder fokussiere eine und drücke 1 bis {n}.",
+    moveBack: "Zurücklegen",
+  },
 };
 
 type Props = {
@@ -42,6 +60,8 @@ export function PlacementBoard({
   onPlace,
   targetGrid = "grid gap-3 md:grid-cols-2",
 }: Props) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   const unplaced = items.filter((i) => !placements[i.id]);
 
   const onItemKeyDown = (e: React.KeyboardEvent, itemId: string) => {
@@ -56,12 +76,12 @@ export function PlacementBoard({
     <div className="space-y-4">
       <div>
         <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-          To place ({unplaced.length} left)
+          {fmt(copy.toPlace, { n: unplaced.length })}
         </p>
 
         {unplaced.length === 0 ? (
           <p className="rounded-xl bg-lilac/60 p-3 text-body text-navy">
-            Everything is placed. Read the verdicts below, then move on.
+            {copy.everythingPlaced}
           </p>
         ) : (
           <ul className="space-y-2">
@@ -91,11 +111,11 @@ export function PlacementBoard({
 
         {selectedId ? (
           <p className="mt-2 text-caption text-purple">
-            Now choose a target below, or press 1 to {targets.length}.
+            {fmt(copy.nowChoose, { n: targets.length })}
           </p>
         ) : (
           <p className="mt-2 text-caption text-ash">
-            Select a card, or focus one and press 1 to {targets.length}.
+            {fmt(copy.selectCard, { n: targets.length })}
           </p>
         )}
       </div>
@@ -147,7 +167,7 @@ export function PlacementBoard({
                         onClick={() => onPlace(item.id, "")}
                         className="mt-1 rounded text-caption text-ash underline underline-offset-2 hover:text-navy"
                       >
-                        Move back
+                        {copy.moveBack}
                       </button>
                     </li>
                   );

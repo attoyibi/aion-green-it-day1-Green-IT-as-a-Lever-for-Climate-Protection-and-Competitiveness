@@ -46,6 +46,23 @@ export function MapIcon({ className }: IconProps) {
   );
 }
 
+export function GlobeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className ?? base}>
+      <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M2.5 10h15M10 2.5c2 2.1 3 4.7 3 7.5s-1 5.4-3 7.5c-2-2.1-3-4.7-3-7.5s1-5.4 3-7.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ChevronDownIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className={className ?? "h-4 w-4 shrink-0"}>
+      <path d="m5.5 8 4.5 4.5L14.5 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function AionLogo({ className }: IconProps) {
   return (
     <svg viewBox="0 0 96 24" role="img" aria-label="AION" className={className ?? "h-6 w-24"}>

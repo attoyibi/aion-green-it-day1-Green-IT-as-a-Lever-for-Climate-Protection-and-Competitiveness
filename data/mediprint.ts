@@ -3,6 +3,7 @@
 
 import type { CategoryCode } from "./categories";
 import type { ContextTile, Hotspot, Initiative, Zone } from "./case-shared";
+import { overlay, overlayById } from "@/lib/i18nData";
 
 export type { ContextTile, Hotspot, Initiative, Zone };
 
@@ -201,3 +202,115 @@ export const CONDITIONS: ContextTile[] = [
     text: "Purchasing is sceptical about new requirements.",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// German. Structure (ids, x/y, categories, order) is never duplicated here —
+// only translatable text, merged onto the English source via overlay/overlayById.
+// ---------------------------------------------------------------------------
+
+export const HERO_IMAGE_DE = overlay(HERO_IMAGE, {
+  alt: "Schnittdarstellung der Büros von MediPrint Solutions: ein Serverraum, ein Druckbereich, ein Großraumbüro, ein Besprechungsraum, ein Raum für Projektpräsentationen, ein Keller mit alten Geräten, ein Beschaffungsschild und ein Cloud-Symbol, mit einer Kategorie-Legende am linken Rand.",
+});
+
+export const BRIEF_DE = overlay(BRIEF, {
+  lines: [
+    "280 Mitarbeitende, zwei Standorte, eigener Serverraum, Geräteerneuerung alle drei Jahre, hohes Druckaufkommen, wachsende Cloud-Nutzung, keine Nachhaltigkeitsstrategie in der IT.",
+  ],
+});
+
+export const CONTEXT_DE = overlayById(CONTEXT, {
+  "ctx-elec-rising": { text: "Die Stromkosten steigen deutlich." },
+  "ctx-mgmt-asking": {
+    text: "Das Management fragt zum ersten Mal nach dem Beitrag der IT zur Nachhaltigkeit.",
+  },
+  "ctx-projects-fnspd": {
+    text: "IT-Projekte werden nur nach Funktionalität und Geschwindigkeit bewertet.",
+  },
+});
+
+export const HOTSPOTS_DE = overlayById(HOTSPOTS, {
+  "hs-server-room": {
+    label: "Serverraum",
+    fact: "Eigener Serverraum vor Ort. Läuft durchgehend; Kühlung und Verfügbarkeit haben betrieblich Priorität.",
+    onTheImage:
+      "Rot beleuchtete Racks hinter zwei großen Kühlventilatoren, mit aufsteigender Hitze aus dem Schrank links.",
+  },
+  "hs-elec-meter": {
+    label: "Stromzähler",
+    fact: "Die Stromkosten steigen deutlich.",
+    onTheImage: "Ein Wandschaubild mit einer steil nach rechts ansteigenden roten Linie.",
+  },
+  "hs-cloud": {
+    label: "Cloud-Dienste",
+    fact: "Wachsende Cloud-Nutzung. Rechenleistung und Speicher verlagern sich zu externen Anbietern, deren Energiemix hier nicht erfasst wird.",
+    onTheImage: "Ein Cloud-Symbol über den Servern im Keller, mit Pfeilen zwischen beiden.",
+  },
+  "hs-devices-3yr": {
+    label: "Arbeitsplatzgeräte",
+    fact: "Regelmäßige Geräteerneuerung alle drei Jahre für die gesamte Belegschaft.",
+    onTheImage:
+      "Eine Sprechblase über dem Besprechungsraum mit dem Hinweis auf den Dreijahres-Erneuerungszyklus.",
+  },
+  "hs-basement": {
+    label: "Kellerlager",
+    fact: "Viele alte Geräte lagern ungenutzt im Keller.",
+    onTheImage: "Ein Stapel alter Monitore, Tower-Gehäuse und Tastaturen unter einer einzelnen Hängelampe.",
+  },
+  "hs-print": {
+    label: "Druckbereich",
+    fact: "Hohes Druckaufkommen.",
+    onTheImage:
+      "Zwei Kopierer neben schreibtischhohen Papierstapeln, die von Mitarbeitenden befüllt werden.",
+  },
+  "hs-procurement": {
+    label: "Beschaffungsstelle",
+    fact: "Es gibt keine Regeln für Beschaffung oder Nutzungsdauer von Geräten.",
+    onTheImage: "Ein Hinweisschild am Rand des Kellers.",
+  },
+  "hs-boardroom": {
+    label: "Besprechungsraum",
+    fact: "Keine Nachhaltigkeitsstrategie in der IT.",
+    onTheImage:
+      "Vier Personen an einem Besprechungstisch mit Glaswänden, eine Person präsentiert.",
+  },
+  "hs-project-lens": {
+    label: "Projektaufnahme-Tafel",
+    fact: "IT-Projekte werden nur nach Funktionalität und Geschwindigkeit bewertet.",
+    onTheImage: "Eine Projektionsfläche im Raum unten rechts, vorgetragen von einer präsentierenden Person.",
+  },
+});
+
+export const COMPANY_ZONE_DE = overlay(COMPANY_ZONE, {
+  label: "MediPrint Solutions: Kurzprofil und Kontext",
+});
+
+export const CATEGORY_ZONES_DE = overlayById(CATEGORY_ZONES, {
+  "zone-cat-e": { label: "Themenbereich: Energie" },
+  "zone-cat-r": { label: "Themenbereich: Ressourcen" },
+  "zone-cat-em": { label: "Themenbereich: Emissionen" },
+  "zone-cat-u": { label: "Themenbereich: Nutzung" },
+  "zone-cat-g": { label: "Themenbereich: Organisation & Governance" },
+});
+
+export const INITIATIVES_DE = overlayById(INITIATIVES, {
+  "init-A": {
+    title: "Initiative A — Neue Geräte",
+    body: "Ersetzen aller Arbeitsplatzgeräte durch neue, energieeffiziente Modelle.",
+  },
+  "init-B": {
+    title: "Initiative B — Regeln für Geräte & Beschaffung",
+    body: "Einführung von Regeln für Nutzungsdauer, Wiederverwendung und nachhaltige Beschaffung von Geräten.",
+  },
+  "init-C": {
+    title: "Initiative C — Green-IT-Lenkungsausschuss",
+    body: "Einrichtung eines Green-IT-Lenkungsausschusses mit Kennzahlen, Verantwortlichkeiten und Zielen.",
+  },
+});
+
+export const CONDITIONS_DE = overlayById(CONDITIONS, {
+  "cond-budget": { text: "Das Budget ist begrenzt." },
+  "cond-data": { text: "Die Datenlage zum Energieverbrauch ist unvollständig." },
+  "cond-board": { text: "Der Vorstand fordert kurzfristig sichtbare Ergebnisse." },
+  "cond-capacity": { text: "Die personellen Kapazitäten der IT-Abteilung sind stark ausgelastet." },
+  "cond-purchasing": { text: "Der Einkauf steht neuen Anforderungen skeptisch gegenüber." },
+});

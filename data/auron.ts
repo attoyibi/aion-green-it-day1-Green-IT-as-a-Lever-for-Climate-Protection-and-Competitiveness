@@ -4,6 +4,7 @@
 // currency, kWh or CO2. The shortfall is the exercise, not a missing figure.
 
 import type { CaseBrief, ContextTile, HeroImage, Hotspot, Zone } from "./case-shared";
+import { overlay, overlayById } from "@/lib/i18nData";
 
 export const HERO_IMAGE: HeroImage = {
   src: "/assets/auron-hero.jpeg",
@@ -316,3 +317,200 @@ export const POSTPONED_PROMPT = {
   placeholder:
     "I postponed ... . It costs us ... . I would bring it forward if ... .",
 };
+
+// ---------------------------------------------------------------------------
+// German. Structure (ids, x/y, panel, categories, cost, order) is never
+// duplicated here — only translatable text, merged onto the English source.
+// ---------------------------------------------------------------------------
+
+export const HERO_IMAGE_DE = overlay(HERO_IMAGE, {
+  alt: "Fallstudien-Tafel für Auron Digital Group. Links das Unternehmen: eine wachsende Skyline mit mehreren Standortkürzeln und einem Baukran, aufsteigende Wachstumspfeile, eine Menschenmenge aus Kunden und Aufsichtsratsmitgliedern mit Schildern, ein leuchtender Stromzähler, ein Stapel uneinheitlicher Server in verworrener Verkabelung, und Maya, die IT-Strategieleiterin. Rechts sechs betitelte Felder mit einem stark wachsenden Geschäftsmodell, widersprüchlichen Zielen zwischen Abteilungen, unvollständigen Daten, einem begrenzten Budget, Zeitdruck durch eine Berichtsfrist und einer Feier um einen Server mit grünem Aufkleber, die nur symbolisch ist.",
+});
+
+export const BRIEF_DE: CaseBrief = overlay(BRIEF, {
+  lines: [
+    "Du bist die IT-Strategieleitung (oder CTO-Beraterin bzw. -Berater) von Auron Digital Group. Auron ist ein stark wachsendes Unternehmen mit mehreren Standorten, steigenden Energiekosten, einer uneinheitlichen IT-Landschaft und wachsendem Druck von Kunden und Aufsichtsgremien, Nachhaltigkeit nachvollziehbar zu adressieren.",
+    "Maya, die in der Mitte der Tafel dargestellte IT-Strategieleiterin, ist die Person, auf deren Schreibtisch das landet. Von hier an liegen die Entscheidungen bei dir.",
+  ],
+});
+
+export const DELIVERABLE_DE = "Ein entscheidungsreifer Vorschlag für das Management.";
+
+export const CONTEXT_DE = overlayById(CONTEXT, {
+  "ctx-role": { text: "Deine Rolle: IT-Strategieleitung / CTO-Beratung." },
+  "ctx-sites": { text: "Mehrere Standorte, dargestellt als Standortkürzel über der Skyline." },
+  "ctx-trace": {
+    text: "Nachhaltigkeit muss nachvollziehbar adressiert werden, nicht nur behauptet.",
+  },
+});
+
+export const COMPANY_ZONE_DE = overlay(COMPANY_ZONE, {
+  label: "Auron Digital Group: das Gesamtbild und deine Rolle",
+});
+
+export const HOTSPOTS_DE = overlayById(HOTSPOTS, {
+  "hs-growth-model": {
+    label: "Stark wachsendes Geschäftsmodell",
+    fact: "Ein stark wachsendes Geschäftsmodell.",
+    onTheImage:
+      "Ein ansteigendes Diagramm an der Wand, Mitarbeitende in Eile, Wachstum wird als gegebene Bedingung behandelt.",
+  },
+  "hs-conflicting-goals": {
+    label: "Widersprüchliche Ziele",
+    fact: "Unterschiedliche Interessen von IT, Einkauf, Finanzen und Management.",
+    onTheImage:
+      "Fünf Personen an einem Tisch fordern gleichzeitig Gewinn, neue Technologie, niedrigere Kosten und Erschwinglichkeit, beschriftet mit Management und Einkauf.",
+  },
+  "hs-incomplete-data": {
+    label: "Unvollständige Daten",
+    fact: "Die Datenlage ist unvollständig.",
+    onTheImage:
+      "Eine halb ausgefüllte Tabelle und ein Dashboard mit fehlerhaften Messwerten, Fragezeichen anstelle der Werte.",
+  },
+  "hs-limited-budget": {
+    label: "Begrenztes Budget",
+    fact: "Das Budget ist begrenzt.",
+    onTheImage:
+      "Ein Tresor mit wenig Geld, umgeben von konkurrierenden Forderungen für Green IT, Energie und Berichte.",
+  },
+  "hs-time-pressure": {
+    label: "Zeitdruck durch Marktanforderungen",
+    fact: "Zeitdruck durch Marktanforderungen und Berichtspflichten.",
+    onTheImage:
+      "Eine Uhr neben einer Frist für die Nachhaltigkeitsberichterstattung, markiert als sofort fällig.",
+  },
+  "hs-symbolic": {
+    label: "Schnelle Erfolge und die Gefahr symbolischen Handelns",
+    fact: "Der Wunsch nach schnellen Erfolgen, aber die Gefahr symbolischer Einzelaktionen.",
+    onTheImage:
+      "Konfetti über einem Server mit grünem Aufkleber, ein skeptischer Kollege nennt es rein symbolisch.",
+  },
+  "hs-multi-site": {
+    label: "Wachstum über mehrere Standorte",
+    fact: "Das Unternehmen wächst schnell und betreibt mehrere Standorte.",
+    onTheImage:
+      "Eine noch im Bau befindliche Skyline mit schwebenden Standortkürzeln und aufsteigenden Wachstumspfeilen.",
+  },
+  "hs-stakeholders": {
+    label: "Druck von Kunden und Aufsichtsrat",
+    fact: "Wachsender Druck von Kunden und Aufsichtsrat, Nachhaltigkeit nachvollziehbar zu adressieren.",
+    onTheImage:
+      "Eine Menschenmenge mit Schildern wie Nachhaltigkeit jetzt und Budget für Berichte, beschriftet mit Kunden und Aufsichtsratsmitgliedern.",
+  },
+  "hs-uneven-it": {
+    label: "Uneinheitliche IT-Landschaft",
+    fact: "Die IT-Landschaft ist uneinheitlich.",
+    onTheImage:
+      "Ein Stapel uneinheitlicher Server und Gehäuse unterschiedlicher Generationen, verbunden durch verworrene Verkabelung.",
+  },
+  "hs-energy-costs": {
+    label: "Steigende Energiekosten",
+    fact: "Die Energiekosten steigen.",
+    onTheImage:
+      "Ein großer, leuchtender Stromzähler in der Mitte der Szene, der Zeiger weit im oberen Bereich der Skala.",
+  },
+});
+
+export const TASK4_DE = overlay(TASK4, {
+  number: "Aufgabe 4, Stufe 3: Managemententscheidung",
+  title: "Aufbau einer Green-IT-Entscheidungsarchitektur für ein wachsendes Unternehmen",
+  lead: "Erarbeite einen entscheidungsreifen Vorschlag für das Management. Die Tafel oben enthält jede Bedingung, die er überstehen muss. Es gibt keine Konfiguration, die alle erfüllt, und die Kapazität unten deckt den Bedarf nicht. Das ist die Aufgabe, kein Fehler darin.",
+  assignment: overlayById(TASK4.assignment, {
+    "t4-1": {
+      text: "Warum ist Green IT für dieses Unternehmen strategisch relevant?",
+      hint: "Strategisch, nicht technisch. Wenn deine Antwort für jedes beliebige Unternehmen gleich lauten würde, geht es noch nicht um Auron.",
+    },
+    "t4-2": {
+      text: "Nach welchen Kriterien sollen künftige Green-IT-Entscheidungen getroffen werden?",
+      hint: "Kriterien überdauern Maßnahmen. Daran wird die nächste Entscheidung gemessen, wenn du den Raum längst verlassen hast.",
+    },
+    "t4-3": {
+      text: "Welche drei Kernentscheidungen muss das Management treffen?",
+      hint: "Drei, die nur das Management treffen kann. Alles, was die IT-Abteilung allein entscheiden könnte, gehört nicht hierher.",
+    },
+    "t4-4": {
+      text: "Wo liegen die wichtigsten Zielkonflikte zwischen Nachhaltigkeit, wirtschaftlichem Nutzen, Geschwindigkeit und Nutzeranforderungen?",
+      hint: "Benenne einen Konflikt mit zwei legitimen Seiten. Wenn sich dein Satz von selbst auflöst, hast du eine Präferenz benannt, keinen Konflikt.",
+    },
+    "t4-5": {
+      text: "Welche Entscheidung muss jetzt getroffen werden, trotz unvollständiger Informationen?",
+      hint: "Warten ist auch eine Entscheidung, und auch sie hat einen Preis. Wenn du aufschiebst, sag, was das Aufschieben kostet.",
+    },
+    "t4-6": {
+      text: "Wie soll die Verantwortung organisatorisch verteilt werden?",
+      hint: "Wer entscheidet, wer liefert, wer berichtet. Fachwissen ohne Befugnis erzeugt Beratung, keine Steuerung.",
+    },
+    "t4-7": {
+      text: "Wie sieht eine priorisierte 12-Monats-Roadmap aus?",
+      hint: "Priorisiert heißt, dass manches bewusst später eingeplant wird. Im Zuteilungsfeld unten legst du dich darauf fest.",
+    },
+  }),
+  seniorHeading: "Anforderung auf Führungsebene",
+  senior:
+    "Triff mindestens eine Entscheidung, für die du bewusst unter unvollständigen Informationen einstehst, und erläutere sie aus Managementsicht.",
+  objectiveHeading: "Ziel",
+  objectives: [
+    "In der Logik der Steuerung denken, nicht in Einzelmaßnahmen.",
+    "Verantwortung für Zielkonflikte übernehmen.",
+    "Entscheidungen managementgerecht begründen.",
+    "Die Perspektive wechseln zwischen den Rollen Geschäftsleitung, Architektur, Abteilungsleitung, Führungskraft und Beratung.",
+    "Von auswendig gelerntem Wissen zu Entscheidungsarchitektur und Rechenschaft übergehen.",
+  ],
+});
+
+export const MEASURES_DE: Measure[] = overlayById(MEASURES, {
+  "m-owner": {
+    title: "Eine Green-IT-Verantwortung mit Entscheidungsbefugnis benennen",
+    buys: "Eine benannte Person, die eine Frage zwischen IT, Einkauf und Finanzen klären kann, ohne sie zu eskalieren.",
+    exposes:
+      "Jeder Konflikt auf der Tafel bleibt bewusst ungelöst. Die vier Abteilungen behalten ihre eigenen Vorstellungen davon, was eine gute Entscheidung ausmacht.",
+  },
+  "m-baseline": {
+    title: "Datenbasis über alle Standorte: Energie- und Geräteinventar",
+    buys: "Ein erstes Bild davon, was tatsächlich läuft und wie alt es ist, in einer uneinheitlichen Landschaft.",
+    exposes:
+      "Du entscheidest weiterhin auf Basis der unvollständigen Daten, die die Tafel bereits zeigt, und kannst keine spätere Maßnahme bemessen oder spätere Einsparungen belegen.",
+  },
+  "m-procurement": {
+    title: "Beschaffungskriterien und Lieferantenanforderungen",
+    buys: "Eine Regel, die im Moment des Kaufs greift, dem einzigen Moment, in dem die Lebensdauer eines Geräts tatsächlich festgelegt wird.",
+    exposes:
+      "Das Wachstum vergrößert die uneinheitliche Landschaft im selben Tempo wie zuvor. Das Problem wächst, während du daran arbeitest.",
+  },
+  "m-lifetime": {
+    title: "Programm zur Verlängerung der Gerätelebensdauer",
+    buys: "Längere Nutzungsdauer für bereits vorhandene Geräte, der klarste Ressourceneffekt, der hier verfügbar ist.",
+    exposes:
+      "Die sichtbarste Verschwendung auf der Tafel bleibt unangetastet, und sie ist die, die deine eigenen Mitarbeitenden täglich sehen.",
+  },
+  "m-infrastructure": {
+    title: "Infrastruktur- und Cloud-Optimierung",
+    buys: "Arbeit am eigentlichen Verbrauch, dort, wo die steigenden Energiekosten auf der Tafel entstehen.",
+    exposes:
+      "Der größte Energiehebel bleibt unangetastet, und die auf der Tafel gezeigte Kostenkurve steigt das Jahr über weiter.",
+  },
+  "m-reporting": {
+    title: "Einbindung in ESG- und Nachhaltigkeitsberichterstattung",
+    buys: "Die nachvollziehbare Aussage, die Kunden und Aufsichtsrat einfordern, zur bereits laufenden Berichtsfrist.",
+    exposes:
+      "Die Frist aus Feld fünf kommt, ohne dass etwas dahintersteht. Der Druck, der diese Arbeit ausgelöst hat, bleibt unbeantwortet.",
+  },
+});
+
+export const ALLOCATION_NOTES_DE = overlay(ALLOCATION_NOTES, {
+  underspent:
+    "Du hast Kapazität ungenutzt gelassen. In dieser Übung wird ungenutzte Kapazität nicht für später aufgehoben. Sie bleibt schlicht ungenutzt.",
+  complete:
+    "Die Kapazität ist verplant. Was du weggelassen hast, ist jetzt der Kern deines Vorschlags, keine Lücke darin.",
+  noOwner:
+    "Du hast Arbeit finanziert, ohne jemanden für die Verantwortung dafür zu finanzieren. Unter einem harten Budget kann das eine vertretbare Entscheidung sein, und es ist zugleich das Scheitern, vor dem dieser Fall warnt. Sag in deiner Begründung, welches von beidem es ist.",
+  ownerOnly:
+    "Du hast vor allem die Steuerungsfähigkeit finanziert, sonst wenig. Das Management wollte Ergebnisse, also muss der Vorschlag jetzt erklären, was die ersten sechs Monate liefern.",
+});
+
+export const POSTPONED_PROMPT_DE = overlay(POSTPONED_PROMPT, {
+  heading: "Die Maßnahme, die du bewusst aufgeschoben hast",
+  intro:
+    "Benenne die Maßnahme, bei der du mit Widerspruch rechnest, und sag, was das Aufschieben kostet. Der Engpass war bewusst Teil dieser Aufgabe, eine Antwort, die nichts aufgibt, hat sie nicht abgeschlossen.",
+  placeholder: "Ich habe … aufgeschoben. Es kostet uns … . Ich würde es vorziehen, wenn … .",
+});

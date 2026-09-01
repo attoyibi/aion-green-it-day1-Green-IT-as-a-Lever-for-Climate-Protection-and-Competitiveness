@@ -4,9 +4,25 @@ import { useState } from "react";
 import clsx from "clsx";
 import type { Briefing } from "@/data/meridian";
 import type { Phase } from "@/lib/types";
+import { useLocale } from "@/lib/locale";
 import { BriefingVisual } from "./BriefingVisual";
 import { SOURCES } from "@/data/sources";
 import { InfoDialog } from "@/components/ui/InfoDialog";
+
+const COPY = {
+  en: {
+    beforeYouDecide: "Before you decide",
+    threeQuestions: "Three questions. Select one to see what you are listening for",
+    readMore: "Read more on how to weigh this →",
+    ifYouWantToGoFurther: "If you want to go further",
+  },
+  de: {
+    beforeYouDecide: "Bevor du entscheidest",
+    threeQuestions: "Drei Fragen. Wähle eine aus, um zu sehen, worauf es ankommt",
+    readMore: "Mehr dazu, wie du das abwägst →",
+    ifYouWantToGoFurther: "Wenn du tiefer einsteigen willst",
+  },
+};
 
 /**
  * How to think about the phase, never which option to take. Short on the page,
@@ -19,6 +35,8 @@ export function PhaseBriefing({
   briefing: Briefing;
   phase: Phase;
 }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   const [open, setOpen] = useState(false);
   const [asked, setAsked] = useState<string | null>(null);
 
@@ -26,7 +44,7 @@ export function PhaseBriefing({
     <>
       <div className="rounded-xl border-l-4 border-purple bg-lilac/40 p-3">
         <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-purple">
-          Before you decide
+          {copy.beforeYouDecide}
         </p>
         <p className="mb-2 text-body text-ink">{briefing.short}</p>
 
@@ -35,7 +53,7 @@ export function PhaseBriefing({
         </div>
 
         <p className="mb-1.5 text-caption uppercase tracking-wide text-ash">
-          Three questions. Select one to see what you are listening for
+          {copy.threeQuestions}
         </p>
 
         <ul className="mb-3 space-y-1.5">
@@ -79,7 +97,7 @@ export function PhaseBriefing({
           onClick={() => setOpen(true)}
           className="rounded-xl border border-line bg-paper px-3 py-1.5 text-caption font-semibold text-navy transition-colors duration-200 hover:border-purple hover:bg-lilac hover:underline"
         >
-          Read more on how to weigh this →
+          {copy.readMore}
         </button>
       </div>
 
@@ -92,7 +110,7 @@ export function PhaseBriefing({
 
         <div className="mt-4 border-t border-line pt-4">
           <p className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-            If you want to go further
+            {copy.ifYouWantToGoFurther}
           </p>
           <ul className="space-y-2">
             {briefing.more.links.map((link) => (

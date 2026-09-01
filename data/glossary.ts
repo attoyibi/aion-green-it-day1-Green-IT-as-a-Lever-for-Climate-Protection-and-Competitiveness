@@ -289,3 +289,284 @@ export const GLOSSARY: GlossaryEntry[] = [
 export const GLOSSARY_BY_ID: Record<string, GlossaryEntry> = Object.fromEntries(
   GLOSSARY.map((entry) => [entry.id, entry]),
 );
+
+// ---- German (DE) ----
+// Same ids and order as GLOSSARY. Standard acronyms and ESG/Green IT terms
+// used identically in German business usage (HVAC, PUE, KPI, ESG, Scope 3,
+// Net Zero, TCO, SCI, FinOps, Wake-on-LAN) are kept as the headword; plain
+// descriptive terms are translated. `match`/`also` are updated to the
+// German words the term is meant to link on inside CARDS_DE's translated
+// text, so the same linking mechanism can be wired up per locale — note
+// that German noun/adjective inflection means exact-substring matching
+// will still miss some inflected forms (see final report).
+
+export const GLOSSARY_DE: typeof GLOSSARY = [
+  {
+    id: "hvac",
+    term: "HVAC",
+    match: "HVAC",
+    plain:
+      "Heating, Ventilation and Air Conditioning – auf Deutsch Heizung, Lüftung und Klimatechnik. Das ist die Klimaanlage des Gebäudes: Sie heizt, kühlt und führt frische Luft durch die Büros.",
+    soWhat:
+      "In den meisten Bürogebäuden ist das der mit Abstand größte Stromverbraucher – noch vor allen Computern zusammen. Zuständig ist meist das Facility Management, nicht die IT, weshalb niemand bemerkt, dass die Anlage am Wochenende weiterläuft.",
+  },
+  {
+    id: "skip",
+    term: "Container",
+    match: "Container",
+    plain:
+      "Ein großer, offener Container für Abfall, der bei einem Umzug oder einer Renovierung vor dem Gebäude aufgestellt wird. Im britischen Englisch heißt er „skip“, im amerikanischen „dumpster“.",
+    soWhat:
+      "Was in den Container wandert, landet auf der Deponie. Das ist der Unterschied zwischen Entsorgung und Weiterverwendung – entschieden von der Person, die gerade die Kisten trägt.",
+  },
+  {
+    id: "embodied-carbon",
+    term: "Graue Emissionen",
+    match: "Graue Emissionen",
+    also: ["graue Emissionen", "verkörperte Emissionen", "Herstellungs-Fußabdruck"],
+    plain:
+      "Die Emissionen, die bereits bei der Herstellung eines Produkts freigesetzt wurden – Rohstoffabbau, Verarbeitung, Fertigung und Transport –, bevor es überhaupt zum ersten Mal eingeschaltet wird.",
+    soWhat:
+      "Bei einem Laptop sind das etwa vier Fünftel der gesamten Emissionen über die Nutzungsdauer. Nach dem Kauf lässt sich daran nichts mehr ändern – du kannst sie nur auf mehr Nutzungsjahre verteilen. Deshalb ist die Nutzungsdauer ein so wirksamer Hebel.",
+  },
+  {
+    id: "grid-mix",
+    term: "Strommix / CO₂-Intensität",
+    match: "Strommix",
+    also: ["CO₂-Intensität", "kohlelastige Region", "kohlelastig"],
+    plain:
+      "Wie viel CO₂ pro Einheit Strom in einem bestimmten Stromnetz zu einem bestimmten Zeitpunkt freigesetzt wird. Kohlelastige Netze liegen hoch, Wind, Solar, Wasserkraft und Kernkraft liegen niedrig.",
+    soWhat:
+      "Derselbe Server mit derselben Arbeitslast verursacht je nach Ort und Zeitpunkt sehr unterschiedliche Emissionen. Das ist eine Entscheidung – meist wird sie per Voreinstellung getroffen.",
+  },
+  {
+    id: "cloud-region",
+    term: "Cloud-Region",
+    match: "Region",
+    also: ["Cloud-Region"],
+    plain:
+      "Der physische Ort, an dem ein Cloud-Anbieter deine Arbeitslast tatsächlich ausführt. Es handelt sich um eine Gruppe von Rechenzentren in einem Land oder einer Region. Du wählst sie bei der Einrichtung des Dienstes.",
+    soWhat:
+      "Die meisten Teams wählen die Region nach Preis oder Geschwindigkeit und schauen sich nie den lokalen Energiemix an. Eine spätere Änderung bedeutet meist, Daten zu verschieben – deshalb zählt die erste Wahl.",
+  },
+  {
+    id: "finops",
+    term: "FinOps",
+    match: "FinOps",
+    plain:
+      "Die Praxis, Cloud-Ausgaben zu steuern, indem monatlich erfasst wird, was jedes Team betreibt und was es kostet.",
+    soWhat:
+      "Hier wird die Cloud-Nutzung ohnehin schon hinterfragt. Das macht es zum günstigsten Ort, um CO₂ als zweite Kennzahl neben den Kosten einzuführen.",
+  },
+  {
+    id: "endpoint",
+    term: "Endgerät",
+    match: "Endgerät",
+    also: ["Endgeräte"],
+    plain:
+      "Das Gerät vor der Person: Laptop, Desktop-Rechner, Monitor, Smartphone. Das andere Ende der Verbindung, gegenüber dem Server.",
+    soWhat:
+      "Die Standardeinstellungen der Endgeräte werden meist zentral von der IT festgelegt. Eine Voreinstellung zu ändern, verändert Tausende Entscheidungen auf einmal, ohne dass sich jemand anders verhalten muss.",
+  },
+  {
+    id: "setpoint",
+    term: "Sollwert",
+    match: "Sollwert",
+    plain:
+      "Die Temperatur, auf die ein Kühlsystem eingestellt ist. Ein niedrigerer Sollwert bedeutet, dass die Kühlung stärker arbeitet und mehr Strom verbraucht.",
+    soWhat:
+      "Viele Serverräume werden weit kälter gehalten, als die Geräte benötigen, weil der Wert einmal festgelegt und nie wieder hinterfragt wurde.",
+  },
+  {
+    id: "data-hall",
+    term: "Rechnerraum",
+    match: "Rechnerraum",
+    also: ["Serverraum"],
+    plain:
+      "Der Raum innerhalb eines Rechenzentrums, in dem die Serverracks tatsächlich stehen. Der Rest des Gebäudes besteht aus Stromversorgung, Kühltechnik und Büros.",
+  },
+  {
+    id: "thermal-survey",
+    term: "Thermografie-Messung",
+    match: "Thermografie-Messung",
+    plain:
+      "Eine Messung, wie warme und kalte Luft tatsächlich durch einen Serverraum strömen, erfasst mit Sensoren statt anhand von Planzeichnungen angenommen.",
+    soWhat:
+      "Sie macht aus „wir könnten wahrscheinlich wärmer fahren“ eine Entscheidung, die du später verteidigen kannst, falls ein Server ausfällt. Die Messung ist die eigentliche Arbeit – die Sollwertänderung dauert eine Minute.",
+  },
+  {
+    id: "pue",
+    term: "PUE",
+    match: "PUE",
+    plain:
+      "Power Usage Effectiveness. Die gesamte Strommenge, die in ein Rechenzentrum fließt, geteilt durch den Strom, der tatsächlich bei den Rechnern ankommt. Ein PUE von 1,5 bedeutet: Für je 10 Einheiten Rechenleistung fließen weitere 5 in Kühlung, Stromumwandlung und Gebäudetechnik.",
+    soWhat:
+      "In Deutschland ist das inzwischen eine gesetzliche Pflicht mit festen Terminen, keine bloße Best-Practice-Kennzahl. Der Wert sagt aber nichts darüber aus, ob die Rechenleistung überhaupt sinnvoll war – ein halbleeres Rechenzentrum kann einen hervorragenden PUE ausweisen.",
+  },
+  {
+    id: "wake-on-lan",
+    term: "Wake-on-LAN",
+    match: "Wake-on-LAN",
+    plain:
+      "Eine Funktion, mit der die IT einen schlafenden Rechner aus der Ferne über das Netzwerk wieder aufwecken kann.",
+    soWhat:
+      "Das ist die Antwort auf den üblichen Einwand gegen jede Ruhezustand-Richtlinie: „Aber wir brauchen die Rechner nachts für Updates.“ Halte diese Antwort bereit, bevor du die Richtlinie vorschlägst.",
+  },
+  {
+    id: "patch-window",
+    term: "Patch-Fenster",
+    match: "Patch-Fenster",
+    plain:
+      "Der geplante Zeitraum, meist nachts, in dem die IT Sicherheitsupdates auf allen Geräten einspielt.",
+    soWhat:
+      "Jede Energiesparrichtlinie muss das Patch-Fenster überstehen – sonst wird sie innerhalb eines Monats wieder abgeschaltet, ohne dass es dir jemand sagt.",
+  },
+  {
+    id: "batch",
+    term: "Batch-Job",
+    match: "Batch-Reports",
+    also: ["Batch-Job", "Batch-Jobs", "Batch"],
+    plain:
+      "Arbeit, die ein Computer in einem einzigen langen Durchlauf erledigt, ohne dass jemand auf das Ergebnis wartet – etwa nächtliche Reports, Backups oder Abrechnungsläufe.",
+    soWhat:
+      "Weil niemand darauf wartet, lässt sich die Arbeit auf eine andere Uhrzeit verschieben. Das macht sie zur einfachsten Arbeitslast, die sich auf sauberer erzeugten Strom verlagern lässt.",
+  },
+  {
+    id: "load-shift",
+    term: "Lastverschiebung",
+    match: "Lastverschiebung",
+    also: ["verbrauchsschwach", "CO₂-bewusst"],
+    plain:
+      "Flexible Rechenarbeit auf einen Zeitpunkt oder Ort verlagern, an dem der Strom sauberer ist. Die Arbeit selbst ändert sich nicht – nur der Zeitplan oder der Ort.",
+    soWhat:
+      "Es wird nichts gekauft und kein Code neu geschrieben – das ist selten. Berichteten Reduktionen zufolge liegt die Einsparung für die verlagerte Arbeit beim Zwei- bis Zehnfachen.",
+  },
+  {
+    id: "retention-policy",
+    term: "Aufbewahrungsrichtlinie",
+    match: "Aufbewahrungsrichtlinie",
+    plain:
+      "Eine schriftliche Regel, die festlegt, wie lange welche Art von Datei aufbewahrt und wann sie gelöscht wird.",
+    soWhat:
+      "Ohne eine solche Regel wird alles auf unbestimmte Zeit aufbewahrt. Der Speicher wächst dann still weiter, bis er beim nächsten Hardware-Austausch erneut gekauft werden muss – dieselben Daten werden also zweimal bezahlt.",
+  },
+  {
+    id: "canonical-store",
+    term: "Maßgeblicher Speicherort",
+    match: "maßgeblicher Speicherort",
+    plain:
+      "Der eine vereinbarte Ort, an dem die maßgebliche Version einer Datei liegt. Alles andere ist eine Kopie, die gelöscht werden darf.",
+  },
+  {
+    id: "redundant",
+    term: "Redundante Kopien",
+    match: "redundanten Dateifreigaben",
+    also: ["Redundanz", "redundant", "redundante Kopien"],
+    plain: "Zusätzliche Kopien derselben Daten, die an mehr als einem Ort aufbewahrt werden.",
+    soWhat:
+      "Ein gewisses Maß an Redundanz schützt vor Datenverlust und ist sein Geld wert. Alles darüber hinaus ist Kapazität, die gekauft, mit Strom versorgt und gesichert wird, ohne einen Nutzen zu bringen.",
+  },
+  {
+    id: "kpi",
+    term: "KPI",
+    match: "KPI",
+    also: ["KPIs"],
+    plain:
+      "Key Performance Indicator – eine Kennzahl, für die eine benannte Person verantwortlich ist und die in festem Rhythmus berichtet wird.",
+    soWhat:
+      "Eine Zahl, die niemand berichtet, ist kein KPI, sondern eine Statistik. Erst der Name, der daranhängt, sorgt dafür, dass sie überhaupt etwas steuert.",
+  },
+  {
+    id: "baseline",
+    term: "Ausgangswert",
+    match: "Ausgangswert",
+    plain: "Die Ausgangsmessung, die erfasst wird, bevor irgendetwas verändert wird.",
+    soWhat:
+      "Ein Ziel ohne Ausgangswert kann weder erreicht noch verfehlt werden. Es kann nur diskutiert werden. Das – nicht das Ziel selbst – ist das Reputationsrisiko.",
+  },
+  {
+    id: "net-zero",
+    term: "Net Zero",
+    match: "Net Zero",
+    plain:
+      "Das Versprechen, dass verbleibende Emissionen an anderer Stelle durch Entnahmen ausgeglichen werden, sodass die Bilanz null ergibt.",
+    soWhat:
+      "Es ist eine Aussage über eine Gesamtbilanz. Für sich genommen sagt sie nichts darüber aus, ob tatsächlich etwas reduziert wurde – deshalb stehen Ausgangswert und Meilensteine im Fokus der Prüfung.",
+  },
+  {
+    id: "scope-3",
+    term: "Scope 3",
+    match: "Scope 3",
+    plain:
+      "Emissionen, die außerhalb des eigenen Unternehmens entstehen, aber durch dessen Handeln verursacht werden: bei Lieferanten, bei Cloud-Anbietern und in den Produkten, die eingekauft werden.",
+    soWhat:
+      "Für die meisten IT-Organisationen ist das der größte der drei Scopes und der, für den am schwersten Daten zu bekommen sind. Eine Workload in die Cloud zu verlagern, verschiebt sie von Scope 2 nach Scope 3 – eine Änderung in der Berichterstattung, keine Reduktion.",
+  },
+  {
+    id: "tco",
+    term: "TCO",
+    match: "Gesamtbetriebskosten",
+    also: ["TCO"],
+    plain:
+      "Total Cost of Ownership, auf Deutsch Gesamtbetriebskosten. Das ist der Kaufpreis plus Energie, Support, Reparaturen und Entsorgung über die gesamte Nutzungsdauer.",
+    soWhat:
+      "Das im Einkauf günstigste Gerät ist oft nicht das günstigste im Besitz. Die Kriterien des Blauen Engel verlangen genau aus diesem Grund, die Gesamtbetriebskosten bereits beim Kauf zu berechnen.",
+  },
+  {
+    id: "e-waste",
+    term: "Elektroschrott",
+    match: "Elektroschrott",
+    plain:
+      "Entsorgte Elektro- und Elektronikgeräte. Das ist alles mit einem Stecker oder einer Batterie, das weggeworfen wurde.",
+    soWhat:
+      "Weltweit rund 62 Millionen Tonnen pro Jahr, von denen etwa ein Fünftel formal gesammelt und recycelt wird. Der Rest bleibt unerfasst.",
+  },
+  {
+    id: "sci",
+    term: "SCI",
+    match: "SCI-Standard",
+    also: ["SCI"],
+    plain:
+      "Software Carbon Intensity. Ein internationaler Standard (ISO/IEC 21031), der Emissionen pro Einheit nützlicher Arbeit bewertet: pro Transaktion, pro Anfrage.",
+    soWhat:
+      "Kompensationen werden bewusst nicht berücksichtigt. Der Wert kann sich nur verbessern, wenn sich die Software oder ihr Ausführungsort tatsächlich ändert. Deshalb vertrauen Entwicklerinnen und Entwickler ihm.",
+  },
+  {
+    id: "refresh-cycle",
+    term: "Austauschzyklus",
+    match: "Austauschzyklus",
+    also: ["Austauschzyklen", "Austausch"],
+    plain:
+      "Wie oft ein Unternehmen eine Gerätekategorie ersetzt, etwa Laptops alle drei Jahre oder Scanner jedes Jahr.",
+    soWhat:
+      "Er stammt meist aus einem Lieferantenvertrag statt aus dem tatsächlichen Zustand der Hardware. Der Vertragsverlängerungstermin ist dein Ansatzpunkt.",
+  },
+  {
+    id: "shopfloor",
+    term: "Fertigungshalle",
+    match: "Fertigungshalle",
+    also: ["Werkshalle"],
+    plain:
+      "Der Produktions- oder Lagerbereich eines Unternehmens, in dem die physische Arbeit stattfindet, im Gegensatz zu den Büros.",
+  },
+  {
+    id: "utilisation",
+    term: "Auslastung",
+    match: "Auslastung",
+    plain:
+      "Wie viel von der bezahlten Kapazität tatsächlich Arbeit leistet. Ein Server mit 10 % Auslastung zieht trotzdem einen großen Teil seiner vollen Leistungsaufnahme.",
+    soWhat: "Gering ausgelastete Server zu konsolidieren schlägt meist den Versuch, jeden einzelnen effizienter zu machen.",
+  },
+  {
+    id: "esg",
+    term: "ESG",
+    match: "ESG",
+    plain:
+      "Environmental, Social, Governance – Umwelt, Soziales, Unternehmensführung. Das ist der Berichtsrahmen, den Investoren und Regulierungsbehörden nutzen: reguliert, zahlenbasiert und geprüft.",
+    soWhat: "Hier müssen deine IT-Zahlen einer Prüfung standhalten. Green IT liefert die Daten, ESG verarbeitet sie.",
+  },
+];
+
+export const GLOSSARY_BY_ID_DE: Record<string, GlossaryEntry> = Object.fromEntries(
+  GLOSSARY_DE.map((entry) => [entry.id, entry]),
+);

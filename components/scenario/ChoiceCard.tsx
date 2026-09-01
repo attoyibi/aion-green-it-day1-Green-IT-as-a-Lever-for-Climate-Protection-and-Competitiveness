@@ -2,9 +2,35 @@
 
 import clsx from "clsx";
 import { CategoryChip } from "@/components/case/CategoryChip";
-import { STAKEHOLDERS, type Choice } from "@/data/meridian";
+import { STAKEHOLDERS, STAKEHOLDERS_DE, type Choice } from "@/data/meridian";
+import { useLocale } from "@/lib/locale";
 import { Glyph } from "./glyphs";
 import { StakeholderAvatar } from "./StakeholderAvatar";
+
+const COPY = {
+  en: {
+    selected: "Selected",
+    budgetAfterThis: "Budget after this",
+    left: "left",
+    hasAStake: "Has a stake",
+    nobodyDirectly: "Nobody directly",
+    reactNote:
+      "How they react is not knowable yet. Select another card to change your mind. Confirming moves the week forward and cannot be undone.",
+    commitAndContinue: "Commit and continue →",
+    selectACard: "Select a card to see it here before you commit.",
+  },
+  de: {
+    selected: "Ausgewählt",
+    budgetAfterThis: "Budget danach",
+    left: "übrig",
+    hasAStake: "Hat ein Interesse",
+    nobodyDirectly: "Niemand direkt",
+    reactNote:
+      "Wie sie reagieren, ist noch nicht bekannt. Wähle eine andere Karte, um deine Wahl zu ändern. Das Bestätigen bewegt die Woche vorwärts und kann nicht rückgängig gemacht werden.",
+    commitAndContinue: "Bestätigen und fortfahren →",
+    selectACard: "Wähle eine Karte aus, um sie hier vor der Bestätigung zu sehen.",
+  },
+};
 
 /**
  * NS2 / R2: before a pick, no card carries an evaluative colour and no tag says
@@ -25,6 +51,9 @@ export function ChoiceCard({
   locked: boolean;
   onPick: () => void;
 }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+
   return (
     <button
       type="button"
@@ -44,7 +73,7 @@ export function ChoiceCard({
         {choice.title}
         {selected ? (
           <span className="shrink-0 rounded-full bg-purple px-2 py-0.5 text-caption font-semibold text-paper">
-            Selected
+            {copy.selected}
           </span>
         ) : null}
       </span>
@@ -83,6 +112,10 @@ export function ChoiceCardGrid({
   onSelect: (id: string) => void;
   onCommit: () => void;
 }) {
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const stakeholders = isDe ? STAKEHOLDERS_DE : STAKEHOLDERS;
   const selected = choices.find((c) => c.id === selectedId) ?? null;
 
   return (
@@ -112,10 +145,10 @@ export function ChoiceCardGrid({
                     How they will react is the part you commit without. */}
                 <dl className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-baseline gap-2">
-                    <dt className="text-caption text-ash">Budget after this</dt>
+                    <dt className="text-caption text-ash">{copy.budgetAfterThis}</dt>
                     <dd className="text-body font-semibold tabular-nums text-ink">
-                      €{Math.max(0, budgetTotal - budgetSpent - selected.consequence.budget)}k
-                      left
+                      €{Math.max(0, budgetTotal - budgetSpent - selected.consequence.budget)}k{" "}
+                      {copy.left}
                       <span className="ml-1 font-normal text-caption text-ash">
                         (−€{selected.consequence.budget}k)
                       </span>
@@ -123,20 +156,20 @@ export function ChoiceCardGrid({
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <dt className="text-caption text-ash">Has a stake</dt>
+                    <dt className="text-caption text-ash">{copy.hasAStake}</dt>
                     <dd className="flex items-center gap-1.5">
                       {selected.touches.length === 0 ? (
-                        <span className="text-caption text-ash">Nobody directly</span>
+                        <span className="text-caption text-ash">{copy.nobodyDirectly}</span>
                       ) : (
                         selected.touches.map((who) => (
                           <span
                             key={who}
-                            title={STAKEHOLDERS[who].name}
+                            title={stakeholders[who].name}
                             className="flex items-center gap-1 rounded-full bg-lilac px-1.5 py-0.5"
                           >
                             <StakeholderAvatar who={who} size={24} />
                             <span className="text-caption text-navy">
-                              {STAKEHOLDERS[who].role}
+                              {stakeholders[who].role}
                             </span>
                           </span>
                         ))
@@ -145,10 +178,7 @@ export function ChoiceCardGrid({
                   </div>
                 </dl>
 
-                <p className="mt-2 text-caption text-ash">
-                  How they react is not knowable yet. Select another card to change your
-                  mind. Confirming moves the week forward and cannot be undone.
-                </p>
+                <p className="mt-2 text-caption text-ash">{copy.reactNote}</p>
               </div>
 
               <button
@@ -156,13 +186,11 @@ export function ChoiceCardGrid({
                 onClick={onCommit}
                 className="shrink-0 rounded-xl bg-purple px-4 py-2 text-body font-semibold text-paper transition-colors duration-200 hover:bg-navy"
               >
-                Commit and continue →
+                {copy.commitAndContinue}
               </button>
             </>
           ) : (
-            <p className="text-body text-ash">
-              Select a card to see it here before you commit.
-            </p>
+            <p className="text-body text-ash">{copy.selectACard}</p>
           )}
         </div>
       ) : null}

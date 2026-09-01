@@ -131,6 +131,97 @@ export const W1: WidgetMeta & { cards: ComparatorCard[]; closing: string } = {
     "If a Green IT proposal cannot say which of these four it belongs to, it will be funded by none of them.",
 };
 
+export const W1_DE: typeof W1 = {
+  id: "w1",
+  title: "Was Green IT ist – und was nicht",
+  task: "Öffne alle vier Karten. Lies bei jeder die Abgrenzung, bevor du weitergehst.",
+  why: "Die meisten Green-IT-Programme geraten ins Stocken, weil im Raum ein Wort für vier verschiedene Dinge benutzt wird. Wer zuerst die Begriffe sortiert, spart sich später eine Stunde Streit.",
+  xp: 10,
+  cards: [
+    {
+      id: "w1-green-it",
+      term: "Green IT",
+      short: "Der Fußabdruck der IT, die du betreibst",
+      definition:
+        "Die Umweltwirkung der eigenen IT-Landschaft senken: der Energieverbrauch, die verbrauchte Hardware, die enthaltenen Materialien und das, was bei der Entsorgung passiert.",
+      boundary:
+        "Green IT endet an der Grenze der IT-Landschaft. Sobald die Frage lautet „Wie hilft IT dem Rest des Unternehmens, weniger auszustoßen?“, bist du bei Green by IT.",
+      inPractice:
+        "Verantwortet von der IT. Gemessen in kWh, Geräten, Nutzungsdauer, PUE, Beschaffungsregeln.",
+      note: {
+        text: "Die deutsche Praxis teilt den Begriff in zwei: Green in der IT (die IT selbst grüner machen) und Green durch IT (mit IT alles andere grüner machen). Programme, die beides vermischen, enden mit Zielen, für die niemand geradestehen kann.",
+      },
+    },
+    {
+      id: "w1-digital-sustainability",
+      term: "Digitale Nachhaltigkeit",
+      short: "Ob der digitale Dienst überhaupt existieren sollte",
+      definition:
+        "Die umfassendere Frage, ob digitale Produkte und Dienste über die Zeit Bestand haben: Datensparsamkeit, Software-Langlebigkeit, Barrierefreiheit, Wartbarkeit, digitale Souveränität.",
+      boundary:
+        "Digitale Nachhaltigkeit umfasst Green IT und ergänzt Fragen zu Langlebigkeit und Gesellschaft. Green IT allein fragt nie, ob der Dienst es wert ist, betrieben zu werden.",
+      inPractice:
+        "Gemeinsame Verantwortung von IT, Produkt und Recht. Zeigt sich in Architektur- und Design-Reviews, nicht auf der Stromrechnung.",
+    },
+    {
+      id: "w1-esg",
+      term: "ESG",
+      short: "Die Berichts- und Investorenperspektive",
+      definition:
+        "Environmental, Social, Governance. Ein Offenlegungsrahmen: reguliert, zahlenbasiert, geprüft, ausgerichtet auf Investoren und Regulierungsbehörden.",
+      boundary:
+        "Bei ESG müssen deine Green-IT-Zahlen einer Prüfung standhalten. Green IT liefert die Daten; ESG verwertet sie.",
+      inPractice:
+        "Verantwortet von Finance oder einer Nachhaltigkeitsfunktion. IT ist Datenlieferant – meist einer, der spät liefert.",
+      note: {
+        text: "Nach der CSRD muss das berichtspflichtige Unternehmen Scope 3 offenlegen – seine Wertschöpfungskette. Deshalb erhalten auch Zulieferer weit unterhalb der Berichtsschwelle Emissionsfragebögen von Kunden: Sie sind der Scope 3 von jemand anderem.",
+        source: "csrd",
+      },
+      cases: [
+        {
+          id: "case-dws",
+          headline: "Eine Geldbuße von 25 Millionen Euro fürs Behaupten, nicht fürs Tun",
+          what: "Im April 2025 verhängte die Frankfurter Staatsanwaltschaft nach einer dreijährigen Ermittlung eine Geldbuße von 25 Millionen Euro gegen DWS, den Vermögensverwalter der Deutschen Bank. Im Marketing hatte DWS behauptet, ein Vorreiter bei ESG zu sein, und dass „ESG ein integraler Bestandteil unserer DNA“ sei. Das deckte sich nicht mit dem, was die eigenen Prozesse tatsächlich leisteten. Die Büros waren 2022 bereits von Staatsanwaltschaft, BaFin und Bundespolizei durchsucht worden. Eine US-Regulierungsbehörde hatte 2023 wegen ähnlicher Aussagen bereits eine Geldbuße von 19 Millionen Dollar verhängt.",
+          lesson:
+            "ESG-Aussagen sind rechtlich durchsetzbar. Das Risiko liegt nicht in einer schwachen Position. Das Risiko liegt darin, eine Position zu beschreiben, die du nicht belegen kannst. Das ist der Unterschied zwischen ESG und CSR – an einem Fall.",
+          source: "dws",
+        },
+        {
+          id: "case-microsoft",
+          headline: "Fast der gesamte Fußabdruck liegt außerhalb des Unternehmens",
+          what: "Microsoft meldet Gesamtemissionen rund 23 % über der Basislinie von 2020, getrieben durch KI und den Ausbau von Rechenzentren, während mehr als 97 % der CO2-Wirkung in Scope 3 liegen – also in der Liefer- und Wertschöpfungskette, nicht im eigenen Betrieb. Google meldete für einen vergleichbaren Zeitraum einen Anstieg von 13 %.",
+          lesson:
+            "Bei einem Technologieunternehmen gehört die entscheidende Zahl größtenteils anderen. Deshalb schicken Kunden ihren Zulieferern Emissionsfragebögen – und deshalb kann eine IT-Abteilung ohne Beschaffungsdaten sie nicht beantworten.",
+          source: "microsoftReport",
+        },
+      ],
+    },
+    {
+      id: "w1-csr",
+      term: "CSR",
+      short: "Freiwillige Verantwortung und Erzählung",
+      definition:
+        "Corporate Social Responsibility: freiwillige Verpflichtungen, gesellschaftliches Engagement und Reputationsarbeit, vom Unternehmen nach eigenen Regeln kommuniziert.",
+      boundary:
+        "CSR ist freiwillig und erzählend. ESG ist verpflichtend und zahlenbasiert. Wer Green IT wie CSR behandelt, landet damit in der Kommunikation statt in der IT-Steuerung.",
+      inPractice:
+        "Verantwortet von der Kommunikation. Kein verbindliches Ziel, kein Prüfer, keine Budgetlinie in der IT.",
+      cases: [
+        {
+          id: "case-csr-boundary",
+          headline: "Wo aus CSR-Gewohnheit ein ESG-Problem wird",
+          what: "Die Formulierungen, die DWS 25 Millionen Euro kosteten, waren Marketingsprache, wie sie vor zehn Jahren in einer CSR-Broschüre kaum aufgefallen wäre. Verändert hat sich nicht der Satz, sondern das Regime, unter dem er gelesen wurde.",
+          lesson:
+            "Eine regulierte ESG-Aussage mit CSR-Instinkten zu behandeln, ist der Fehler. Wenn eine Aussage zur IT-Nachhaltigkeit in einer Prüfung Belege bräuchte, ist sie keine Kommunikationsentscheidung.",
+          source: "dws",
+        },
+      ],
+    },
+  ],
+  closing:
+    "Wenn ein Green-IT-Vorschlag nicht sagen kann, zu welchem der vier er gehört, wird ihn keiner von ihnen finanzieren.",
+};
+
 // ---------------------------------------------------------------- L1 · W2
 
 export type FlipCard = {
@@ -216,6 +307,81 @@ export const W2: WidgetMeta & { cards: FlipCard[]; closing: string } = {
     "Cause and enabler are not opposites. The same laptop is both. Which one you argue depends on who is in the room.",
 };
 
+export const W2_DE: typeof W2 = {
+  id: "w2",
+  title: "IT als Ursache und Hebel",
+  task: "Dreh alle sechs Karten um. Jede hat eine Kostenseite und eine Hebelseite. Lies beide.",
+  why: "Wer nur die Kostenseite anführt, lässt IT wie ein Problem aussehen, das man verkleinern muss. Wer nur die Hebelseite anführt, lässt Green IT wie Marketing aussehen. Führungskräfte brauchen beide Zahlen im selben Satz.",
+  xp: 10,
+  cards: [
+    {
+      id: "w2-video",
+      front: "Videokonferenzen",
+      cause:
+        "Verbraucht Energie an drei Stellen: dem Endgerät, dem Netzwerk und dem Rechenzentrum.",
+      enabler:
+        "Erspart Reisen. Ein einziger vermiedener Kurzstreckenflug wiegt schwerer als Jahre des Anrufenergieverbrauchs desselben Teams.",
+      note: {
+        text: "Die Aufteilung ist das Gegenteil dessen, was die meisten vermuten: Abspielgeräte machen rund 72 % des Streaming-Energieverbrauchs aus, die Übertragung 23 % und Rechenzentren 5 %. Weitverbreitete Zahlen, die dem Netzwerk die Schuld gaben, waren um bis zum 50-Fachen überhöht. Eine niedrigere Standardauflösung wirkt auf die 72 %.",
+        source: "ieaStreaming",
+      },
+    },
+    {
+      id: "w2-ai",
+      front: "Ein KI-Trainingslauf",
+      cause:
+        "Konzentrierte Rechenlast an einem Ort über Tage hinweg. Energie, Kühlung und dedizierte Beschleuniger-Hardware.",
+      enabler:
+        "Prognosen, Routen- und Lastoptimierung, vorausschauende Wartung, Netzausgleich. Jedes davon vermeidet physische Verschwendung an anderer Stelle.",
+      note: {
+        text: "Der Stromverbrauch von KI-fokussierten Rechenzentren stieg 2025 um rund 50 %. Rechenzentren insgesamt liegen bei etwa 1,5 % des weltweiten Stroms und sollen bis 2030 auf knapp unter 3 % steigen. Hohe Wachstumsrate, weiterhin kleiner Anteil. Nenne beide Zahlen, sonst wirst du korrigiert.",
+        source: "ieaEnergyAi",
+      },
+    },
+    {
+      id: "w2-building",
+      front: "Intelligente Gebäudesteuerung",
+      cause: "Sensoren, Gateways und ein Netzwerk, das ständig wach bleiben muss.",
+      enabler:
+        "Nachtabsenkung bei Heizung, Kühlung und Beleuchtung. Das ist meist der größte steuerbare Energieposten in einem Bürogebäude.",
+    },
+    {
+      id: "w2-cloud",
+      front: "Eine Cloud-Migration",
+      cause:
+        "Die Last verschwindet nicht, sie wandert auf den Zähler eines anderen, wo der Energiemix von Anbieter und Region bestimmt wird.",
+      enabler:
+        "Höhere Auslastung, neuere Hardware und die Möglichkeit, eine Region nach CO2-Intensität statt allein nach Preis zu wählen.",
+      note: {
+        text: "Sobald die Last extern liegt, wird sie zu deinem Scope 3, nicht mehr zu deinem Scope 2. Das ist eine Änderung in der Berichterstattung, keine Reduktion. Prüfer weisen häufig darauf hin.",
+        source: "csrd",
+      },
+    },
+    {
+      id: "w2-storage",
+      front: "Unternehmensweiter Dateispeicher",
+      cause:
+        "Kapazität wird dauerhaft vorgehalten und gespiegelt. Die Wucherung bleibt unsichtbar, bis sie beim nächsten Refresh neu gekauft wird.",
+      enabler:
+        "Eine Aufbewahrungsregel senkt gleichzeitig den Hardwarebedarf und das Backup-Zeitfenster. Eine Entscheidung, zwei Budgets.",
+    },
+    {
+      id: "w2-laptop",
+      front: "Ein Mitarbeiter-Laptop",
+      cause:
+        "Der Großteil seiner Emissionen über die Lebensdauer ist bereits verursacht, bevor sich überhaupt jemand zum ersten Mal einloggt.",
+      enabler:
+        "Jedes zusätzliche Jahr Nutzungsdauer verteilt diese Fixkosten weiter. Das ist der größte Hebel, den eine IT-Abteilung allein in der Hand hat.",
+      note: {
+        text: "Die Herstellung macht etwa 75 bis 85 % des CO2-Fußabdrucks eines Laptops über seine Lebensdauer aus. Meist wird eine Zahl um 80 % genannt, gegenüber rund 14 % für die Nutzung. Vier Baugruppen tragen etwa 95 % davon: Mainboard, Display, Gehäuse, Akku. Ein effizienteres Laptop früher zu kaufen kann die Gesamtemissionen erhöhen.",
+        source: "techCarbon",
+      },
+    },
+  ],
+  closing:
+    "Ursache und Hebel sind keine Gegensätze. Derselbe Laptop ist beides. Welche Seite du betonst, hängt davon ab, wer im Raum sitzt.",
+};
+
 // ---------------------------------------------------------------- L1 · W3
 
 export type SorterSnippet = {
@@ -297,6 +463,78 @@ export const W3: WidgetMeta & { snippets: SorterSnippet[]; closing: string } = {
     "Several of these could carry two tags. The useful question is not “which box is correct” but “which lever would you actually pull”. The category follows the lever.",
 };
 
+export const W3_DE: typeof W3 = {
+  id: "w3",
+  title: "Kategorien-Sortierer",
+  task: "Ordne jede Beobachtung einer der fünf Kategorien zu. Tastatur: Fokussiere einen Ausschnitt und drücke 1 bis 5.",
+  why: "Die fünf Kategorien sind die gemeinsame Sprache für den Rest des Moduls. Sortieren ist nicht das Ziel. Das Ziel ist zu erkennen, warum ein Fall ein Grenzfall ist.",
+  xp: 15,
+  snippets: [
+    {
+      id: "w3-01",
+      text: "Der Monatsbericht eines Finance-Teams wird auf Papier gedruckt und in Ordnern archiviert.",
+      answer: "R",
+      why: "Papier und Toner sind verbrauchte Materialien. Die Druckenergie ist real, aber klein gegenüber dem, was verbraucht wird.",
+    },
+    {
+      id: "w3-02",
+      text: "Bürolicht, Bildschirme und Desktop-Rechner bleiben übers Wochenende eingeschaltet.",
+      answer: "E",
+      why: "Ein dauerhafter Stromverbrauch ohne Ertrag. Nichts wird direkt verbraucht oder ausgestoßen. Reine Energie.",
+    },
+    {
+      id: "w3-03",
+      text: "Ein Lieferant wird allein nach Preis ausgewählt; Umweltkriterien fließen nicht in die Bewertung ein.",
+      answer: "G",
+      why: "Physisch ist noch nichts passiert. Was fehlt, ist eine Regel – und eine fehlende Regel ist Governance, nicht Energie.",
+    },
+    {
+      id: "w3-04",
+      text: "Ein Unternehmen betreibt seine Dev/Test-Workloads in einer Cloud-Region, die überwiegend mit Kohlestrom versorgt wird.",
+      answer: "Em",
+      why: "Die Rechenlast würde ohnehin laufen. Was sich mit der Region ändert, ist der CO2-Wert pro kWh – also ist die Kategorie Emissionen.",
+    },
+    {
+      id: "w3-05",
+      text: "Kolleginnen und Kollegen streamen Videoanrufe in 4K, obwohl reine Audioübertragung reichen würde.",
+      answer: "U",
+      why: "Die Infrastruktur ist in Ordnung. Es sind das Verhalten und die Standardeinstellung, die die Last aufblähen.",
+    },
+    {
+      id: "w3-06",
+      text: "Alte Laptops werden in einem Schrank gehortet, statt weiterverwendet oder aufgearbeitet zu werden.",
+      answer: "R",
+      why: "Der in der Herstellung gebundene CO2-Wert ist bereits verursacht. Ihn ungenutzt liegen zu lassen, verschwendet ihn – das macht es zu einer Ressourcenfrage.",
+    },
+    {
+      id: "w3-07",
+      text: "Der Serverraum wird übermäßig gekühlt: Der Sollwert liegt bei 18 °C, obwohl 22 °C sicher wären.",
+      answer: "E",
+      why: "Kühlung ist der zweite Zähler in jedem Serverraum. Der Sollwert ist der klassische Energiehebel.",
+    },
+    {
+      id: "w3-08",
+      text: "Im Organigramm gibt es keinen Verantwortlichen für Green-IT-Kennzahlen.",
+      answer: "G",
+      why: "Eine Kennzahl ohne Verantwortlichen wird nicht gemessen, und eine ungemessene Kennzahl wird nicht gesteuert. Governance.",
+    },
+    {
+      id: "w3-09",
+      text: "Ein Team lässt ein Dashboard rund um die Uhr auf 12 wandmontierten Bildschirmen laufen, obwohl nur einer angeschaut wird.",
+      answer: "U",
+      why: "Die Ausstattung ist gerechtfertigt, das Nutzungsmuster nicht. Die Kategorie folgt dem, was du ändern würdest.",
+    },
+    {
+      id: "w3-10",
+      text: "Die Reiserichtlinie des Unternehmens sieht standardmäßig Flüge für Meetings vor, die auch Videoanrufe sein könnten.",
+      answer: "Em",
+      why: "Das ist IT als Hebel. Die Emissionen entstehen außerhalb der IT, aber die digitale Alternative liegt in ihrer Hand.",
+    },
+  ],
+  closing:
+    "Mehrere dieser Fälle könnten zwei Kategorien tragen. Die nützliche Frage ist nicht „welches Kästchen ist richtig“, sondern „welchen Hebel würdest du tatsächlich ziehen“. Die Kategorie folgt dem Hebel.",
+};
+
 // ---------------------------------------------------------------- L2 · W4
 
 export type Dial = {
@@ -371,6 +609,69 @@ export const W4: WidgetMeta & { dials: Dial[]; closing: string } = {
   ],
   closing:
     "A proposal that names its own price is harder to reject than one that promises none. Say the cost out loud before someone else finds it.",
+};
+
+export const W4_DE: typeof W4 = {
+  id: "w4",
+  title: "Abwägungs-Regler",
+  task: "Bewege alle drei Regler. Beobachte die Anzeige. Keine Einstellung ist ohne Preis.",
+  why: "Führungskräfte lehnen Green IT nicht ab, weil sie es nicht mögen. Sie lehnen Vorschläge ab, die so tun, als gäbe es die Abwägung umsonst. Den Preis zu benennen macht einen Vorschlag glaubwürdig.",
+  xp: 15,
+  dials: [
+    {
+      id: "w4-a",
+      title: "Regler A: Leistung vs. Energieeffizienz",
+      leftLabel: "Leistung maximieren",
+      rightLabel: "Effizienz maximieren",
+      readouts: [
+        "Überall Reserven, Effizienz ist das, was übrig bleibt. Vorhersehbar, und die Stromrechnung ist der Rest.",
+        "Effizienzziele existieren, weichen aber der Leistung, sobald beide kollidieren. Die in der Praxis übliche Einstellung.",
+        "Effizienz ist eine harte Grenze. Spitzen werden gekappt, etwas Latenz wird in Kauf genommen, die Kapazitätsplanung wird schwieriger.",
+      ],
+      price:
+        "Links: Du zahlst in Energie und, in Deutschland, in regulatorischem Risiko. Rechts: Du zahlst in Reserven, und das spürt jemand an einem schlechten Tag.",
+      note: {
+        text: "In Deutschland ist dieser Regler nicht mehr rein freiwillig. Nach dem Energieeffizienzgesetz (EnEfG) müssen bestehende Rechenzentren bis Juli 2027 einen jährlichen PUE von 1,5 erreichen und bis Juli 2030 einen von 1,3; neue starten bei 1,2. Ein Änderungsentwurf von April 2026 würde diese Werte auf 1,6, 1,4 und 1,3 lockern. Rechenzentren ab Juli 2026 müssen zudem einen Teil ihrer Abwärme wiederverwenden.",
+        source: "enefg",
+      },
+    },
+    {
+      id: "w4-b",
+      title: "Regler B: Anschaffungskosten vs. Nachhaltigkeit",
+      leftLabel: "Niedrigster Anschaffungspreis",
+      rightLabel: "Geringste Wirkung über die Lebensdauer",
+      readouts: [
+        "Der günstigste Stückpreis gewinnt. Schnell genehmigt, und Entsorgungs- und Energiekosten landen in einem fremden Budget.",
+        "Umweltkriterien werden bewertet, können aber vom Preis überstimmt werden. Die meisten Beschaffungsvorlagen liegen hier.",
+        "Die Wirkung über die Lebensdauer und die Gesamtkosten entscheiden. Langsamere Genehmigungen, weniger Lieferanten, längere Nutzungsdauer.",
+      ],
+      price:
+        "Links: Du zahlst später, in einer anderen Kostenstelle. Rechts: Du zahlst jetzt, sichtbar, und musst es rechtfertigen.",
+      note: {
+        text: "Die Kriterien des Blauen Engel für Rechenzentren verlangen, die Gesamtbetriebskosten bereits beim Kauf zu berechnen und Labels wie Energy Star, TCO Certified und EPEAT einzubeziehen. Die Anforderungen des Blauen Engel werden für die IT-Beschaffung des Bundes zunehmend verpflichtend. Für öffentliche Stellen wird dieser Regler per Gesetz festgelegt.",
+        source: "blueAngel",
+      },
+    },
+    {
+      id: "w4-c",
+      title: "Regler C: Schneller Erfolg vs. strategischer Hebel",
+      leftLabel: "Sichtbar in diesem Quartal",
+      rightLabel: "Verändert, wie entschieden wird",
+      readouts: [
+        "Etwas, das man dem Vorstand in Wochen zeigen kann. Kauft Glaubwürdigkeit – und sonst nichts.",
+        "Eine Mischung: Eine sichtbare Maßnahme finanziert die Geduld für eine strukturelle. Die Einstellung, von der die meisten Programme leben.",
+        "Erst Basislinie, Verantwortung und Regeln. Zwei Quartale lang nichts vorzuweisen, und jede spätere Entscheidung wird leichter.",
+      ],
+      price:
+        "Links: Du optimierst womöglich das Falsche – mit Überzeugung. Rechts: Du musst politisches Kapital ausgeben, bevor du Ergebnisse hast.",
+      note: {
+        text: "Eine Maßnahme sitzt an beiden Enden zugleich: verschiebbare Workloads in sauberere Stunden oder Regionen verlagern. Berichtete Reduktionen liegen zwischen dem 2- und 10-Fachen, ohne jede Anwendungsänderung. Wenn du eine solche Maßnahme findest, nutze sie, um Zeit für die strukturelle Arbeit zu erkaufen.",
+        source: "sci",
+      },
+    },
+  ],
+  closing:
+    "Ein Vorschlag, der seinen eigenen Preis benennt, lässt sich schwerer ablehnen als einer, der keinen verspricht. Sprich die Kosten aus, bevor sie jemand anders findet.",
 };
 
 // ---------------------------------------------------------------- L2 · W5
@@ -468,6 +769,84 @@ export const W5: WidgetMeta & {
   ],
   closing:
     "Note how many of these are rules and roles rather than equipment. That ratio is the difference between a Green IT programme and a shopping list.",
+};
+
+export const W5_DE: typeof W5 = {
+  id: "w5",
+  title: "Prioritätenmatrix: Wirkung gegen Machbarkeit",
+  task: "Platziere alle acht Maßnahmen. Tastatur: Fokussiere eine Karte und drücke 1 bis 4.",
+  why: "Hier gibt es keine Punktzahl. Die Matrix existiert, damit du später, wenn du eine Rangfolge verteidigst, sagen kannst, welche Achse entschieden hat.",
+  xp: 15,
+  quadrants: [
+    {
+      id: "hi-hf",
+      title: "Hohe Wirkung, hohe Machbarkeit",
+      consequence:
+        "Jetzt tun, und damit Glaubwürdigkeit für alles im Quadranten darüber erkaufen.",
+    },
+    {
+      id: "hi-lf",
+      title: "Hohe Wirkung, geringe Machbarkeit",
+      consequence:
+        "Braucht Rückendeckung aus der Führung, sonst stirbt es leise. Nie einem Team ohne Deckung von oben zuweisen.",
+    },
+    {
+      id: "li-hf",
+      title: "Geringe Wirkung, hohe Machbarkeit",
+      consequence:
+        "Günstig umzusetzen. Gefährlich, es als Fortschritt zu vermelden. Hier lebt die symbolische Maßnahme.",
+    },
+    {
+      id: "li-lf",
+      title: "Geringe Wirkung, geringe Machbarkeit",
+      consequence:
+        "Schriftlich ablehnen, mit Begründung. Ein nicht abgelehnter Punkt kommt jedes Quartal wieder.",
+    },
+  ],
+  cards: [
+    {
+      id: "w5-lifetime",
+      text: "Nutzungsdauer von Laptops von drei auf fünf Jahre verlängern",
+      hint: "Hohe Wirkung, und Machbarkeit ist vor allem eine Frage der Richtlinie, nicht der Technik.",
+    },
+    {
+      id: "w5-setpoint",
+      text: "Sollwert im Serverraum nach einer Wärmeanalyse anheben",
+      hint: "Echte Energiewirkung, machbar, sobald die Analyse vorliegt. Die Analyse ist die eigentliche Arbeit.",
+    },
+    {
+      id: "w5-owner",
+      text: "Einen verantwortlichen Owner für Green-IT-Kennzahlen benennen",
+      hint: "Kostet fast nichts und entblockiert alles Nachgelagerte. Machbarkeit hängt von einem einzigen Gespräch ab.",
+    },
+    {
+      id: "w5-replace-all",
+      text: "Jedes Arbeitsplatzgerät durch ein neues energieeffizientes Modell ersetzen",
+      hint: "Großes Budget, und der in der Herstellung gebundene CO2-Wert kann die eingesparte Energie übersteigen.",
+    },
+    {
+      id: "w5-procurement",
+      text: "Umweltkriterien in die Beschaffungsvorlage aufnehmen",
+      hint: "Wirkung mit Zinseszinseffekt. Gilt für jeden künftigen Kauf, nicht nur für einen.",
+    },
+    {
+      id: "w5-batch",
+      text: "Nächtliche Batch-Jobs in CO2-ärmere Stunden verlagern",
+      hint: "Technisch machbar für verschiebbare Arbeit. Die Wirkung hängt vollständig davon ab, wie variabel dein Stromnetz ist.",
+    },
+    {
+      id: "w5-dashboard",
+      text: "Ein Green-IT-Dashboard kaufen und veröffentlichen",
+      hint: "Leicht zu kaufen. Die Wirkung ist null, solange niemand für die Zahlen darauf verantwortlich ist.",
+    },
+    {
+      id: "w5-baseline",
+      text: "Eine Energie- und Geräte-Basislinie für die IT aufbauen",
+      hint: "Für niemanden außerhalb der IT sichtbar, und ohne sie ist jede spätere Entscheidung Rätselraten.",
+    },
+  ],
+  closing:
+    "Achte darauf, wie viele davon Regeln und Rollen sind statt Ausstattung. Dieses Verhältnis ist der Unterschied zwischen einem Green-IT-Programm und einer Einkaufsliste.",
 };
 
 // ---------------------------------------------------------------- L2 · W6
@@ -569,6 +948,82 @@ export const W6: WidgetMeta & {
     "Notice what actually decided it: not the missing energy data, but a contract date and a customer deadline. Ask which missing fact would change your action, not which facts are missing.",
 };
 
+export const W6_DE: typeof W6 = {
+  id: "w6",
+  title: "Entscheidung bei unvollständiger Information",
+  task: "Zwei Beweiskacheln sind offen, drei sind verdeckt. Entscheide trotzdem, dann sieh, was du nicht sehen konntest.",
+  why: "Auf vollständige Daten zu warten ist die häufigste Todesursache eines Green-IT-Programms. Dieses Widget macht die Kosten des Wartens sichtbar.",
+  xp: 15,
+  scenario:
+    "Dein Vorstand hat für dieses Quartal eine Green-IT-Entscheidung verlangt. Das Budget deckt genau eine der drei folgenden Optionen.",
+  tiles: [
+    {
+      id: "w6-t1",
+      label: "Geräteinventar",
+      content:
+        "Etwa 1.900 Arbeitsplatzgeräte. Durchschnittsalter 2,6 Jahre. Erneuerung erfolgt vertraglich, nicht zustandsabhängig.",
+      covered: false,
+    },
+    {
+      id: "w6-t2",
+      label: "Energiedaten",
+      content:
+        "Ein Zähler für das gesamte Gebäude. IT lässt sich nicht von Beleuchtung und Klimatechnik trennen.",
+      covered: false,
+    },
+    {
+      id: "w6-t3",
+      label: "Lieferantenkonditionen",
+      content:
+        "Der Gerätevertrag hat eine Ausstiegsklausel nach 14 Monaten. Eine Neuverhandlung davor kostet nichts.",
+      covered: true,
+    },
+    {
+      id: "w6-t4",
+      label: "Personalkapazität",
+      content:
+        "Die zwei Personen, die eine Basislinie aufbauen würden, sind bereits bis Q3 an eine Migration gebunden.",
+      covered: true,
+    },
+    {
+      id: "w6-t5",
+      label: "Kundendruck",
+      content:
+        "Zwei Schlüsselkunden haben für die nächste Ausschreibungsrunde in fünf Monaten Nachweise zur IT-Nachhaltigkeit verlangt.",
+      covered: true,
+    },
+  ],
+  options: [
+    {
+      id: "w6-o1",
+      label: "Unterzähler kaufen und die Energie-Basislinie aufbauen",
+      immediate:
+        "Greift die sichtbare Lücke an: Du kannst die IT-Energie nicht vom Gebäude trennen.",
+      afterReveal:
+        "Die Personalkachel schadet dieser Option. Die zwei Personen, die sie umsetzen würden, sind erst ab Q3 verfügbar – die Basislinie kommt also erst nach der Ausschreibungsfrist, die die Kundenkachel enthüllt.",
+    },
+    {
+      id: "w6-o2",
+      label: "Die Geräterichtlinie neu schreiben und den Vertrag neu verhandeln",
+      immediate:
+        "Greift die größte bekannte Größe an: 1.900 Geräte in einem vertraglichen statt zustandsabhängigen Zyklus.",
+      afterReveal:
+        "Die Lieferantenkachel macht das jetzt günstig, wegen einer Ausstiegsklausel nach 14 Monaten ohne Strafzahlung. Die Kapazitätskachel blockiert das nicht, weil es eine Beschaffungsaufgabe ist, keine des IT-Betriebs.",
+    },
+    {
+      id: "w6-o3",
+      label: "Ein Quartal warten, bis sich die Datenlage verbessert",
+      immediate: "Vermeidet, Budget für eine halbblind getroffene Entscheidung zu binden.",
+      afterReveal:
+        "Die Kundenkachel beziffert diese Wahl. Die Ausschreibung ist in fünf Monaten; ein Quartal Warten verbraucht den Großteil der Zeit und liefert keine einreichbaren Nachweise.",
+    },
+  ],
+  message:
+    "Die Entscheidung aufzuschieben, bis jede Kachel offen ist, ist selbst eine Entscheidung – und sie hat einen Preis in Zeit.",
+  closing:
+    "Achte darauf, was tatsächlich entschieden hat: nicht die fehlenden Energiedaten, sondern ein Vertragstermin und eine Kundenfrist. Frage, welche fehlende Tatsache dein Handeln ändern würde – nicht, welche Tatsachen fehlen.",
+};
+
 // ---------------------------------------------------------------- L3 · W7
 
 export type GovernanceNode = {
@@ -652,6 +1107,75 @@ export const W7: WidgetMeta & {
     "Read the five “cannot delegate” lines in order. That sequence is the shortest description of a working Green IT governance there is.",
 };
 
+export const W7_DE: typeof W7 = {
+  id: "w7",
+  title: "Governance-Mini-Organigramm",
+  task: "Öffne alle fünf Rollen. Lies bei jeder, was sie nicht delegieren kann. Diese Zeile ist der ganze Punkt.",
+  why: "Green IT gerät an den Grenzen zwischen Rollen ins Stocken, nicht innerhalb von ihnen. Zu wissen, wer eine Entscheidung nicht weiterreichen kann, ist der Weg, die Person zu finden, die unterschreiben muss.",
+  xp: 20,
+  nodes: [
+    {
+      id: "w7-board",
+      role: "Vorstand",
+      decidesAlone:
+        "Ob Green IT ein Ziel mit Budget ist oder ein Thema mit gutem Willen.",
+      mustEscalate:
+        "Intern nichts, muss sich aber gegenüber Eigentümern, Regulierungsbehörden und Schlüsselkunden verantworten.",
+      cannotDelegate:
+        "Das Ambitionsniveau festzulegen und die Abwägung zwischen kurzfristigen Ergebnissen und struktureller Veränderung zu akzeptieren. Wird das delegiert, entsteht ein Programm ohne Autorität.",
+    },
+    {
+      id: "w7-cto",
+      role: "CTO",
+      decidesAlone:
+        "Technische Standards, Architekturrichtung und welche Plattformen im Geltungsbereich liegen.",
+      mustEscalate:
+        "Alles, was den Investitionsrahmen oder das kundenseitige Service-Level verändert.",
+      cannotDelegate:
+        "Zu erklären, wozu die Technologiestrategie da ist. Fehlt Nachhaltigkeit in dieser Aussage, wird kein Team darunter sie priorisieren.",
+    },
+    {
+      id: "w7-head-it",
+      role: "IT-Leitung",
+      decidesAlone:
+        "Betriebsparameter, Nutzungsdauer in der Praxis und wie die Kapazität im Alltag gefahren wird.",
+      mustEscalate:
+        "Alles, was Verträge, Personalstärke oder ein dem Geschäft zugesagtes Service-Level berührt.",
+      cannotDelegate:
+        "Die Verantwortung für die operativen Zahlen. Wird der Bericht infrage gestellt, muss diese Rolle ihre eigenen Daten wiedererkennen.",
+    },
+    {
+      id: "w7-sustainability",
+      role: "Nachhaltigkeitsbeauftragte:r",
+      decidesAlone:
+        "Berichtsmethode, Grenzziehungen und was als Nachweis zählt.",
+      mustEscalate:
+        "Jedes Ziel, das die IT zwingt, ihren Betrieb oder ihre Beschaffung zu ändern.",
+      cannotDelegate:
+        "Die Zahlen extern zu verteidigen. Diese Rolle trägt das Glaubwürdigkeitsrisiko, wenn die Zahlen der IT nicht standhalten.",
+    },
+    {
+      id: "w7-procurement",
+      role: "Einkaufsleitung",
+      decidesAlone:
+        "Lieferantenauswahl innerhalb eines vereinbarten Rahmens, und wie Kriterien in einer Bewertung gewichtet werden.",
+      mustEscalate:
+        "Neue verpflichtende Kriterien, und alles, was das Lieferantenfeld verengt oder den Stückpreis erhöht.",
+      cannotDelegate:
+        "Die Kriterien in die Vorlage zu schreiben. Solange sie nicht im Dokument stehen, sind Umweltanforderungen ein Ratschlag, keine Anforderung.",
+    },
+  ],
+  flows: [
+    "Vorstand → CTO: Ambition und Budgetrahmen",
+    "CTO → IT-Leitung: Standards und Geltungsbereich",
+    "IT-Leitung → Nachhaltigkeitsbeauftragte:r: operative Daten",
+    "Nachhaltigkeitsbeauftragte:r → Vorstand: externes Risiko",
+    "Einkaufsleitung ↔ IT-Leitung: was sich tatsächlich kaufen lässt",
+  ],
+  closing:
+    "Lies die fünf „kann nicht delegieren“-Zeilen der Reihe nach. Diese Abfolge ist die kürzeste Beschreibung einer funktionierenden Green-IT-Governance, die es gibt.",
+};
+
 // ---------------------------------------------------------------- L3 · W8
 
 export type RoadmapMeasure = {
@@ -713,6 +1237,55 @@ export const W8: WidgetMeta & {
   ],
   closing:
     "Every arrow here points back to the same two things: an owner and a baseline. Programmes that start anywhere else pay for them later anyway.",
+};
+
+export const W8_DE: typeof W8 = {
+  id: "w8",
+  title: "Roadmap-Sequenzer",
+  task: "Platziere alle sechs Maßnahmen über das Jahr. Tastatur: Fokussiere eine Maßnahme und drücke 1 bis 4.",
+  why: "Es gibt keine richtige Roadmap. Es gibt eine Reihenfolge, die funktioniert, und eine, die eine teure Wiederholung erzeugt. Das hier zeigt dir, welche welche ist.",
+  xp: 20,
+  quarters: ["Q1", "Q2", "Q3", "Q4"],
+  measures: [
+    {
+      id: "w8-owner",
+      text: "Einen verantwortlichen Owner für Green IT benennen",
+      requires: null,
+      requiresLabel: "erfordert: nichts",
+    },
+    {
+      id: "w8-baseline",
+      text: "Eine Energie- und Geräte-Basislinie aufbauen",
+      requires: "w8-owner",
+      requiresLabel: "erfordert: einen benannten Owner",
+    },
+    {
+      id: "w8-kpi",
+      text: "Einen Mindestsatz an KPIs vereinbaren",
+      requires: "w8-baseline",
+      requiresLabel: "erfordert: Basisdaten",
+    },
+    {
+      id: "w8-procurement",
+      text: "Die Beschaffungskriterien neu schreiben",
+      requires: "w8-owner",
+      requiresLabel: "erfordert: einen benannten Owner",
+    },
+    {
+      id: "w8-lifetime",
+      text: "Auf eine zustandsabhängige Gerätenutzungsdauer umstellen",
+      requires: "w8-procurement",
+      requiresLabel: "erfordert: Beschaffungskriterien",
+    },
+    {
+      id: "w8-report",
+      text: "IT-Kennzahlen in die Nachhaltigkeitsberichterstattung einspeisen",
+      requires: "w8-kpi",
+      requiresLabel: "erfordert: vereinbarte KPIs",
+    },
+  ],
+  closing:
+    "Jeder Pfeil hier zeigt zurück auf dieselben zwei Dinge: einen Owner und eine Basislinie. Programme, die woanders anfangen, zahlen später trotzdem dafür.",
 };
 
 // ---------------------------------------------------------------- L3 · W9
@@ -789,6 +1362,64 @@ export const W9: WidgetMeta & {
     "Symbolic action is not forbidden. What is forbidden is filing it under strategy. Label it correctly and it can still buy you attention.",
 };
 
+export const W9_DE: typeof W9 = {
+  id: "w9",
+  title: "Check: Symbolisch vs. strategisch",
+  task: "Markiere jede der fünf Aussagen, lies dann die Begründung. Das ist der Test, den du auf deine eigenen Folien anwenden wirst.",
+  why: "Vorstände bestrafen keine kleinen Maßnahmen. Sie bestrafen kleine Maßnahmen, die als Strategie präsentiert werden. Die eigene Arbeit korrekt zu benennen hält dich glaubwürdig.",
+  xp: 20,
+  tags: [
+    {
+      id: "symbolic",
+      label: "Symbolisch",
+      hint: "Sichtbar, günstig, und verändert keine nachfolgende Entscheidung.",
+    },
+    {
+      id: "operational",
+      label: "Operative Verbesserung",
+      hint: "Real und messbar, aber begrenzt. Verbessert eine Sache, nicht die Art, wie entschieden wird.",
+    },
+    {
+      id: "strategic",
+      label: "Strategische Entscheidung",
+      hint: "Verändert, wer entscheidet, nach welchen Kriterien oder mit welcher Befugnis. Die Wirkung addiert sich.",
+    },
+  ],
+  statements: [
+    {
+      id: "w9-01",
+      text: "„Wir haben die Startseite unseres Intranets auf ein dunkles Design umgestellt, um Energie zu sparen.“",
+      answer: "symbolic",
+      why: "Messbar nur auf OLED-Bildschirmen, und selbst dann im Unternehmensmaßstab vernachlässigbar. Nichts Nachgelagertes ändert sich. Wer das verkündet, lädt das Publikum ein, alles Weitere, was folgt, abzuwerten.",
+    },
+    {
+      id: "w9-02",
+      text: "„Ab dem nächsten Quartal müssen Umweltkriterien bei jeder IT-Ausschreibung mit 20 % der Gesamtwertung einfließen.“",
+      answer: "strategic",
+      why: "Es ändert die Entscheidungsregel, nicht eine Entscheidung. Jeder künftige Kauf erbt sie, und der Einkauf hat nun die Befugnis, aus diesen Gründen abzulehnen.",
+    },
+    {
+      id: "w9-03",
+      text: "„Wir haben den Sollwert im Serverraum nach einer Wärmeanalyse um 3 °C angehoben.“",
+      answer: "operational",
+      why: "Echt, messbar und belegbar. Eine reale Reduktion mit Nachweis dahinter. Aber sie verbessert einen Raum; sie verändert nicht, wie der nächste Raum geplant wird.",
+    },
+    {
+      id: "w9-04",
+      text: "„Wir haben eine Leitung für Sustainable IT berufen, die an den CTO berichtet, mit eigener Budgetlinie und Quartalszielen.“",
+      answer: "strategic",
+      why: "Verantwortung, Befugnis und Geld in einem Schritt. Das ist die Veränderung, die operative Verbesserungen wiederholbar macht statt zufällig.",
+    },
+    {
+      id: "w9-05",
+      text: "„Wir haben 5.000 Bäume gepflanzt, um die Emissionen unseres Rechenzentrums auszugleichen.“",
+      answer: "symbolic",
+      why: "Am Rechenzentrum hat sich nichts geändert. Kompensation bewegt auch keine Intensitätskennzahl: Der SCI-Standard schließt Kompensationen bewusst aus, damit sich der Wert nur durch echte technische Arbeit verbessern lässt.",
+    },
+  ],
+  closing:
+    "Symbolisches Handeln ist nicht verboten. Verboten ist, es unter Strategie abzulegen. Richtig benannt, kann es dir trotzdem Aufmerksamkeit verschaffen.",
+};
 
 // --------------------------------------------------- L1 · W10 (simulator)
 
@@ -852,6 +1483,51 @@ export const W10: WidgetMeta & {
     "Extending service life is the rare measure that reduces footprint and spend at the same time. The objections it meets are about support and security. Prepare those answers, not the carbon argument.",
 };
 
+export const W10_DE: typeof W10 = {
+  id: "w10",
+  title: "Nutzungsdauer-Simulator: Was ein zusätzliches Jahr bewirkt",
+  task: "Ziehe den Erneuerungszyklus. Beobachte, was mit dem Fußabdruck passiert, den jedes Gerätejahr trägt.",
+  why: "Diese Rechnung solltest du parat haben, wenn jemand vorschlägt, eine Geräteflotte vorzeitig zu ersetzen, um Energie zu sparen. Es ist der häufigste gutgemeinte Fehler in Green IT, und ein Regler klärt ihn.",
+  xp: 15,
+  minYears: 2,
+  maxYears: 7,
+  baselineYears: 3,
+  embodiedShare: 80,
+  bands: [
+    {
+      upTo: 2,
+      verdict:
+        "Ein Zweijahreszyklus verursacht den Herstellungs-Fußabdruck doppelt so oft wie ein Dreijahreszyklus. Fast nichts, was du im Betrieb tust, kann das ausgleichen.",
+    },
+    {
+      upTo: 3,
+      verdict:
+        "Der übliche vertragliche Zyklus, und die Basislinie, an der alles andere gemessen wird. Weit häufiger vom Vertrag bestimmt als vom Zustand.",
+    },
+    {
+      upTo: 4,
+      verdict:
+        "Ein zusätzliches Jahr entfernt bereits rund ein Fünftel der jährlichen Last – ohne Kauf, ohne Projekt und ohne neue Werkzeuge.",
+    },
+    {
+      upTo: 5,
+      verdict:
+        "Der in der Praxis übliche Sweet Spot. Rund ein Drittel weniger, und immer noch innerhalb der meisten Garantie- und Sicherheits-Support-Fenster.",
+    },
+    {
+      upTo: 7,
+      verdict:
+        "Jenseits von fünf Jahren flacht die Kurve ab, während Support-Risiko, Akkuverschleiß und Helpdesk-Last steigen. Weiter zu verlängern ist eine Service-Entscheidung, keine Fußabdruck-Entscheidung.",
+    },
+  ],
+  note: {
+    text: "Die Herstellung macht etwa 75 bis 85 % des CO2-Fußabdrucks eines Laptops über seine Lebensdauer aus, gegenüber rund 14 % für die Nutzung. Vier Baugruppen (Mainboard, Display, Gehäuse und Akku) tragen rund 95 % des Herstellungsanteils. Deshalb kann der Austausch einer funktionierenden Flotte gegen eine effizientere die Gesamtemissionen erhöhen statt senken.",
+    source: "techCarbon",
+  },
+  closing:
+    "Die Nutzungsdauer zu verlängern ist die seltene Maßnahme, die Fußabdruck und Ausgaben gleichzeitig senkt. Die Einwände, auf die sie trifft, betreffen Support und Sicherheit. Bereite diese Antworten vor, nicht das CO2-Argument.",
+};
+
 // --------------------------------------------------- L2 · W11 (simulator)
 
 export type PueThreshold = {
@@ -903,6 +1579,42 @@ export const W11: WidgetMeta & {
     "PUE says nothing about whether the computing itself was worth doing. A half-empty data centre can post an excellent PUE. Read it alongside utilisation, never alone.",
 };
 
+export const W11_DE: typeof W11 = {
+  id: "w11",
+  title: "PUE-Check: die deutschen Schwellenwerte",
+  task: "Stelle ein, wie viel Strom das Gebäude für jede Einheit verbraucht, die die Rechenleistung verbraucht. Beobachte, welche gesetzlichen Schwellenwerte du einhältst.",
+  why: "In Deutschland ist das keine Best-Practice-Kennzahl mehr, sondern eine gesetzliche Pflicht mit festen Terminen. Eine Führungskraft, die nicht ungefähr sagen kann, wo ihr Rechenzentrum steht, ist angreifbar.",
+  xp: 15,
+  thresholds: [
+    {
+      id: "pue-2027",
+      label: "PUE ≤ 1,5 ab Juli 2027",
+      limit: 1.5,
+      applies: "Rechenzentren, die bereits vor Juli 2026 in Betrieb sind.",
+    },
+    {
+      id: "pue-2030",
+      label: "PUE ≤ 1,3 ab Juli 2030",
+      limit: 1.3,
+      applies: "Dieselben bestehenden Rechenzentren, drei Jahre später.",
+    },
+    {
+      id: "pue-new",
+      label: "PUE ≤ 1,2 für Neubauten",
+      limit: 1.2,
+      applies: "Rechenzentren, die ab Juli 2026 den Betrieb aufnehmen.",
+    },
+  ],
+  draftNote:
+    "Ein im April 2026 veröffentlichter Änderungsentwurf würde diese Werte auf 1,6, 1,4 und 1,3 lockern. Behandle die strengeren Zahlen bis zur Gesetzeskraft als Planungsannahme.",
+  note: {
+    text: "Das Energieeffizienzgesetz verlangt außerdem, dass Rechenzentren 50 % ihres Stroms mit Erneuerbaren decken, ab 1 MW ein zertifiziertes Energie- oder Umweltmanagementsystem betreiben und – für ab Juli 2026 in Betrieb genommene Zentren – einen Teil ihrer Abwärme wiederverwenden, mit einer Steigerung von 15 % auf 20 % ab Juli 2028.",
+    source: "enefg",
+  },
+  closing:
+    "PUE sagt nichts darüber aus, ob die Rechenleistung selbst sinnvoll war. Ein halbleeres Rechenzentrum kann einen exzellenten PUE aufweisen. Lies ihn immer zusammen mit der Auslastung, nie allein.",
+};
+
 /**
  * The running order, and the single source of truth for what "all widgets
  * done" means. The page renders from this, and so does the progress model.
@@ -915,6 +1627,15 @@ export const WIDGET_INDEX: { level: string; widgets: WidgetMeta[] }[] = [
 ];
 
 export const ALL_WIDGETS: WidgetMeta[] = WIDGET_INDEX.flatMap((l) => l.widgets);
+
+export const WIDGET_INDEX_DE: { level: string; widgets: WidgetMeta[] }[] = [
+  { level: "L1: Wissen", widgets: [W1_DE, W2_DE, W10_DE, W3_DE] },
+  // L2 is delivered as the Meridian case study at /scenario/meridian.
+  { level: "L2: Anwendung", widgets: [] },
+  { level: "L3: Management-Entscheidung", widgets: [W7_DE, W8_DE, W9_DE] },
+];
+
+export const ALL_WIDGETS_DE: WidgetMeta[] = WIDGET_INDEX_DE.flatMap((l) => l.widgets);
 
 // ------------------------------------------------- The five categories
 
@@ -992,6 +1713,65 @@ export const CATEGORY_PRIMER: {
   },
 };
 
+export const CATEGORY_PRIMER_DE: {
+  title: string;
+  intro: string;
+  entries: CategoryPrimerEntry[];
+  rule: string;
+  note: FieldNote;
+} = {
+  title: "Die fünf Kategorien, bevor du irgendetwas sortierst",
+  intro:
+    "Jede Beobachtung in diesem Modul wird unter eine von fünf Überschriften eingeordnet. Das sind keine fünf Arten von Technologie. Es sind fünf Arten von Fragen, die du zu ein und derselben Technologie stellen kannst. Derselbe Laptop taucht unter vier davon auf, je nachdem, was du fragst.",
+  entries: [
+    {
+      code: "E",
+      meaning: "Was die IT verbraucht, während sie läuft.",
+      question: "Würde das heute Nacht noch Strom verbrauchen, obwohl niemand es nutzt?",
+      example: "Ein Serverraum, der auf 18 °C gehalten wird, obwohl 22 °C sicher wären.",
+      lever: "Zeitpläne, Temperatur-Sollwerte, Ruhezustands-Richtlinien, Konsolidierung.",
+    },
+    {
+      code: "R",
+      meaning:
+        "Was physisch verbraucht oder weggeworfen wird: Geräte, Bauteile, Papier.",
+      question: "Was musste hergestellt werden, und was passiert damit am Ende?",
+      example: "Funktionstüchtige Laptops, die alle drei Jahre ersetzt werden, weil ein Vertrag es so vorsieht.",
+      lever: "Nutzungsdauer, Wiederverwendung und Aufarbeitung, Beschaffungsregeln.",
+    },
+    {
+      code: "Em",
+      meaning:
+        "Was ausgestoßen wird. Das hängt davon ab, woher und wann die Energie kam, nicht nur davon, wie viel.",
+      question: "Gleiche Aktivität, anderer Ort oder andere Stunde: Würde sich ändern, was dabei herauskommt?",
+      example:
+        "Derselbe Rechenauftrag, ausgeführt in einem kohlelastigen statt einem windstarken Stromnetz.",
+      lever: "Wahl von Region und Zeitpunkt, Reiserichtlinie, sauberere Lieferverträge.",
+    },
+    {
+      code: "U",
+      meaning: "Wie Menschen tatsächlich nutzen, was bereits vorhanden ist.",
+      question:
+        "Die Ausstattung ist gerechtfertigt. Kostet es also die Gewohnheit oder die Standardeinstellung?",
+      example: "Jeder interne Anruf standardmäßig in 4K-Video, obwohl 720p reichen würde.",
+      lever: "Standardeinstellungen, Aufbewahrungsregeln, Anzeigezeitpläne, Schulung.",
+    },
+    {
+      code: "G",
+      meaning: "Wer entscheidet, nach welcher Regel, und wer für die Zahl verantwortlich ist.",
+      question:
+        "Passiert hier physisch überhaupt etwas, oder fehlt eine Regel?",
+      example: "Kein Verantwortlicher im gesamten Organigramm für Green-IT-Kennzahlen.",
+      lever: "Rollen, in Beschaffungsvorlagen verankerte Kriterien, KPIs, Mandate.",
+    },
+  ],
+  rule:
+    "Wenn zwei Kategorien beide zu passen scheinen, frage, welchen Hebel du tatsächlich ziehen würdest. Die Kategorie folgt dem Hebel, nicht dem Objekt.",
+  note: {
+    text: "Governance ist diejenige, die über die anderen vier entscheidet. Eine fehlende Regel ist keine kleine administrative Lücke: Sie ist der Grund, warum dieselben Energie-, Ressourcen-, Emissions- und Nutzungsentscheidungen nächstes Quartal wieder schlecht getroffen werden.",
+  },
+};
+
 // ------------------------------------- W8: judging a roadmap, not scoring it
 
 /** What placing this measure late, or on top of its prerequisite, costs you. */
@@ -1062,6 +1842,58 @@ export const W8_TRADEOFFS: MeasureTradeoff[] = [
   },
 ];
 
+export const W8_TRADEOFFS_DE: MeasureTradeoff[] = [
+  {
+    id: "w8-owner",
+    ifLate:
+      "Alles andere wartet darauf. Wird der Owner erst in der zweiten Jahreshälfte benannt, produziert das Jahr größtenteils nur einen Plan für das nächste.",
+    wellPlaced:
+      "Früh, wo es hingehört. Kostet fast nichts und entblockiert jede nachfolgende Maßnahme.",
+  },
+  {
+    id: "w8-baseline",
+    ifLate:
+      "Ohne Basislinie lässt sich später keine Verbesserung nachweisen. Beginnt sie erst in Q4, kommt die erste glaubwürdige Zahl erst im nächsten Jahr, und jede vorher aufgestellte Behauptung steht ohne Beleg da.",
+    ifStacked:
+      "Beginnt die Basislinie im selben Quartal, in dem der Owner benannt wird, bleibt keine Zeit, sie sauber abzugrenzen. Der erste Versuch wird vermutlich wiederholt werden müssen.",
+    wellPlaced:
+      "Früh genug, damit spätere Maßnahmen etwas haben, woran sie gemessen werden können.",
+  },
+  {
+    id: "w8-kpi",
+    ifLate:
+      "In Q4 vereinbarte KPIs steuern in diesem Jahr nichts mehr. Berichtszyklus, Budgetrunde und Lieferantenbewertungen sind alle vorbei, bevor die erste Messung existiert – die Entscheidungen des Jahres werden also nach den alten Kriterien getroffen.",
+    ifStacked:
+      "KPIs im selben Quartal zu vereinbaren, in dem die Basislinie beginnt, heißt, Ziele gegen Daten festzulegen, die du noch nicht gesehen hast. Sie werden sich verschieben, sobald die Daten vorliegen.",
+    wellPlaced:
+      "Nach der Basislinie und vor dem Berichtszyklus. Das ist das einzige Zeitfenster, in dem ein KPI dieses Jahr tatsächlich noch etwas steuern kann.",
+  },
+  {
+    id: "w8-procurement",
+    ifLate:
+      "Jeder Kauf vor der Änderung der Kriterien ist für die Vertragslaufzeit festgeschrieben. Werden die Kriterien erst in Q4 neu geschrieben, lief der gesamte Einkauf des Jahres nach den alten Regeln.",
+    wellPlaced:
+      "Früh genug, damit ein nennenswerter Teil der Käufe des Jahres nach den neuen Kriterien läuft.",
+  },
+  {
+    id: "w8-lifetime",
+    ifLate:
+      "Die Nutzungsdauer ändert sich erst bei der nächsten Erneuerungsentscheidung. Spät platziert bedeutet, dass die Änderung erst ein Jahr nach dem auf der Roadmap genannten Termin greift.",
+    ifStacked:
+      "Die Nutzungsdauer im selben Quartal zu ändern, in dem die Beschaffungskriterien geschrieben werden, heißt, die Regel wird angewendet, bevor sie vereinbart ist.",
+    wellPlaced:
+      "Nach den Beschaffungskriterien, was ihr erst Geltung verleiht.",
+  },
+  {
+    id: "w8-report",
+    ifLate:
+      "Spät ist für diese Maßnahme der natürliche Platz. Das Reporting verwertet, was die früheren Schritte hervorbringen.",
+    ifStacked:
+      "Reporting im selben Quartal, in dem die KPIs vereinbart werden, lässt keinen Zyklus übrig, um überhaupt etwas dagegen zu erheben.",
+    wellPlaced: "Am Ende, verwertend, was der Rest des Jahres hervorgebracht hat.",
+  },
+];
+
 export const W8_PROFILES: RoadmapProfile[] = [
   {
     id: "out-of-sequence",
@@ -1107,6 +1939,51 @@ export const W8_PROFILES: RoadmapProfile[] = [
   },
 ];
 
+export const W8_PROFILES_DE: RoadmapProfile[] = [
+  {
+    id: "out-of-sequence",
+    label: "Falsche Reihenfolge",
+    tone: "danger",
+    what: "Mindestens eine Maßnahme läuft vor etwas, von dem sie abhängt.",
+    cost: "Die abhängige Arbeit wird zweimal erledigt: einmal auf Annahmen, einmal noch mal auf der echten Grundlage. Budget wird ausgegeben, und mit ihm das Vertrauen in das Programm.",
+  },
+  {
+    id: "all-at-once",
+    label: "Alles auf einmal",
+    tone: "danger",
+    what: "Alle sechs Maßnahmen liegen in einem einzigen Quartal.",
+    cost: "Keine IT-Abteilung hat diese Kapazität übrig. In der Praxis werden zwei erledigt, vier verschieben sich still, und niemand hat entschieden, welche vier. Entschieden über die Reihenfolge hat am Ende, wer gerade am stärksten ausgelastet war.",
+  },
+  {
+    id: "back-loaded",
+    label: "Nach hinten verlagert",
+    tone: "danger",
+    what: "Das Gewicht des Jahres liegt in Q3 und Q4, am Anfang kaum oder gar nichts.",
+    cost: "Beim Halbjahres-Review gibt es nichts vorzuweisen – genau dann verlieren Programme ihr Budget. Zudem hängt alles davon ab, dass das letzte Quartal perfekt läuft, und Q4 ist das Quartal mit Feiertagen, Jahresabschluss und Change-Freeze.",
+  },
+  {
+    id: "front-loaded",
+    label: "Nach vorne verlagert",
+    tone: "warn",
+    what: "Der Großteil des Jahres wird auf Q1 und Q2 zusammengedrängt.",
+    cost: "Nur vertretbar, wenn dafür dediziertes Personal vorhanden ist. Sonst ist das derselbe Kapazitätskonflikt wie bei „alles auf einmal“, nur auf zwei statt ein Quartal verteilt.",
+  },
+  {
+    id: "foundation-first",
+    label: "Fundament zuerst",
+    tone: "good",
+    what: "Verantwortung und Basislinie kommen früh, die Regeln folgen, das Reporting landet zuletzt.",
+    cost: "Der ehrliche Preis ist Geduld: ein bis zwei Quartale lang gibt es nichts Sichtbares vorzuweisen, und du wirst danach gefragt werden. Was du dafür bekommst: Jede spätere Entscheidung wird auf Basis von Belegen getroffen statt von Argumenten.",
+  },
+  {
+    id: "evenly-paced",
+    label: "Gleichmäßig verteilt",
+    tone: "warn",
+    what: "Die Maßnahmen sind recht gleichmäßig verteilt, und die Abhängigkeiten halten.",
+    cost: "Hier wird nichts scheitern. Aber Arbeit gleichmäßig zu verteilen ist nicht dasselbe wie sie zu sequenzieren. Prüfe, ob die frühen Quartale die Maßnahmen tragen, von denen alles andere abhängt – nicht nur die einfachen.",
+  },
+];
+
 /** Not "the answer" — the order most programmes converge on, with the reason. */
 export const W8_REFERENCE: { quarter: string; measures: string[]; why: string }[] = [
   {
@@ -1128,5 +2005,28 @@ export const W8_REFERENCE: { quarter: string; measures: string[]; why: string }[
     quarter: "Q4",
     measures: ["w8-report"],
     why: "Reporting consumes what the year produced. Putting it earlier means reporting numbers you cannot yet defend.",
+  },
+];
+
+export const W8_REFERENCE_DE: { quarter: string; measures: string[]; why: string }[] = [
+  {
+    quarter: "Q1",
+    measures: ["w8-owner"],
+    why: "Der günstigstmögliche Schritt, und nichts anderes kann ohne ihn starten. Ein Gespräch, ein Name.",
+  },
+  {
+    quarter: "Q2",
+    measures: ["w8-baseline", "w8-procurement"],
+    why: "Beide brauchen nur den Owner. Die Beschaffungsregeln schützen Käufe sofort; die Basislinie beginnt, die Belege zu sammeln, von denen später alles abhängt.",
+  },
+  {
+    quarter: "Q3",
+    measures: ["w8-kpi", "w8-lifetime"],
+    why: "Die Basislinie liefert jetzt echte Daten, an denen KPIs festgelegt werden können, und die Beschaffungskriterien geben der Änderung der Nutzungsdauer eine Grundlage.",
+  },
+  {
+    quarter: "Q4",
+    measures: ["w8-report"],
+    why: "Das Reporting verwertet, was das Jahr hervorgebracht hat. Es früher anzusetzen würde bedeuten, Zahlen zu berichten, die du noch nicht verteidigen kannst.",
   },
 ];

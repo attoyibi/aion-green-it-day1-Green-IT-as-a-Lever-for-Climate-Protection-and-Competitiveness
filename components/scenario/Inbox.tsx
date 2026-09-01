@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { ARTIFACTS } from "@/data/meridian";
+import { ARTIFACTS, ARTIFACTS_DE } from "@/data/meridian";
+import { fmt, useLocale } from "@/lib/locale";
 import { InfoDialog } from "@/components/ui/InfoDialog";
 import { ArtifactCard } from "./Artifacts";
 import { StakeholderAvatar } from "./StakeholderAvatar";
@@ -16,38 +17,80 @@ type Row = {
   when: string;
 };
 
+const COPY = {
+  en: {
+    email: "Email",
+    message: "Message",
+    memo: "Memo",
+    meeting: "Meeting",
+    document: "Document",
+    calendar: "Calendar",
+    onYourDesk: "On your desk",
+    inbox: "Inbox",
+    inboxAsText: "Inbox, as text",
+    unread: "{n} unread",
+    items: "{n} items",
+    nothingYet: "Nothing yet.",
+    footer: "Everything that has reached you. New items arrive as the weeks pass.",
+  },
+  de: {
+    email: "E-Mail",
+    message: "Nachricht",
+    memo: "Memo",
+    meeting: "Termin",
+    document: "Dokument",
+    calendar: "Kalender",
+    onYourDesk: "Auf deinem Schreibtisch",
+    inbox: "Posteingang",
+    inboxAsText: "Posteingang, als Text",
+    unread: "{n} ungelesen",
+    items: "{n} Einträge",
+    nothingYet: "Noch nichts.",
+    footer: "Alles, was dich bisher erreicht hat. Neue Einträge kommen im Lauf der Wochen dazu.",
+  },
+};
+
 /** One line per thing that arrived, so the page is a list rather than a wall. */
-function rowFor(id: string): Row | null {
-  const a = ARTIFACTS[id];
+function rowFor(
+  id: string,
+  artifacts: typeof ARTIFACTS,
+  copy: (typeof COPY)["en"],
+): Row | null {
+  const a = artifacts[id];
   if (!a) return null;
 
   if (a.kind === "email")
-    return { id, kind: "Email", who: a.from, from: a.fromName, subject: a.subject, when: a.time };
+    return { id, kind: copy.email, who: a.from, from: a.fromName, subject: a.subject, when: a.time };
   if (a.kind === "slack")
-    return { id, kind: "Message", who: a.from, from: a.fromName, subject: a.message, when: a.time };
+    return { id, kind: copy.message, who: a.from, from: a.fromName, subject: a.message, when: a.time };
   if (a.kind === "memo")
-    return { id, kind: "Memo", who: a.from, from: a.fromName, subject: a.subject, when: a.date };
+    return { id, kind: copy.memo, who: a.from, from: a.fromName, subject: a.subject, when: a.date };
   if (a.kind === "calendar")
     return {
       id,
-      kind: "Meeting",
+      kind: copy.meeting,
       who: "external",
-      from: a.attendees[0] ?? "Calendar",
+      from: a.attendees[0] ?? copy.calendar,
       subject: a.title,
       when: `${a.day} ${a.time}`,
     };
   if (a.kind === "figure")
-    return { id, kind: "Document", who: "external", from: "On your desk", subject: a.title, when: "" };
+    return { id, kind: copy.document, who: "external", from: copy.onYourDesk, subject: a.title, when: "" };
 
   return null;
 }
 
 export function Inbox({ ids, plain }: { ids: string[]; plain: boolean }) {
+  const locale = useLocale();
+  const isDe = locale === "de";
+  const copy = isDe ? COPY.de : COPY.en;
+  const artifacts = isDe ? ARTIFACTS_DE : ARTIFACTS;
+
   const [open, setOpen] = useState<string | null>(null);
   const [read, setRead] = useState<string[]>([]);
   const seen = useRef<string[]>([]);
 
-  const rows = ids.map(rowFor).filter((r): r is Row => Boolean(r));
+  const rows = ids.map((id) => rowFor(id, artifacts, copy)).filter((r): r is Row => Boolean(r));
   const unread = rows.filter((r) => !read.includes(r.id)).length;
 
   // Anything present on first paint counts as already delivered, not as new.
@@ -57,8 +100,8 @@ export function Inbox({ ids, plain }: { ids: string[]; plain: boolean }) {
 
   if (plain) {
     return (
-      <section aria-label="Inbox, as text" className="card p-4">
-        <h3 className="mb-2 text-h3 text-ink">Inbox</h3>
+      <section aria-label={copy.inboxAsText} className="card p-4">
+        <h3 className="mb-2 text-h3 text-ink">{copy.inbox}</h3>
         {rows.map((r) => (
           <ArtifactCard key={r.id} id={r.id} plain />
         ))}
@@ -67,21 +110,21 @@ export function Inbox({ ids, plain }: { ids: string[]; plain: boolean }) {
   }
 
   return (
-    <section aria-label="Inbox" className="card overflow-hidden">
+    <section aria-label={copy.inbox} className="card overflow-hidden">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
-        <h3 className="text-h3 text-ink">Inbox</h3>
+        <h3 className="text-h3 text-ink">{copy.inbox}</h3>
         <span
           className={clsx(
             "rounded-full px-2.5 py-0.5 text-caption font-semibold",
             unread > 0 ? "bg-purple text-paper" : "border border-line text-ash",
           )}
         >
-          {unread > 0 ? `${unread} unread` : `${rows.length} items`}
+          {unread > 0 ? fmt(copy.unread, { n: unread }) : fmt(copy.items, { n: rows.length })}
         </span>
       </div>
 
       {rows.length === 0 ? (
-        <p className="p-4 text-body text-ash">Nothing yet.</p>
+        <p className="p-4 text-body text-ash">{copy.nothingYet}</p>
       ) : (
         <ul>
           {rows.map((r) => {
@@ -138,9 +181,7 @@ export function Inbox({ ids, plain }: { ids: string[]; plain: boolean }) {
         </ul>
       )}
 
-      <p className="border-t border-line px-4 py-2 text-caption text-ash">
-        Everything that has reached you. New items arrive as the weeks pass.
-      </p>
+      <p className="border-t border-line px-4 py-2 text-caption text-ash">{copy.footer}</p>
 
       <InfoDialog
         open={Boolean(open)}

@@ -1,0 +1,108 @@
+// German. Typed against Dictionary (data/dictionaries/en.ts), so a key added
+// to en.ts and forgotten here is a build error, not a silent English fallback.
+
+import type { Dictionary } from "./en";
+
+export const de: Dictionary = {
+  chrome: {
+    moduleTitle: "Modul 1: Green IT als Hebel für Klimaschutz und Wettbewerbsfähigkeit",
+    logoAlt: "AION Green IT, zu Lernen wechseln",
+    xp: "XP",
+    streak: "Serie",
+    footer: "AION Green IT · Modul 1 · Deutsch (Management-Edition)",
+    navAriaLabel: "Modulabschnitte",
+  },
+  language: {
+    switcherLabel: "Sprache",
+  },
+  home: {
+    opening: "Das Modul wird geöffnet …",
+    continueToLearn: "Weiter zu Lernen",
+  },
+  category: {
+    topicAreaPrefix: "Themenbereich",
+  },
+  openItems: {
+    defaultTitle: "Was noch offen ist",
+    complete: "Abgeschlossen",
+    doneOfTotal: "{done} von {total}",
+    allDone: "Hier ist nichts mehr offen. Alle {total} {unit} sind abgeschlossen.",
+    hideWhatIsOpen: "Offenes ausblenden",
+    showStillOpen: "{n} noch offene anzeigen",
+    goThere: "Dorthin →",
+  },
+  completion: {
+    learnLabel: "Lernen: abgeschlossene Lernmodule",
+    learnUnit: "Lernmodule",
+    meridianLabel: "L2 Meridian: getroffene Entscheidungen",
+    meridianUnit: "Entscheidungen",
+    trainingCardsLabel: "Trainingsbereich: beantwortete Karten",
+    trainingCardsUnit: "Karten",
+    trainingCardPrefix: "Karte {n}",
+    badgesLabel: "Trainingsbereich: Kategorie-Abzeichen",
+    badgesUnit: "Abzeichen",
+    badgeNeedsAll: "{name}: benötigt alle {threshold} passend zugeordneten Karten",
+    mediprintLabel: "Fall A MediPrint: geöffnete Textstellen",
+    mediprintUnit: "Marker",
+    nordcomLabel: "Fall B NordCom: geöffnete Befunde",
+    nordcomUnit: "Befunde",
+    auronLabel: "Fall C Auron: geöffnete Befunde",
+    auronUnit: "Befunde",
+  },
+  case: {
+    close: "Schließen",
+    context: "Kontext",
+    onTheImage: "Auf der Illustration:",
+    topicAreaNote: "Einer von fünf Themenbereichen, die im gesamten Modul verwendet werden.",
+    markersWithTag: "Marker mit dieser Kennzeichnung",
+    noMarkerWithTag:
+      "Kein Marker auf dieser Illustration trägt diese Kennzeichnung. Der Themenbereich gehört trotzdem zu den fünf.",
+    findingsCarryTag: "{tagged} von {total} Befunden tragen diese Kennzeichnung",
+    noFindingWithTag:
+      "Kein Befund auf dieser Tafel trägt diese Kennzeichnung. Der Themenbereich gehört trotzdem zu den fünf, und dass er hier fehlt, ist selbst bemerkenswert.",
+    interactiveIllustration: "Interaktive Illustration",
+    interactiveBoard: "Interaktive Falltafel",
+    onePassageLegend: "Eine Textstelle aus der Beschreibung. Insgesamt gibt es neun",
+    theBuildingLegend: "Das Gebäude, mit dem Kurzprofil und dem Kontext",
+    theFiveArrowsLegend: "Die fünf Pfeile für die Themenbereiche",
+    passagesOpened: "{opened} von {total} Textstellen geöffnet",
+    showListFacts: "Alle Fakten als Liste anzeigen",
+    hideListFacts: "Liste der Fakten ausblenden",
+    inCompanyDescription: "In der Unternehmensbeschreibung",
+    findItOnIllustration: "Auf der Illustration finden →",
+    contextOnly: "(nur Kontext)",
+    showFindingsByTopicArea: "Befunde nach Themenbereich anzeigen:",
+    oneFindingLegend: "Ein Befund. Insgesamt gibt es {total}, auf den Feldern und in der Szene",
+    companyBlockLegend: "Der Unternehmensblock, mit dem Kurzprofil und dem Kontext",
+    findingsOpened: "{opened} von {total} Befunden geöffnet",
+    showListFindings: "Alle Befunde als Liste anzeigen",
+    hideListFindings: "Liste der Befunde ausblenden",
+    worksheetCodesNote:
+      "F1–F{total} entsprechen den Zitierkürzeln des Arbeitsblatts, in derselben Reihenfolge wie die nummerierten Marker oben.",
+  },
+  nav: {
+    learn: { label: "Lernen", short: "Lernen" },
+    training: { label: "Trainingsbereich", short: "Training" },
+    mediprint: { label: "Fall A: MediPrint", short: "MediPrint" },
+    nordcom: { label: "Fall B: NordCom", short: "NordCom" },
+    auron: { label: "Fall C: Auron", short: "Auron" },
+    taskMap: { label: "Aufgabenübersicht", short: "Aufgaben" },
+  },
+  reset: {
+    button: "Fortschritt zurücksetzen",
+    confirmTitle: "Fortschritt zurücksetzen?",
+    confirmYes: "Ja, alles löschen",
+    confirmNo: "Nein, behalten",
+    bodyIntro: "Dies löscht auf diesem Gerät:",
+    bodyXpStreak: "XP und die aktuelle Serie",
+    bodyBadges: "Kategorie-Abzeichen",
+    bodyLearnWidgets: "Welche Lernmodule du abgeschlossen hast",
+    bodyTrainingRound: "Die Runde, die du im Trainingsbereich begonnen hast",
+    bodyMediprint: "Welche MediPrint-Textstellen du geöffnet hast",
+    bodyOutro:
+      "Alles andere bleibt unverändert, und dies kann nicht rückgängig gemacht werden. Falls du versehentlich hierauf geklickt hast, wähle „Nein, behalten“.",
+    doneTitle: "Fortschritt gelöscht.",
+    doneBody: "XP, Serie, Abzeichen und alles, was du geöffnet hattest, sind wieder auf null.",
+    close: "Schließen",
+  },
+};

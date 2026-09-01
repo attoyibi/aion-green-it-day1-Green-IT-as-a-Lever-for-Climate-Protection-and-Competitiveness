@@ -2,10 +2,11 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
-import { CATEGORIES, CATEGORY_BY_CODE, type CategoryCode } from "@/data/categories";
+import { type CategoryCode } from "@/data/categories";
 import type { CaseBrief, ContextTile, HeroImage, Hotspot, Zone } from "@/data/case-shared";
 import { useProgress } from "@/lib/store";
 import { scopedId } from "@/lib/ids";
+import { fmt, useCategories, useT } from "@/lib/locale";
 import { CategoryChip } from "./CategoryChip";
 import { HotspotHero, type Focus } from "./HotspotHero";
 
@@ -42,9 +43,12 @@ export function CaseBoard({
   hotspots,
   brief,
   context,
-  contextHeading = "Context",
+  contextHeading,
   categoryNote,
 }: Props) {
+  const t = useT();
+  const { categories: CATEGORIES, byCode: CATEGORY_BY_CODE } = useCategories();
+  const heading = contextHeading ?? t.case.context;
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<CategoryCode | null>(null);
   const [opened, setOpened] = useState<string[]>([]);
@@ -107,7 +111,7 @@ export function CaseBoard({
       onClick={clear}
       className="shrink-0 rounded-lg border border-line px-2 py-1 text-caption text-ash transition-colors duration-200 hover:bg-lilac hover:text-navy hover:underline"
     >
-      Close
+      {t.case.close}
     </button>
   );
 
@@ -129,7 +133,7 @@ export function CaseBoard({
         </div>
         <p className="mb-3 text-body text-ink">{activeFact.fact}</p>
         <p className="mb-3 text-caption text-ash">
-          On the illustration: {activeFact.onTheImage}
+          {t.case.onTheImage} {activeFact.onTheImage}
         </p>
         <div className="flex flex-wrap gap-2">
           {activeFact.categories.map((code) => (
@@ -151,7 +155,7 @@ export function CaseBoard({
           </p>
         ))}
         <h4 className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-          {contextHeading}
+          {heading}
         </h4>
         <ul className="space-y-2">
           {context.map((tile) => (
@@ -190,7 +194,7 @@ export function CaseBoard({
         {tagged.length > 0 ? (
           <>
             <h4 className="mb-2 text-caption font-semibold uppercase tracking-wide text-ash">
-              {tagged.length} of {hotspots.length} findings carry this tag
+              {fmt(t.case.findingsCarryTag, { tagged: tagged.length, total: hotspots.length })}
             </h4>
             <ul className="mb-3 space-y-1">
               {tagged.map((spot) => (
@@ -208,8 +212,7 @@ export function CaseBoard({
           </>
         ) : (
           <p className="mb-3 rounded-xl bg-lilac px-3 py-2 text-caption text-navy">
-            No finding on this board carries this tag. The topic area is still one of
-            the five, and the fact that it is missing here is worth noticing.
+            {t.case.noFindingWithTag}
           </p>
         )}
 
@@ -222,7 +225,7 @@ export function CaseBoard({
 
   return (
     <div className="space-y-4">
-      <section aria-label="Interactive case board" ref={heroRef}>
+      <section aria-label={t.case.interactiveBoard} ref={heroRef}>
         <HotspotHero
           image={image}
           companyZone={companyZone}
@@ -238,7 +241,7 @@ export function CaseBoard({
 
         {/* The legend Case A has drawn into its artwork. Here it is rendered. */}
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <span className="text-caption text-ash">Show findings by topic area:</span>
+          <span className="text-caption text-ash">{t.case.showFindingsByTopicArea}</span>
           {CATEGORIES.map((category) => {
             const count = hotspots.filter((h) =>
               h.categories.includes(category.code),
@@ -280,18 +283,18 @@ export function CaseBoard({
             <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-purple bg-paper text-caption font-semibold text-purple">
               1
             </span>
-            A finding. There are {hotspots.length} in total, on the panels and on the scene
+            {fmt(t.case.oneFindingLegend, { total: hotspots.length })}
           </span>
 
           <span className="flex items-center gap-2">
             <span className="flex h-5 min-w-[20px] items-center justify-center rounded-md border border-purple bg-paper px-1 text-[11px] font-semibold leading-none text-purple">
               i
             </span>
-            The company block, with the brief and the context
+            {t.case.companyBlockLegend}
           </span>
 
           <span className="text-ash">
-            {opened.length} of {hotspots.length} findings opened
+            {fmt(t.case.findingsOpened, { opened: opened.length, total: hotspots.length })}
           </span>
         </div>
 
@@ -303,14 +306,13 @@ export function CaseBoard({
             aria-expanded={showList}
             className="rounded-xl border border-line px-3 py-2 text-caption font-semibold text-navy transition-colors duration-200 hover:bg-lilac hover:underline"
           >
-            {showList ? "Hide the list of findings" : "Show all findings as list"}
+            {showList ? t.case.hideListFindings : t.case.showListFindings}
           </button>
 
           {showList ? (
             <>
               <p className="mt-3 text-caption text-ash">
-                F1–F{hotspots.length} match the worksheet&rsquo;s citation labels, in the
-                same order as the numbered markers above.
+                {fmt(t.case.worksheetCodesNote, { total: hotspots.length })}
               </p>
               <ol className="mt-2 grid gap-2 md:grid-cols-2">
                 {hotspots.map((spot, index) => (

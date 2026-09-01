@@ -1,5 +1,12 @@
 "use client";
 
+import { useLocale, useT } from "@/lib/locale";
+
+const COPY = {
+  en: { correct: "Correct", cardsSeen: "Cards seen" },
+  de: { correct: "Richtig", cardsSeen: "Karten gesehen" },
+};
+
 type Props = {
   seen: number;
   total: number;
@@ -9,15 +16,18 @@ type Props = {
 };
 
 export function XPBar({ seen, total, correct, streak, xp }: Props) {
+  const t = useT();
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   const pct = total === 0 ? 0 : Math.round((seen / total) * 100);
 
   return (
     <div className="card p-4">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <Stat label="XP" value={xp} />
-        <Stat label="Streak" value={streak} />
-        <Stat label="Correct" value={`${correct} / ${seen}`} />
-        <Stat label="Cards seen" value={`${seen} / ${total}`} />
+        <Stat label={t.chrome.xp} value={xp} />
+        <Stat label={t.chrome.streak} value={streak} />
+        <Stat label={copy.correct} value={`${correct} / ${seen}`} />
+        <Stat label={copy.cardsSeen} value={`${seen} / ${total}`} />
       </div>
 
       <div
@@ -26,7 +36,7 @@ export function XPBar({ seen, total, correct, streak, xp }: Props) {
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label="Cards seen"
+        aria-label={copy.cardsSeen}
       >
         <div
           className="h-full rounded-full bg-purple transition-all duration-300"

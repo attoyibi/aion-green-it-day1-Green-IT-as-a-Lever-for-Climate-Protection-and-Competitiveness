@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { NAV_ITEMS } from "@/data/nav";
+import { useT } from "@/lib/locale";
 import { CaseIcon, LearnIcon, MapIcon, TrainingIcon } from "./Icons";
 
 const ICONS = {
@@ -15,10 +16,11 @@ const ICONS = {
 
 export function LeftRail() {
   const pathname = usePathname();
+  const t = useT();
 
   return (
     <nav
-      aria-label="Module sections"
+      aria-label={t.chrome.navAriaLabel}
       className="border-b border-line bg-lilac/40 md:w-64 md:shrink-0 md:border-b-0 md:border-r"
     >
       {/* Collapses to a scrollable top tab strip below 768px. */}
@@ -26,6 +28,7 @@ export function LeftRail() {
         {NAV_ITEMS.map((item) => {
           const Icon = ICONS[item.icon];
           const active = pathname === item.href;
+          const { label, short } = t.nav[item.key];
           return (
             <li key={item.href} className="shrink-0 md:shrink">
               <Link
@@ -39,8 +42,8 @@ export function LeftRail() {
                 )}
               >
                 <Icon className="h-5 w-5 shrink-0" />
-                <span className="md:hidden">{item.short}</span>
-                <span className="hidden md:inline">{item.label}</span>
+                <span className="md:hidden">{short}</span>
+                <span className="hidden md:inline">{label}</span>
               </Link>
             </li>
           );

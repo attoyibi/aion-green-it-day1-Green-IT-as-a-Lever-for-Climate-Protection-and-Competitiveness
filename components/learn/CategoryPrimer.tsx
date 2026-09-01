@@ -1,26 +1,50 @@
-import { CATEGORY_BY_CODE } from "@/data/categories";
-import { CATEGORY_PRIMER } from "@/data/learn";
+"use client";
+
+import { CATEGORY_PRIMER, CATEGORY_PRIMER_DE } from "@/data/learn";
+import { useCategories, useLocale } from "@/lib/locale";
 import { CategoryDiagram } from "./CategoryDiagram";
 import { FieldNote } from "./FieldNote";
 
+const COPY = {
+  en: {
+    readFirst: "Read this first",
+    ask: "Ask: ",
+    example: "For example: ",
+    change: "You would change: ",
+    putToWork: "Now put it to work. The sorter below gives you ten observations to file.",
+  },
+  de: {
+    readFirst: "Lies das zuerst",
+    ask: "Frage: ",
+    example: "Zum Beispiel: ",
+    change: "Du würdest ändern: ",
+    putToWork: "Jetzt wende es an. Der Sortierer unten gibt dir zehn Beobachtungen zum Einordnen.",
+  },
+};
+
 /** Explanation first, then the sorter below it puts the explanation to work. */
 export function CategoryPrimer() {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
+  const primer = locale === "de" ? CATEGORY_PRIMER_DE : CATEGORY_PRIMER;
+  const { byCode: CATEGORY_BY_CODE } = useCategories();
+
   return (
     <section aria-labelledby="category-primer-title" className="card p-5">
       <p className="mb-1 text-caption font-semibold uppercase tracking-wide text-purple">
-        Read this first
+        {copy.readFirst}
       </p>
       <h3 id="category-primer-title" className="mb-2 text-h3 text-ink">
-        {CATEGORY_PRIMER.title}
+        {primer.title}
       </h3>
-      <p className="mb-4 text-body text-ash">{CATEGORY_PRIMER.intro}</p>
+      <p className="mb-4 text-body text-ash">{primer.intro}</p>
 
       <div className="mb-4">
         <CategoryDiagram />
       </div>
 
       <ul className="space-y-3">
-        {CATEGORY_PRIMER.entries.map((entry) => {
+        {primer.entries.map((entry) => {
           const category = CATEGORY_BY_CODE[entry.code];
           return (
             <li
@@ -43,15 +67,15 @@ export function CategoryPrimer() {
 
               <dl className="space-y-1 text-caption">
                 <div>
-                  <dt className="inline font-semibold text-purple">Ask: </dt>
+                  <dt className="inline font-semibold text-purple">{copy.ask}</dt>
                   <dd className="inline text-ink">{entry.question}</dd>
                 </div>
                 <div>
-                  <dt className="inline font-semibold text-ash">For example: </dt>
+                  <dt className="inline font-semibold text-ash">{copy.example}</dt>
                   <dd className="inline text-ash">{entry.example}</dd>
                 </div>
                 <div>
-                  <dt className="inline font-semibold text-ash">You would change: </dt>
+                  <dt className="inline font-semibold text-ash">{copy.change}</dt>
                   <dd className="inline text-ash">{entry.lever}</dd>
                 </div>
               </dl>
@@ -61,14 +85,12 @@ export function CategoryPrimer() {
       </ul>
 
       <p className="mt-4 rounded-xl bg-lilac/60 p-3 text-body font-semibold text-navy">
-        {CATEGORY_PRIMER.rule}
+        {primer.rule}
       </p>
 
-      <FieldNote note={CATEGORY_PRIMER.note} />
+      <FieldNote note={primer.note} />
 
-      <p className="mt-4 border-t border-line pt-3 text-body text-ash">
-        Now put it to work. The sorter below gives you ten observations to file.
-      </p>
+      <p className="mt-4 border-t border-line pt-3 text-body text-ash">{copy.putToWork}</p>
     </section>
   );
 }

@@ -1,4 +1,7 @@
-import { CATEGORY_BY_CODE, type CategoryCode } from "@/data/categories";
+"use client";
+
+import { type CategoryCode } from "@/data/categories";
+import { useCategories, useT } from "@/lib/locale";
 
 type Props = {
   code: CategoryCode;
@@ -8,9 +11,11 @@ type Props = {
 
 /** Chip text sits on a light tint of the category colour, never on the raw hue. */
 export function CategoryChip({ code, variant = "topic" }: Props) {
-  const category = CATEGORY_BY_CODE[code];
+  const { byCode } = useCategories();
+  const t = useT();
+  const category = byCode[code];
   const label =
-    variant === "topic" ? `Topic area: ${category.name}` : category.name;
+    variant === "topic" ? `${t.category.topicAreaPrefix}: ${category.name}` : category.name;
 
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-line bg-lilac px-3 py-1 text-caption text-navy">

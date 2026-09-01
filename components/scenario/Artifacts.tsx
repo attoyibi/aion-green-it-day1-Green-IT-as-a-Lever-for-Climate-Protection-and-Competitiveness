@@ -1,44 +1,93 @@
 "use client";
 
 import clsx from "clsx";
-import { ARTIFACTS, type Artifact } from "@/data/meridian";
+import { ARTIFACTS, ARTIFACTS_DE, type Artifact } from "@/data/meridian";
+import { fmt, useLocale } from "@/lib/locale";
 import { Collapsible } from "./Collapsible";
 import { StakeholderAvatar } from "./StakeholderAvatar";
 import { FigureArtwork, OrgChart, SlideMockup, StackedBar } from "./ScenarioArt";
+
+const COPY = {
+  en: {
+    emailFrom: "Email from {fromName} ({role}), {time}. Subject: {subject}.",
+    messageIn: "Message in {channel} from {fromName} ({role}), {time}: {message}",
+    memoFrom: "Memo from {fromName} to {to}, {date}. Subject: {subject}.",
+    calendarEntry: "Calendar entry: {title}. {day} {time}. With {attendees}.",
+    draftSlide: "Draft presentation slide with an empty headline and four empty bullets.",
+    orgChartEmpty: "Organisation chart with Green IT ownership left empty.",
+    to: "To",
+    from: "From",
+    date: "Date",
+    marketingDraft: "Marketing: draft v2",
+    whatIsBehind: "What is behind the number",
+  },
+  de: {
+    emailFrom: "E-Mail von {fromName} ({role}), {time}. Betreff: {subject}.",
+    messageIn: "Nachricht in {channel} von {fromName} ({role}), {time}: {message}",
+    memoFrom: "Memo von {fromName} an {to}, {date}. Betreff: {subject}.",
+    calendarEntry: "Kalendereintrag: {title}. {day} {time}. Mit {attendees}.",
+    draftSlide: "Entwurf einer Präsentationsfolie mit leerer Headline und vier leeren Aufzählungspunkten.",
+    orgChartEmpty: "Organigramm, in dem die Zuständigkeit für Green IT noch offen ist.",
+    to: "An",
+    from: "Von",
+    date: "Datum",
+    marketingDraft: "Marketing: Entwurf v2",
+    whatIsBehind: "Was hinter der Zahl steckt",
+  },
+};
 
 /**
  * NS3: artifacts never label themselves as consequences. They arrive as mail,
  * messages and documents, and the reader draws the conclusion.
  */
 export function ArtifactCard({ id, plain = false }: { id: string; plain?: boolean }) {
-  const a = ARTIFACTS[id];
+  const locale = useLocale();
+  const artifacts = locale === "de" ? ARTIFACTS_DE : ARTIFACTS;
+  const a = artifacts[id];
   if (!a) return null;
   return plain ? <PlainText a={a} /> : <Framed a={a} />;
 }
 
 /** R8: the linearised version for the "read this phase as text" toggle. */
 function PlainText({ a }: { a: Artifact }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   const lines: string[] = [];
 
   if (a.kind === "email") {
-    lines.push(`Email from ${a.fromName} (${a.role}), ${a.time}. Subject: ${a.subject}.`);
+    lines.push(fmt(copy.emailFrom, { fromName: a.fromName, role: a.role, time: a.time, subject: a.subject }));
     lines.push(...a.body);
   } else if (a.kind === "slack") {
-    lines.push(`Message in ${a.channel} from ${a.fromName} (${a.role}), ${a.time}: ${a.message}`);
+    lines.push(
+      fmt(copy.messageIn, {
+        channel: a.channel,
+        fromName: a.fromName,
+        role: a.role,
+        time: a.time,
+        message: a.message,
+      }),
+    );
   } else if (a.kind === "memo") {
-    lines.push(`Memo from ${a.fromName} to ${a.to}, ${a.date}. Subject: ${a.subject}.`);
+    lines.push(fmt(copy.memoFrom, { fromName: a.fromName, to: a.to, date: a.date, subject: a.subject }));
     lines.push(...a.body);
   } else if (a.kind === "calendar") {
-    lines.push(`Calendar entry: ${a.title}. ${a.day} ${a.time}. With ${a.attendees.join(", ")}.`);
+    lines.push(
+      fmt(copy.calendarEntry, {
+        title: a.title,
+        day: a.day,
+        time: a.time,
+        attendees: a.attendees.join(", "),
+      }),
+    );
   } else if (a.kind === "dashboard") {
     lines.push(a.title);
     lines.push(...a.segments.map((s) => `${s.label}: ${s.value}%`));
     lines.push(a.caption);
     for (const d of a.details) lines.push(`${d.label}: ${d.points.join(" ")}`);
   } else if (a.kind === "slide") {
-    lines.push("Draft presentation slide with an empty headline and four empty bullets.");
+    lines.push(copy.draftSlide);
   } else if (a.kind === "orgchart") {
-    lines.push("Organisation chart with Green IT ownership left empty.");
+    lines.push(copy.orgChartEmpty);
   } else {
     lines.push(`${a.title}. ${a.desc}${a.caption ? ` ${a.caption}` : ""}`);
   }
@@ -55,6 +104,8 @@ function PlainText({ a }: { a: Artifact }) {
 }
 
 function Framed({ a }: { a: Artifact }) {
+  const locale = useLocale();
+  const copy = locale === "de" ? COPY.de : COPY.en;
   if (a.kind === "email") {
     return (
       <article className="motion-safe:animate-[artifactIn_240ms_ease-out] rounded-2xl border border-line bg-paper p-4">
@@ -64,7 +115,11 @@ function Framed({ a }: { a: Artifact }) {
             <p className="text-body font-semibold text-ink">
               {a.fromName} <span className="font-normal text-ash">· {a.role}</span>
             </p>
-            {a.to ? <p className="text-caption text-ash">To: {a.to}</p> : null}
+            {a.to ? (
+              <p className="text-caption text-ash">
+                {copy.to}: {a.to}
+              </p>
+            ) : null}
           </div>
           <span className="flex shrink-0 items-center gap-2 text-caption tabular-nums text-ash">
             {a.time}
@@ -110,11 +165,11 @@ function Framed({ a }: { a: Artifact }) {
     return (
       <article className="motion-safe:animate-[artifactIn_240ms_ease-out] rounded-2xl border border-line border-t-4 border-t-navy bg-paper p-4">
         <dl className="mb-3 grid grid-cols-[auto,1fr] gap-x-3 text-caption tabular-nums text-ash">
-          <dt>From</dt>
+          <dt>{copy.from}</dt>
           <dd className="text-navy">{a.fromName}</dd>
-          <dt>To</dt>
+          <dt>{copy.to}</dt>
           <dd className="text-navy">{a.to}</dd>
-          <dt>Date</dt>
+          <dt>{copy.date}</dt>
           <dd className="text-navy">{a.date}</dd>
         </dl>
         <h4 className="mb-2 text-h3 text-ink">{a.subject}</h4>
@@ -167,7 +222,7 @@ function Framed({ a }: { a: Artifact }) {
 
         <div className="mt-3 space-y-2">
           {a.details.map((d) => (
-            <Collapsible key={d.label} label={d.label} hint="What is behind the number">
+            <Collapsible key={d.label} label={d.label} hint={copy.whatIsBehind}>
               <ul className="list-disc space-y-1 pl-5">
                 {d.points.map((point) => (
                   <li key={point} className="text-caption text-ink">
@@ -187,7 +242,7 @@ function Framed({ a }: { a: Artifact }) {
       <article className="motion-safe:animate-[artifactIn_240ms_ease-out] rounded-2xl border border-line bg-paper p-4">
         <SlideMockup id={a.id} />
         <p className="mt-2 text-caption uppercase tracking-wide text-ash">
-          Marketing: draft v2
+          {copy.marketingDraft}
         </p>
       </article>
     );

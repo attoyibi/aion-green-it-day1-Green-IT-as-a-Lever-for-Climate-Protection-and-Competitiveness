@@ -4,6 +4,7 @@ import { TopBar } from "@/components/chrome/TopBar";
 import { LeftRail } from "@/components/chrome/LeftRail";
 import { Footer } from "@/components/chrome/Footer";
 import { ResetBoundary } from "@/components/chrome/ResetBoundary";
+import { LocaleSync } from "@/components/chrome/LocaleSync";
 
 export const metadata: Metadata = {
   title: "AION Green IT: Module 1",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-paper">
+        <LocaleSync />
         <TopBar />
         <div className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col md:flex-row">
           <LeftRail />

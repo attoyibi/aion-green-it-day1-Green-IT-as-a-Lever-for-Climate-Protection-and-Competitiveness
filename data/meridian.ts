@@ -1085,3 +1085,989 @@ export const SIGNAL_LABELS: { key: keyof import("@/lib/types").Signals; label: s
   { key: "deferral", label: "Deferral" },
   { key: "reframe", label: "Reframe" },
 ];
+
+// ==================================================================
+// German (_DE). Structure, ids, numbers, hex colours, mood/category
+// type values and SourceKey values are identical to the English
+// source above — only learner-facing prose is translated. Person
+// names and "Meridian Logistics" stay as-is; role titles are
+// rendered as natural German org-chart titles. See lib/locale.ts for
+// the overlay pattern these are consumed with.
+// ==================================================================
+
+export const STAKEHOLDERS_DE: typeof STAKEHOLDERS = {
+  marcus: {
+    name: "Marcus Vogel",
+    role: "CIO",
+    tint: "#6E8DC1",
+    wants: "Schnelle Erfolge, die er in die nächste Vorstandssitzung mitnehmen kann.",
+    controls: "Deine Ziele, deinen Budgetantrag und das, was der Vorstand über dich hört.",
+    why: "Er ist dein Vorgesetzter, und er ist kein Hindernis. Es ist seine eigene Position, die exponiert ist, wenn die Nordvind-Klausel verpasst wird.",
+  },
+  sabine: {
+    name: "Sabine Keller",
+    role: "Leiterin Einkauf",
+    tint: "#F1B24A",
+    wants: "Keine Dramen. Drei Ausschreibungen schließen dieses Quartal, und sie ist schon jetzt ausgelastet.",
+    controls: "Die Lieferantenliste. Nichts wird außerhalb davon eingekauft, und sie entscheidet, was draufkommt.",
+    why: "Fünfzehn Jahre bei Meridian. Sie hat schon erlebt, wie die IT mit einer neuen Priorität ankam – und wie diese wieder verschwand.",
+  },
+  rafael: {
+    name: "Rafael Costa",
+    role: "Leiter Operations",
+    tint: "#6FB56A",
+    wants: "IT, die sich nicht bewegt. Jede Störung ist eine verspätete Bestellung und ein unzufriedener Kunde.",
+    controls: "Die Änderungsfenster in den Lagern. Ohne seine Freigabe passiert nichts an den Standorten.",
+    why: "Er wird an ausgelieferten Bestellungen gemessen, nicht an Emissionen. Für ihn ist Stabilität keine Vorsicht, sondern der Job.",
+  },
+  elena: {
+    name: "Elena",
+    role: "CFO",
+    tint: "#B389D6",
+    wants: "Eine konkrete Rendite, die sie der Position gegenüberstellen kann.",
+    controls: "Die Budgetfreigabe. Sie sitzt nicht in deinen Meetings; sie liest die Zahlen im Nachhinein.",
+    why: "Sie ist bisher noch nicht aufgetreten, weshalb ihre Haltung als unbekannt beginnt. Du wirst von ihr hören, sobald eine Zahl gerechtfertigt werden muss.",
+  },
+};
+
+export const MOOD_LABEL_DE: typeof MOOD_LABEL = {
+  unknown: "Unbekannt",
+  hostile: "Feindselig",
+  skeptical: "Skeptisch",
+  wary: "Vorsichtig",
+  neutral: "Neutral",
+  warming: "Auftauend",
+  ally: "Verbündet",
+};
+
+export const ARTIFACTS_DE: typeof ARTIFACTS = {
+  "meridian/email-marcus-opening": {
+    id: "meridian/email-marcus-opening",
+    kind: "email",
+    from: "marcus",
+    fromName: "Marcus Vogel",
+    role: "CIO",
+    to: "Nadia Rahmani",
+    time: "08:47",
+    subject: "Nordvind-Klausel: wir brauchen einen Plan",
+    body: [
+      "Nadia, ich komme gerade aus dem Meeting mit Nordvind Retail. Sie stehen für 30 % unseres Umsatzes. Ihre Ausschreibungsverlängerung enthält eine neue Klausel: IT-Nachhaltigkeitsbericht innerhalb von 6 Monaten, sonst wird der Vertrag nicht verlängert.",
+      "Vorstandssitzung ist in 12 Wochen. Die wollen deinen Plan sehen.",
+      "Kümmere dich darum.",
+      "M",
+    ],
+  },
+  "meridian/slack-sabine-heads-up": {
+    id: "meridian/slack-sabine-heads-up",
+    kind: "slack",
+    channel: "DM",
+    from: "sabine",
+    fromName: "Sabine Keller",
+    role: "Leiterin Einkauf",
+    time: "09:12",
+    message:
+      "hab von dem „Green IT“-Ding gehört. bitte mach kein drama draus. wir haben dieses quartal noch drei ausschreibungen am laufen.",
+  },
+  "meridian/email-rafael-cold": {
+    id: "meridian/email-rafael-cold",
+    kind: "email",
+    from: "rafael",
+    fromName: "Rafael Costa",
+    role: "Leiter Operations",
+    time: "09:34",
+    subject: "Re: Laptop-Erneuerungsfenster",
+    forwarded: true,
+    body: [
+      "Wenn Green IT bedeutet, dass in den Lagern etwas angefasst wird, brauche ich zwei Wochen Vorlauf. Jede Stunde Ausfallzeit ist eine verspätete Bestellung.",
+    ],
+  },
+
+  // --- Phase 1 outcomes
+  "meridian/artifact-audit-preview": {
+    id: "meridian/artifact-audit-preview",
+    kind: "figure",
+    title: "Energieaudit: Teilergebnisse",
+    desc: "Ein Dashboard, teilweise mit Daten gefüllt: drei Kacheln befüllt, zwei noch leer.",
+    art: "audit-preview",
+  },
+  "meridian/calendar-urgent-marcus": {
+    id: "meridian/calendar-urgent-marcus",
+    kind: "calendar",
+    title: "DRINGEND: Der Vorstand fragt nach. Was sage ich denen?",
+    day: "Donnerstag",
+    time: "16:30",
+    attendees: ["Marcus Vogel", "Nadia Rahmani"],
+    urgent: true,
+  },
+  "meridian/slack-marcus-doorway": {
+    id: "meridian/slack-marcus-doorway",
+    kind: "slack",
+    channel: "DM",
+    from: "marcus",
+    fromName: "Marcus Vogel",
+    role: "CIO",
+    time: "09:20",
+    message:
+      "war grad bei dir, du warst in der Audit-Review. der vorstand will nächste woche ein update. was sag ich denen?",
+  },
+  "meridian/artifact-laptop-photo": {
+    id: "meridian/artifact-laptop-photo",
+    kind: "figure",
+    title: "Fünfzig neue Laptops, bereitgestellt im Lager",
+    desc: "Gestapelte Kartons mit neuen Laptops auf einer Lagerpalette, fotografiert fürs Reporting.",
+    art: "laptop-photo",
+  },
+  "meridian/email-sabine-complaint": {
+    id: "meridian/email-sabine-complaint",
+    kind: "email",
+    from: "sabine",
+    fromName: "Sabine Keller",
+    role: "Leiterin Einkauf",
+    to: "Marcus Vogel · cc Personal & Kultur",
+    time: "16:55",
+    subject: "Beschaffungsprozess: die Laptop-Bestellung",
+    body: [
+      "Marcus, fünfzig Geräte sind über eine Express-Freigabe gelaufen, ohne den Einkauf zu durchlaufen. Ich habe erst durch die Rechnung davon erfahren.",
+      "Ich habe nichts gegen die Geräte einzuwenden. Ich habe etwas dagegen, erst hinterher informiert zu werden. Wenn Green IT künftig so laufen soll, sag es jetzt, dann plane ich entsprechend.",
+    ],
+  },
+  "meridian/email-audit-late": {
+    id: "meridian/email-audit-late",
+    kind: "email",
+    from: "external",
+    fromName: "Facility Management",
+    role: "Energiereporting",
+    time: "11:20",
+    subject: "Fußabdruck-Aufschlüsselung: erster Entwurf",
+    body: [
+      "Erster Entwurf der angeforderten IT-Aufschlüsselung. Die Laptop-Flotte macht rund 12 % des gesamten IT-Fußabdrucks aus. Das On-Prem-Rechenzentrum ist der dominante Posten.",
+    ],
+  },
+  "meridian/artifact-workshop-notes": {
+    id: "meridian/artifact-workshop-notes",
+    kind: "figure",
+    title: "Workshop-Whiteboard",
+    desc: "Ein Whiteboard, in Spalten nach Funktion unterteilt, jede mit Klebezetteln und einem Namen oben.",
+    art: "workshop-notes",
+  },
+  "meridian/slack-marcus-nervous": {
+    id: "meridian/slack-marcus-nervous",
+    kind: "slack",
+    channel: "DM",
+    from: "marcus",
+    fromName: "Marcus Vogel",
+    role: "CIO",
+    time: "17:05",
+    message: "gibt's schon was, worauf ich zeigen kann?",
+  },
+  "meridian/artifact-consultant-report": {
+    id: "meridian/artifact-consultant-report",
+    kind: "figure",
+    title: "Externe Bewertung: 47 Seiten",
+    desc: "Das Deckblatt eines dicken, gebundenen Beratungsberichts mit Seitenzahl auf dem Buchrücken.",
+    art: "consultant-report",
+    caption:
+      "Benchmarks, Branchendurchschnitte und ein Reifegradmodell. Nichts darin nennt ein System, einen Vertrag oder eine Person von Meridian.",
+  },
+  "meridian/memo-elena-questions": {
+    id: "meridian/memo-elena-questions",
+    kind: "memo",
+    from: "elena",
+    fromName: "Elena",
+    to: "Nadia Rahmani",
+    date: "Woche 5",
+    subject: "Beratungsmandat: Kostenaufschlüsselung",
+    body: [
+      "Bitte schlüssle die €45k gegen die erwarteten Ergebnisse auf. Ich muss die Position gegen etwas rechtfertigen können.",
+    ],
+  },
+
+  // --- Phase 2
+  "meridian/dashboard-footprint-preview": {
+    id: "meridian/dashboard-footprint-preview",
+    kind: "dashboard",
+    title: "Wo Meridians IT-Energie hingeht",
+    segments: [
+      { label: "Rechenzentrum on-prem", value: 42, category: "E" },
+      { label: "Cloud-Wildwuchs (3 Anbieter)", value: 25, category: "Em" },
+      { label: "Laptop-Flotte (800 Geräte, Ø 5,8 Jahre)", value: 18, category: "R" },
+      { label: "Sonstiges (Netzwerk, Druck, Diverses)", value: 15, category: "U" },
+    ],
+    caption:
+      "PUE 2,1 · Erneuerungszyklus 3 Jahre (Rückstau) · ungenutzte Cloud-Ressourcen nicht konsolidiert.",
+    details: [
+      {
+        label: "Rechenzentrum on-prem",
+        points: [
+          "2016 installiert und nie neu geplant.",
+          "PUE 2,1. Für jede Einheit, die bei der Rechenleistung ankommt, gehen 1,1 weitere in Kühlung, Umwandlung und Gebäudetechnik.",
+          "Größter Einzelposten, und derjenige, von dem Rafaels Lager abhängen.",
+        ],
+      },
+      {
+        label: "Cloud-Wildwuchs",
+        points: [
+          "Drei Anbieter, unabhängig voneinander eingeführt.",
+          "Kosten im Jahresvergleich um 60 % gestiegen.",
+          "Ungenutzte Ressourcen nie konsolidiert; CO₂ pro Workload überhaupt nicht erfasst.",
+        ],
+      },
+      {
+        label: "Laptop-Flotte",
+        points: [
+          "800 Geräte, Durchschnittsalter 5,8 Jahre.",
+          "Auf dem Papier ein Dreijahres-Erneuerungszyklus, mit einem Rückstau, der den Großteil der Flotte darüber hinaus treibt.",
+          "Der für Mitarbeitende sichtbarste Bereich, und der kleinste der drei.",
+        ],
+      },
+    ],
+  },
+  "meridian/email-rafael-warning": {
+    id: "meridian/email-rafael-warning",
+    kind: "email",
+    from: "rafael",
+    fromName: "Rafael Costa",
+    role: "Leiter Operations",
+    time: "07:55",
+    subject: "Migrationsfenster",
+    body: [
+      "Eine Migration dieser Größenordnung betrifft jedes System im Lager. Ich will den Umstellungsplan schriftlich, bevor irgendetwas unterschrieben wird, und den Rückfallplan im selben Dokument.",
+    ],
+  },
+  "meridian/artifact-fleet-dashboard": {
+    id: "meridian/artifact-fleet-dashboard",
+    kind: "figure",
+    title: "Flotten-Lebenszyklus-Tracker",
+    desc: "Ein Tracker, der Geräte nach Altersgruppen zeigt, daneben eine Warteschlange für Aufbereitung.",
+    art: "fleet-dashboard",
+  },
+  "meridian/artifact-cloud-savings": {
+    id: "meridian/artifact-cloud-savings",
+    kind: "figure",
+    title: "Cloud-Konsolidierung: laufende Summe",
+    desc: "Ein fallendes Liniendiagramm, in dem ungenutzte Ressourcen markiert werden, sobald sie abgeschaltet werden.",
+    art: "cloud-savings",
+  },
+  "meridian/slack-team-confusion": {
+    id: "meridian/slack-team-confusion",
+    kind: "slack",
+    channel: "#greenit-delivery",
+    from: "external",
+    fromName: "Delivery-Team",
+    role: "IT",
+    time: "10:41",
+    message: "welcher workstream hat diesen sprint priorität?",
+  },
+
+  // --- Phase 3
+  "meridian/slide-nordvind-draft": {
+    id: "meridian/slide-nordvind-draft",
+    kind: "slide",
+    template: "nordvind-draft",
+  },
+  "meridian/email-marketing-slide": {
+    id: "meridian/email-marketing-slide",
+    kind: "email",
+    from: "external",
+    fromName: "Marketing",
+    role: "Marke & Kommunikation",
+    time: "11:05",
+    subject: "Nordvind-Folie: Die Headline ist noch offen",
+    body: [
+      "Wir haben das Headline-Feld für dich freigelassen. Unser Rat: etwas Forsches, das trotzdem glaubwürdig bleibt.",
+      "Einkäufer in dieser Branche erwarten eine Zahl. „Deutliche Reduktion“ liest sich für ein Einkaufsteam wie nichts, weil sie diese Formulierung jede Woche sehen. Sag uns, was ins Feld soll, wir bauen den Rest drumherum.",
+    ],
+  },
+  "meridian/email-nordvind-excited": {
+    id: "meridian/email-nordvind-excited",
+    kind: "email",
+    from: "external",
+    fromName: "Nordvind Retail",
+    role: "Lieferanten-Nachhaltigkeit",
+    time: "14:02",
+    subject: "Re: Vorab-Meeting",
+    body: [
+      "Das ist genau das Ambitionsniveau, das wir uns von einem Partner eurer Größe erhofft haben. Wir würden das gerne in unserer eigenen Lieferantenkommunikation aufgreifen.",
+    ],
+  },
+  "meridian/slack-cto-nervous": {
+    id: "meridian/slack-cto-nervous",
+    kind: "slack",
+    channel: "DM",
+    from: "marcus",
+    fromName: "Marcus Vogel",
+    role: "CIO",
+    time: "14:36",
+    message: "das können wir doch wirklich schaffen, oder?",
+  },
+  "meridian/email-nordvind-cautious": {
+    id: "meridian/email-nordvind-cautious",
+    kind: "email",
+    from: "external",
+    fromName: "Nordvind Retail",
+    role: "Lieferanten-Nachhaltigkeit",
+    time: "15:18",
+    subject: "Re: Vorab-Meeting",
+    body: [
+      "Danke für die Baseline. Sie ist geringer, als manche Lieferanten behaupten, und höher, als die meisten belegen können. Wir verlängern die Prüfung um 60 Tage.",
+    ],
+  },
+  "meridian/email-nordvind-pushback": {
+    id: "meridian/email-nordvind-pushback",
+    kind: "email",
+    from: "external",
+    fromName: "Nordvind Retail",
+    role: "Lieferanten-Nachhaltigkeit",
+    time: "16:44",
+    subject: "Re: Vorab-Meeting",
+    body: ["Könnt ihr uns eure Baseline zeigen?"],
+  },
+  "meridian/email-nordvind-intrigued": {
+    id: "meridian/email-nordvind-intrigued",
+    kind: "email",
+    from: "external",
+    fromName: "Nordvind Retail",
+    role: "Lieferanten-Nachhaltigkeit",
+    time: "13:09",
+    subject: "Re: Vorab-Meeting",
+    body: ["Lasst uns eine gemeinsame Arbeitsgruppe aufsetzen."],
+  },
+
+  // --- Phase 4
+  "meridian/org-chart-empty": {
+    id: "meridian/org-chart-empty",
+    kind: "orgchart",
+    highlightNodeId: "owner",
+  },
+};
+
+export const PHASES_DE: typeof PHASES = [
+  {
+    id: "p1",
+    briefing: {
+      short:
+        "Ein erster Schritt ist nicht nur das, was du tust. Es ist das, was du danach noch wissen kannst. Trenne vor der Wahl ein Handlungsfeld von reiner Außenwirkung.",
+      questions: [
+        {
+          q: "Welche dieser Optionen liefert Wissen, das du noch nicht hast?",
+          lookFor:
+            "Achte darauf, ob das Ergebnis eine Tatsache ist oder ein Eindruck. Ein Audit liefert Zahlen. Ein Foto liefert ein Gefühl. Beides ist nützlich – aber nur eines lässt sich als Argument anführen.",
+        },
+        {
+          q: "Welche Option liefert etwas Vorzeigbares – und ist gerade Sichtbarkeit das Knappe, oder ist es Evidenz?",
+          lookFor:
+            "Die Knappheit entscheidet. Ist das Programm sicher, ist Sichtbarkeit billig und Evidenz wertvoll. Steht es kurz vor der Streichung, ist es umgekehrt.",
+        },
+        {
+          q: "Was macht jede Option für die nächsten acht Wochen unmöglich?",
+          lookFor:
+            "Addiere die Dauer auf der Karte zum heutigen Tag. Was danach liegt, hast du gerade aufgegeben – ob es jemand ausspricht oder nicht.",
+        },
+      ],
+      more: {
+        title: "Handlungsfelder, und der Preis eines ersten Schritts",
+        paragraphs: [
+          "Ein Handlungsfeld ist ein Ort, an dem eine Entscheidung eine physische oder vertragliche Tatsache verändern kann: was gekauft wird, wie lange es läuft, wann es ersetzt wird, wer es abzeichnet. Außenwirkung ist alles, was verändert, was Menschen glauben, ohne eine dieser Tatsachen zu ändern. Beides sind legitime Schritte; der Fehler ist, nicht sagen zu können, welchen du gerade gemacht hast.",
+          "Jeder erste Schritt verbraucht dieselben zwölf Wochen. Die wahren Kosten einer Option stehen nicht auf ihrem Preisschild. Sie bestehen aus der Option, die dadurch verschlossen wird. Sechs Wochen Audit bedeuten sechs Wochen, die nicht in Vertragsverhandlungen fließen. Drei Wochen sichtbare Lieferung bedeuten, dass du ohne belastbare Baseline in Phase 2 ankommst.",
+          "Meridians IT-Bestand bietet vier mögliche Handlungsfelder: was das Rechenzentrum verbraucht, wie lange Geräte leben, wie Cloud eingekauft wird, und wer darüber entscheidet. Nichts in Phase 1 legt eines davon fest. Es entscheidet, welches davon du klar sehen kannst.",
+        ],
+        links: [
+          {
+            label: "Wie IT-Fußabdrücke üblicherweise aufgeschlüsselt werden",
+            source: "techCarbon",
+            note: "Die Kategorien, in die die meisten IT-Bestände zerfallen, und wo das Gewicht normalerweise liegt.",
+          },
+          {
+            label: "Warum die Wertschöpfungskette meist den größten Anteil ausmacht",
+            source: "csrd",
+            note: "Scope 3 macht den größten Teil der Zahl für einen Technologiebestand aus – und ist am schwersten zu belegen.",
+          },
+        ],
+      },
+    },
+    banner: { left: "Phase 1 · Woche 1", right: "Dein erster Schritt setzt das Muster." },
+    readBack:
+      "Eine Woche, um die Richtung festzulegen. Marcus schaut zu. Sabine hat dich gerade vor Drama gewarnt. Rafael will keine Störung. Was tust du zuerst?",
+    opener: [],
+    next: "p2",
+    choices: [
+      {
+        id: "p1-a",
+        touches: ["marcus", "elena"],
+        title: "Erst die Daten",
+        body: "Beauftrage ein vollständiges Energieaudit und eine Geräteinventur, bevor irgendwelche Zusagen gemacht werden.",
+        tags: [
+          { icon: "clock", text: "6 bis 8 Wochen" },
+          { icon: "wallet", text: "geringe Kosten" },
+          { icon: "target", text: "Faktenbasis" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 6,
+          budget: 5,
+          moods: { marcus: "skeptical" },
+          revealNow: ["meridian/artifact-audit-preview"],
+          revealNextPhase: [
+            "meridian/calendar-urgent-marcus",
+            "meridian/slack-marcus-doorway",
+          ],
+        },
+      },
+      {
+        id: "p1-b",
+        touches: ["sabine", "marcus"],
+        title: "Sichtbarer Schnellerfolg",
+        body: "Setze eine Express-Erneuerung der 50 ältesten Laptops durch. Fototauglich und einfach zu berichten.",
+        tags: [
+          { icon: "clock", text: "3 Wochen" },
+          { icon: "wallet", text: "€80k" },
+          { icon: "eye", text: "vorstandssichtbar" },
+        ],
+        category: "R",
+        consequence: {
+          weekSet: 4,
+          budget: 80,
+          moods: { sabine: "hostile", marcus: "warming" },
+          revealNow: ["meridian/artifact-laptop-photo"],
+          revealNextPhase: [
+            "meridian/email-sabine-complaint",
+            "meridian/email-audit-late",
+          ],
+        },
+      },
+      {
+        id: "p1-c",
+        touches: ["sabine", "rafael", "elena"],
+        title: "Erst Abstimmung",
+        body: "Berufe einen internen Workshop mit Einkauf, Operations und Finance ein. Lege Umfang, Zuständigkeit und ein gemeinsames Vokabular fest.",
+        tags: [
+          { icon: "clock", text: "2 Wochen" },
+          { icon: "wallet", text: "geringe Kosten" },
+          { icon: "handshake", text: "Stakeholder-Zustimmung" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 3,
+          budget: 3,
+          moods: { sabine: "wary", rafael: "neutral", marcus: "wary" },
+          revealNow: ["meridian/artifact-workshop-notes"],
+          revealNextPhase: ["meridian/slack-marcus-nervous"],
+        },
+      },
+      {
+        id: "p1-d",
+        touches: ["elena", "marcus"],
+        title: "Externe Bewertung",
+        body: "Beauftrage eine ESG-Beratung mit einer schnellen 4-Wochen-Bewertung. Unabhängig, aber generisch und teuer.",
+        tags: [
+          { icon: "clock", text: "4 Wochen" },
+          { icon: "wallet", text: "€45k" },
+          { icon: "doc", text: "externer Bericht" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 5,
+          budget: 45,
+          moods: { elena: "skeptical", marcus: "neutral" },
+          revealNow: ["meridian/artifact-consultant-report"],
+          revealNextPhase: ["meridian/memo-elena-questions"],
+        },
+      },
+    ],
+  },
+  {
+    id: "p2",
+    briefing: {
+      short:
+        "Drei Bereiche, ein Budget. Wirkung, Machbarkeit und Sichtbarkeit zeigen selten auf denselben Bereich, und der größte Posten ist nicht immer der beweglichste.",
+      questions: [
+        {
+          q: "Welcher Bereich ist am größten, und welcher am veränderbarsten? Oft ist das nicht derselbe.",
+          lookFor:
+            "Die Prozentzahlen geben dir die Größe. Die Dauer-Tags geben dir den Zeithorizont. Die Größe ist die Obergrenze; der Horizont entscheidet, ob du sie innerhalb des Jahres erreichst.",
+        },
+        {
+          q: "Wer muss zustimmen, bevor das starten kann – und weiß diese Person das schon?",
+          lookFor:
+            "Schau, wessen Interesse unter der Option aufgeführt ist. Sitzt jemand mit einem Veto noch nicht am Tisch, ist der Zeitplan auf der Karte optimistisch.",
+        },
+        {
+          q: "Wenn das alles ist, was du dieses Jahr lieferst – trägt das Jahr trotzdem?",
+          lookFor:
+            "Frag dich, ob es die nächste Entscheidung leichter macht oder etwas hinterlässt, das für sich allein verteidigt werden muss.",
+        },
+      ],
+      more: {
+        title: "Priorisieren, wenn die drei Tests widersprechen",
+        paragraphs: [
+          "Wirkung fragt, wie viel vom Fußabdruck eine Option bewegen kann. Machbarkeit fragt, ob es sich mit den Leuten, dem Budget und der Befugnis umsetzen lässt, die du tatsächlich hast. Sichtbarkeit fragt, ob außerhalb der IT irgendjemand es bemerkt. Eine starke Option gewinnt meist zwei und verliert eine – und benennen zu können, welche sie verliert, macht den Fall verteidigungsfähig.",
+          "Die Falle in dieser Phase ist, die größte Prozentzahl als Antwort zu behandeln. Das Rechenzentrum ist der größte Posten – und zugleich der mit dem längsten Zeithorizont, den höchsten Investitionskosten und dem größten operativen Risiko. Das ist eine andere Frage als die, ob es der richtige Startpunkt ist.",
+          "Die andere Falle ist das Gegenteil: den kleinsten, sichersten Bereich zu wählen, weil er sich abschließen lässt. Etwas Kleines fertigzustellen ist im ersten Jahr viel wert – und sehr wenig wert, wenn es zum gesamten Programm wird.",
+        ],
+        links: [
+          {
+            label: "Rechenzentrums-Energie im Kontext",
+            source: "ieaEnergyAi",
+            note: "Wie groß der Energiebedarf von Rechenzentren tatsächlich ist, und wie schnell er wächst.",
+          },
+          {
+            label: "Warum die Lebensdauer von Geräten so viel Gewicht hat",
+            source: "techCarbon",
+            note: "Der größte Teil des Fußabdrucks eines Geräts entsteht, bevor es überhaupt eingeschaltet wird.",
+          },
+          {
+            label: "Workloads verschieben statt ersetzen",
+            source: "sci",
+            note: "Der Standard hinter CO₂-bewusster Platzierung, und warum Kompensation daran nichts ändert.",
+          },
+        ],
+      },
+    },
+    banner: { left: "Phase 2", right: "Wähle deinen Schwerpunkt." },
+    readBack:
+      "Du hast jetzt ein grobes Bild von Meridians IT-Fußabdruck. Drei Bereiche stechen heraus. Marcus hat Budget für eine ernsthafte Initiative plus kleinere Governance-Arbeit freigegeben. Was finanzierst du?",
+    opener: ["meridian/dashboard-footprint-preview"],
+    next: "p3",
+    choices: [
+      {
+        id: "p2-a",
+        touches: ["rafael", "elena"],
+        title: "Rechenzentrums-Migration",
+        body: "Migriere On-Prem-Workloads zu einem grün zertifizierten Colocation-Partner. Größte Wirkung, längster Zeithorizont, höchstes Störungsrisiko.",
+        tags: [
+          { icon: "clock", text: "12 bis 18 Monate" },
+          { icon: "wallet", text: "€800k+ CAPEX" },
+          { icon: "chartDown", text: "~35 % Reduktion" },
+        ],
+        category: "E",
+        consequence: {
+          weekAdd: 3,
+          budget: 40,
+          moods: { rafael: "hostile", elena: "skeptical" },
+          revealNow: [],
+          revealNextPhase: ["meridian/email-rafael-warning"],
+        },
+      },
+      {
+        id: "p2-b",
+        touches: ["sabine", "marcus"],
+        title: "Laptop-Lebenszyklus-Programm",
+        body: "Verlängere die Lebensdauer der Flotte mit strukturierter Aufbereitung, zustandsbasierter Erneuerung und End-of-Life-Management. Schnell, sichtbar, der Einkauf kann mitverantworten.",
+        tags: [
+          { icon: "clock", text: "3 bis 4 Monate" },
+          { icon: "wallet", text: "€120k" },
+          { icon: "chartDown", text: "~15 % Reduktion" },
+        ],
+        category: "R",
+        consequence: {
+          weekAdd: 3,
+          budget: 120,
+          moods: { sabine: "warming", marcus: "warming" },
+          moodsIf: [{ key: "sabine", whenCurrent: "hostile", then: "wary" }],
+          revealNow: [],
+          revealNextPhase: ["meridian/artifact-fleet-dashboard"],
+        },
+      },
+      {
+        id: "p2-c",
+        touches: ["elena", "marcus"],
+        title: "Cloud-FinOps + Governance",
+        body: "Konsolidiere Anbieter, schalte ungenutzte Ressourcen ab und erfasse CO₂ pro Workload. Starke Zahl, geringe Sichtbarkeit, braucht eine kompetente verantwortliche Person.",
+        tags: [
+          { icon: "clock", text: "6 Monate" },
+          { icon: "wallet", text: "€90k" },
+          { icon: "chartDown", text: "~25 % Reduktion" },
+        ],
+        category: "Em",
+        consequence: {
+          weekAdd: 4,
+          budget: 90,
+          moods: { elena: "warming", marcus: "wary" },
+          revealNow: [],
+          revealNextPhase: ["meridian/artifact-cloud-savings"],
+        },
+      },
+      {
+        id: "p2-d",
+        touches: ["marcus", "sabine", "rafael", "elena"],
+        title: "Ausgewogene Roadmap (alle drei klein starten)",
+        body: "Ein gestuftes Programm, das alle drei Bereiche in reduziertem Umfang anfasst. Nichts landet in 12 Wochen vollständig. Politische Absicherung durch Breite.",
+        tags: [
+          { icon: "clock", text: "laufend" },
+          { icon: "wallet", text: "€150k verteilt" },
+          { icon: "scales", text: "verteilte Wirkung" },
+        ],
+        category: "G",
+        consequence: {
+          weekAdd: 4,
+          budget: 150,
+          moods: {},
+          revealNow: [],
+          revealNextPhase: ["meridian/slack-team-confusion"],
+        },
+      },
+    ],
+  },
+  {
+    id: "p3",
+    briefing: {
+      short:
+        "Eine Aussage ist eine Verpflichtung. Was auch immer in dieses Feld kommt, wird zu etwas, das ein Kunde, ein Prüfer oder ein Journalist gegen deine Lieferung abgleichen kann.",
+      questions: [
+        {
+          q: "Kannst du das in zwölf Monaten Zeile für Zeile verteidigen, mit dem, was du dann tatsächlich hast?",
+          lookFor:
+            "Nimm jede Formulierung und benenne das Dokument, das du dafür vorlegen würdest. Eine Formulierung ohne Dokument dahinter ist ein Versprechen, keine Aussage.",
+        },
+        {
+          q: "Was passiert mit diesem Satz, wenn sich die Lieferung um zwei Quartale verzögert?",
+          lookFor:
+            "Eine bescheidene Aussage übersteht eine Verzögerung als Verzögerung. Eine ambitionierte macht aus derselben Verzögerung ein Glaubwürdigkeitsproblem.",
+        },
+        {
+          q: "Wer ist das Publikum: das Einkaufsteam des Kunden, dein eigener Vorstand, oder eine Pressemitteilung?",
+          lookFor:
+            "Der Einkauf liest nach Belegen, ein Vorstand liest nach Zuversicht, eine Pressemitteilung liest nach einer Schlagzeile. Nur eines der drei liest in zwölf Monaten noch mit.",
+        },
+      ],
+      more: {
+        title: "Wofür dich eine Nachhaltigkeitsaussage angreifbar macht",
+        paragraphs: [
+          "Das Risiko in dieser Phase ist nicht, eine schwache Position zu haben. Es ist, eine Position zu veröffentlichen, die du nicht belegen kannst. Eine bescheidene Zahl, die du zeigen kannst, schlägt eine ambitionierte, die du nicht belegen kannst, weil die ambitionierte jede spätere Verzögerung in ein Glaubwürdigkeitsproblem statt in ein Lieferproblem verwandelt.",
+          "Die Einkaufsteams der Kunden lesen solche Aussagen beruflich. Vage Formulierungen wie „deutliche Reduktion“ oder „im Einklang mit wissenschaftsbasierten Zielen“ sind rechtlich sicher, lesen sich für einen professionellen Einkäufer aber wie ein Fehlen von Daten. Meist folgt eine Rückfrage, keine Unterschrift.",
+          "Das ist auch die Phase, in der die Anreize anderer an dir ziehen. Marketing will eine Schlagzeile. Dein CIO will eine Vorstandsfolie. Keiner von beiden wird in zwölf Monaten gebeten werden, die Belege zu liefern.",
+        ],
+        links: [
+          {
+            label: "Eine Strafe von 25 Millionen Euro für die Aussage, nicht die Leistung",
+            source: "dws",
+            note: "Deutsche Staatsanwälte verhängten gegen die DWS eine Strafe, nachdem ihr ESG-Marketing nicht zu ihren tatsächlichen Prozessen passte.",
+          },
+          {
+            label: "Was regulierte Offenlegung tatsächlich verlangt",
+            source: "csrd",
+            note: "Wo eine freiwillige Aussage endet und eine prüfbare Erklärung beginnt.",
+          },
+        ],
+      },
+    },
+    banner: { left: "Phase 3 · Woche 10", right: "Zwei Wochen bis zum Vorstand." },
+    readBack:
+      "Nordvind will ein Vorab-Meeting vor der Vorstandspräsentation. Marketing hat eine Folie mit Platz für eine Schlagzeilen-Aussage entworfen. Nadias Daten zeigen: Der Fortschritt ist real, aber bescheiden.",
+    opener: ["meridian/slide-nordvind-draft", "meridian/email-marketing-slide"],
+    next: "p4",
+    choices: [
+      {
+        id: "p3-a",
+        touches: ["marcus"],
+        title: "Mutiges öffentliches Bekenntnis",
+        body: "Verkünde Net Zero IT bis 2028 mit quantifizierten Zwischenzielen. Nordvind wird es lieben. Die internen Daten stützen vielleicht 40 % der Aussage.",
+        tags: [
+          { icon: "megaphone", text: "starkes Signal" },
+          { icon: "warning", text: "Glaubwürdigkeitsrisiko" },
+          { icon: "target", text: "ambitioniert" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 10,
+          budget: 0,
+          moods: { marcus: "warming" },
+          revealNow: [],
+          revealNextPhase: [
+            "meridian/email-nordvind-excited",
+            "meridian/slack-cto-nervous",
+          ],
+        },
+      },
+      {
+        id: "p3-b",
+        touches: ["elena", "marcus"],
+        title: "Ehrliche Baseline + bescheidene Roadmap",
+        body: "Präsentiere die tatsächliche Baseline und eine Dreijahres-Roadmap, die du Zeile für Zeile verteidigen kannst. Nordvind könnte zurückdrängen oder sich anderswo umsehen.",
+        tags: [
+          { icon: "doc", text: "evidenzbasiert" },
+          { icon: "shield", text: "verteidigungsfähig" },
+          { icon: "chartDown", text: "unspektakulär" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 10,
+          budget: 0,
+          moods: { elena: "ally" },
+          revealNow: [],
+          revealNextPhase: ["meridian/email-nordvind-cautious"],
+        },
+      },
+      {
+        id: "p3-c",
+        touches: [],
+        title: "Ambitionierte Sprache, keine harte Zahl",
+        body: "„Wir verpflichten uns zu einer deutlichen Reduktion, im Einklang mit wissenschaftsbasierten Zielen.“ Auf dem Papier sicher. Nordvinds Team wurde schon einmal von Greenwashing-Aussagen enttäuscht.",
+        tags: [
+          { icon: "feather", text: "risikoarmer Text" },
+          { icon: "question", text: "vage für den Einkäufer" },
+          { icon: "scales", text: "rechtlich sicher" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 10,
+          budget: 0,
+          moods: {},
+          revealNow: [],
+          revealNextPhase: ["meridian/email-nordvind-pushback"],
+        },
+      },
+      {
+        id: "p3-d",
+        touches: ["rafael", "marcus"],
+        title: "Das Gespräch neu rahmen",
+        body: "Schlage ein gemeinsames Pilotprojekt zu geteilten Nachhaltigkeitsdaten in der Lieferkette vor. Verschiebung vom Lieferantenbericht zur Partnerschaft. Riskant: könnte als Ausweichmanöver gelesen werden.",
+        tags: [
+          { icon: "handshake", text: "Partnerschafts-Schritt" },
+          { icon: "dice", text: "Ausgang ungewiss" },
+          { icon: "globe", text: "breiterer Rahmen" },
+        ],
+        category: "G",
+        consequence: {
+          weekSet: 10,
+          budget: 0,
+          moods: { rafael: "warming", marcus: "wary" },
+          revealNow: [],
+          revealNextPhase: ["meridian/email-nordvind-intrigued"],
+        },
+      },
+    ],
+  },
+  {
+    id: "p4",
+    briefing: {
+      short:
+        "Zuständigkeit ist die Entscheidung, die die anderen entscheidet. Frag, was deinen eigenen Abgang übersteht, nicht, was funktioniert, solange du im Raum bist.",
+      questions: [
+        {
+          q: "Wer ist verantwortlich, wenn die Zahl öffentlich infrage gestellt wird?",
+          lookFor:
+            "Nenne die Person laut beim Namen. Kannst du das nicht, hat die Regelung die Frage noch nicht beantwortet.",
+        },
+        {
+          q: "Was passiert mit dieser Regelung, wenn du in neun Monaten befördert wirst?",
+          lookFor:
+            "Alles, was aufhört, wenn eine Person wechselt, war eine Person – keine Struktur.",
+        },
+        {
+          q: "Braucht es Fachwissen, Befugnis, oder beides – und liefert die Option das, was gebraucht wird?",
+          lookFor:
+            "Fachwissen ohne Mandat erzeugt Empfehlungen, denen niemand folgen muss. Ein Mandat ohne Fachwissen genehmigt selbstbewusst die falschen Dinge.",
+        },
+      ],
+      more: {
+        title: "Warum Governance die L3-Frage ist",
+        paragraphs: [
+          "Jede vorherige Phase hat etwas hervorgebracht, das am Laufen gehalten werden muss: eine Baseline, die gepflegt werden muss, Kriterien, die angewendet werden müssen, eine Aussage, die belegt werden muss. Governance ist die Antwort darauf, wer das tut, wenn die Aufmerksamkeit weiterzieht.",
+          "Die Wahl wird meist als Geschwindigkeit gegen Resilienz gerahmt. Eine einzelne verantwortliche Person entscheidet schnell und hört auf, sobald diese Person die Rolle wechselt. Ein Gremium entscheidet langsam und überlebt. Fachwissen und Befugnis sind getrennte Dinge: eine Fachperson ohne Mandat schreibt Empfehlungen, und ein Mandat ohne Fachwissen genehmigt die falschen.",
+          "Hier übergibt L2 an L3. Alles zuvor drehte sich darum, gut zu wählen. Hier geht es darum, die Entscheidungen der nächsten Person besser zu machen als deine eigenen – die einzige Version des Jobs, die sich aufsummiert.",
+        ],
+        links: [
+          {
+            label: "Rollen und Pflichten, die gesetzlich verankert werden",
+            source: "enefg",
+            note: "Deutsche Rechenzentren tragen inzwischen benannte Pflichten, nicht nur gute Absichten.",
+          },
+          {
+            label: "Wo Nachhaltigkeits-Governance offengelegt wird",
+            source: "csrd",
+            note: "Berichterstattung fragt, wer verantwortlich ist, nicht nur, wie die Zahlen aussehen.",
+          },
+        ],
+      },
+    },
+    banner: { left: "Phase 4 · Woche 12", right: "Vorstandssitzung morgen." },
+    readBack:
+      "Marcus stellt die Frage, die der Vorstand stellen wird: „Wer ist künftig dafür verantwortlich?“",
+    opener: ["meridian/org-chart-empty"],
+    next: "debrief",
+    choices: [
+      {
+        id: "p4-a",
+        touches: ["marcus"],
+        title: "Nadia übernimmt es persönlich",
+        body: "Du nimmst Green IT zusätzlich in deinen Verantwortungsbereich als IT Strategy Lead auf. Volle Kontrolle, Karrierebeschleuniger, kein Schutz vor Burnout oder Fluktuation.",
+        tags: [
+          { icon: "key", text: "klare Zuständigkeit" },
+          { icon: "warning", text: "Single Point of Failure" },
+          { icon: "rocket", text: "Karriereschritt" },
+        ],
+        category: "G",
+        consequence: { weekSet: 12, budget: 0, moods: {}, revealNow: [], revealNextPhase: [] },
+      },
+      {
+        id: "p4-b",
+        touches: ["marcus", "sabine", "rafael", "elena"],
+        title: "Bereichsübergreifendes Lenkungsgremium",
+        body: "IT, Einkauf, Operations und Finance sitzen monatlich zusammen. Langsamere Entscheidungen, robust gegen den Weggang einer einzelnen Person.",
+        tags: [
+          { icon: "handshake", text: "geteilte Verantwortung" },
+          { icon: "turtle", text: "langsamerer Takt" },
+          { icon: "shield", text: "resilient" },
+        ],
+        category: "G",
+        consequence: { weekSet: 12, budget: 0, moods: {}, revealNow: [], revealNextPhase: [] },
+      },
+      {
+        id: "p4-c",
+        touches: ["elena", "marcus"],
+        title: "Eigene Sustainability-Officer-Stelle in der IT schaffen",
+        body: "Eine Stelle für €90k/Jahr, berichtet an den CIO. Fachwissen ab Tag eins; Finance wird den ROI früh infrage stellen.",
+        tags: [
+          { icon: "brain", text: "Fachperson" },
+          { icon: "wallet", text: "laufende Kosten" },
+          { icon: "clock", text: "3 Monate bis Besetzung" },
+        ],
+        category: "G",
+        consequence: { weekSet: 12, budget: 0, moods: {}, revealNow: [], revealNextPhase: [] },
+      },
+      {
+        id: "p4-d",
+        touches: [],
+        title: "An bestehendes CSR-Team (in HR) delegieren",
+        body: "Sie berichten bereits zu Nachhaltigkeit. Sie verstehen aber auch nichts von IT-Infrastruktur. Empfehlungen laufen Gefahr, nicht umsetzbar zu sein.",
+        tags: [
+          { icon: "recycle", text: "nutzt bestehende Struktur" },
+          { icon: "gap", text: "Distanz IT–CSR" },
+          { icon: "doc", text: "berichtsförmig" },
+        ],
+        category: "G",
+        consequence: { weekSet: 12, budget: 0, moods: {}, revealNow: [], revealNextPhase: [] },
+      },
+    ],
+  },
+];
+
+export const PROLOGUE_DE: typeof PROLOGUE = {
+  company: {
+    title: "Meridian Logistics AG",
+    subline:
+      "Mittelständische europäische Logistik & Fulfillment · 800 Mitarbeitende · 3 Standorte (Hauptsitz + 2 Lager)",
+    growth:
+      "Das Unternehmen ist in zwei Jahren um 40 % gewachsen. Die IT ist damit nicht mitgewachsen, und die Lücke ist inzwischen auch von außerhalb des Unternehmens sichtbar.",
+    estateTitle: "Was du geerbt hast",
+    estate: [
+      {
+        label: "Hybrid, und ungeplant",
+        text: "Ein alterndes On-Premise-Rechenzentrum läuft neben Cloud-Diensten von drei Anbietern, die zu unterschiedlichen Zeiten aus unterschiedlichen Gründen eingeführt wurden.",
+      },
+      {
+        label: "Eine gemischte Laptop-Flotte",
+        text: "Kein Standardmodell und kein Standardalter. Was jemand bekommt, hängt davon ab, wann und wo diese Person angefangen hat.",
+      },
+      {
+        label: "Dezentrale Gerätebeschaffung",
+        text: "Jeder Standort kauft seine eigene Hardware. Es gibt keine einzige Liste dessen, was Meridian besitzt.",
+      },
+      {
+        label: "Stromverbrauch steigt jedes Quartal",
+        text: "Der Stromverbrauch des Rechenzentrums ist in jedem der letzten Quartale gestiegen. Niemand wurde je gefragt, warum.",
+      },
+      {
+        label: "Keine Zahl für den Fußabdruck",
+        text: "Niemand im Unternehmen hat eine belastbare Zahl für den CO₂-Fußabdruck der IT. Weder die IT, noch das Facility Management, noch Finance.",
+      },
+    ],
+  },
+  role: "Du bist Nadia, IT Strategy Lead. Sechs Wochen im Amt. Direkt berichtend an Marcus (CIO).",
+  artifacts: [
+    "meridian/email-marcus-opening",
+    "meridian/slack-sabine-heads-up",
+    "meridian/email-rafael-cold",
+  ],
+  situation: "12 Wochen. Budget nicht bestätigt. Keine Baseline-Daten. Der Vorstand wartet.",
+};
+
+// ---------------------------------------------------------------- endings (DE)
+
+export const ENDINGS_DE: typeof ENDINGS = {
+  "photo-op-trap": {
+    beats: [
+      "Nordvind unterschreibt. Der Vorstand applaudiert.",
+      "Monat 18: Ein unabhängiges Audit zeigt, dass sich der Gesamtfußabdruck kaum bewegt hat.",
+      "Jahr 3: Nordvind springt ab, und die Aussage ist immer noch auffindbar.",
+    ],
+    name: "Der Fototermin",
+    art: "photo-op-trap",
+    body: "Nordvind unterschreibt. Der Vorstand applaudiert. Achtzehn Monate später zeigt ein unabhängiges Audit, dass sich der Gesamtfußabdruck kaum bewegt hat. Nordvind springt in Jahr 3 ab, und es gibt jetzt eine Reputationsspur bei Google.",
+  },
+  "slow-burn": {
+    beats: [
+      "Woche 8: Marcus will Fortschritt sehen, bevor die Vorstandsunterlagen fertig sind.",
+      "Nordvind unterschreibt nach einer Verhandlung, mit einer 60-Tage-Prüfklausel.",
+      "Elena beginnt, Green IT als Kategorie zu behandeln statt als Projekt.",
+    ],
+    name: "Stiller Erfolg",
+    art: "slow-burn",
+    body: "Kein Spektakel. Die Roadmap ist Zeile für Zeile verteidigungsfähig. Nordvind verlängert den Vertrag mit einer 60-Tage-Prüfklausel. Marcus bekommt seine Vorstandsfolie. Elena beginnt, nach der Green-IT-Position als Kategorie zu fragen, nicht als Projekt.",
+  },
+  overreach: {
+    beats: [
+      "Das Bekenntnis kommt extern gut an.",
+      "Monat 12: Die interne Lieferung liegt hinter den Zwischenzielen zurück.",
+      "Nordvind verlangt Belege. Der Vorstand fragt Marcus. Marcus fragt dich.",
+    ],
+    name: "Die mutige Aussage",
+    art: "overreach",
+    body: "Das Bekenntnis kommt extern gut an, aber 12 Monate später liegt die interne Lieferung zurück. Nordvind verlangt Belege. Der Vorstand fragt Marcus. Marcus fragt dich. Dein Kalender ändert sich.",
+  },
+  "missed-opportunity": {
+    beats: [
+      "Die Methode war solide, und die Abstimmung war echt.",
+      "Woche 12 kommt mit Analyse an – und ohne Entscheidung zum Präsentieren.",
+      "Nordvinds Klausel greift.",
+    ],
+    name: "Richtiger Prozess, falsches Tempo",
+    art: "missed-opportunity",
+    body: "Die Methode war solide. Die Abstimmung war echt. Aber 12 Wochen waren nicht genug Vorlauf für die Form, die du gewählt hast. Nordvinds Klausel greift. Der Vorstand fragt, was passiert ist.",
+  },
+  "governance-win": {
+    beats: [
+      "Das Gremium trifft sich monatlich – und trifft sich weiter.",
+      "Der Vorstand genehmigt weiteres Budget.",
+      "Nadia wird neun Monate später befördert, und die Zuständigkeit übersteht es.",
+    ],
+    name: "Der unspektakuläre Sieg",
+    art: "governance-win",
+    body: "Das Lenkungsgremium ist unspektakulär, aber es hält. Die Zuständigkeit übersteht deine nächste Beförderung, und die danach. Sechs Jahre später ist dies das Jahr, in dem Meridian aufhört, Green IT ein Projekt zu nennen.",
+  },
+  "quiet-architect": {
+    name: "Die stille Architektin",
+    art: "quiet-architect",
+    beats: [
+      "Niemand außerhalb des Programms hat das Jahr überhaupt bemerkt.",
+      "Die Ausgaben wurden nie groß genug, um verteidigt werden zu müssen.",
+      "Die nächste Person in dieser Rolle erbt eine funktionierende Maschine, keinen Rückstau.",
+    ],
+    body: "Du hast die Fähigkeit aufgebaut, die Zuständigkeit geteilt gehalten, und das für weniger Geld, als ein einzelner Schnellerfolg gekostet hätte. Es gibt keine Ankündigung und keinen Neustart, weil es nichts neu zu starten gibt. Die folgenden Entscheidungen sind einfach besser als die davor, und niemand kann auf den Moment zeigen, an dem sich das geändert hat.",
+  },
+  "quiet-drift": {
+    beats: [
+      "Nordvinds Klausel wird mit einem Standardabsatz beantwortet.",
+      "Keine Schlagzeilen-Entscheidungen und keine Schlagzeilen-Konsequenzen.",
+      "Jemand anderes erbt das in achtzehn Monaten.",
+    ],
+    name: "Nichts ist passiert",
+    art: "quiet-drift",
+    body: "Keine Schlagzeilen-Entscheidungen, keine Schlagzeilen-Konsequenzen. Nordvinds Klausel wird mit einem Standardabsatz beantwortet. Jemand anderes wird das in achtzehn Monaten erben.",
+  },
+};
+
+export const DEBRIEF_MESSAGE_DE: typeof DEBRIEF_MESSAGE = [
+  "Green IT auf Managementebene ist nicht die Frage „welche Wahl ist richtig“. Es ist die Frage „hält diese Abfolge von Entscheidungen zusammen“. Ein mutiges Bekenntnis gepaart mit schwacher Governance ist nicht mutiger als ein bescheidenes Bekenntnis gepaart mit starker Governance. Es ist angreifbarer.",
+  "Achte darauf, welche Stakeholder du mitgenommen hast, und welche du zurückgelassen hast. In der Praxis entscheidet das darüber, ob eine Entscheidung einen CIO-Wechsel übersteht.",
+];
+
+export const SIGNAL_LABELS_DE: typeof SIGNAL_LABELS = [
+  { key: "visibility", label: "Sichtbarkeit" },
+  { key: "depth", label: "Tiefe" },
+  { key: "governance", label: "Governance" },
+  { key: "soloism", label: "Alleingang" },
+  { key: "deferral", label: "Vertagung" },
+  { key: "reframe", label: "Perspektivwechsel" },
+];

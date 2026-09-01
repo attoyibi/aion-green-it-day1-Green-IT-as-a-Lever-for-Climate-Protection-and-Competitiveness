@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { useT } from "@/lib/locale";
 
 /** Same dismissal and focus rules as ConfirmDialog, without a decision to make. */
 export function InfoDialog({
@@ -14,6 +15,7 @@ export function InfoDialog({
   children: ReactNode;
   onClose: () => void;
 }) {
+  const t = useT();
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const restoreTo = useRef<HTMLElement | null>(null);
@@ -79,7 +81,7 @@ export function InfoDialog({
             onClick={onClose}
             className="shrink-0 rounded-xl border border-line px-3 py-1.5 text-caption font-semibold text-navy transition-colors duration-200 hover:bg-lilac hover:underline"
           >
-            Close
+            {t.case.close}
           </button>
         </div>
 
