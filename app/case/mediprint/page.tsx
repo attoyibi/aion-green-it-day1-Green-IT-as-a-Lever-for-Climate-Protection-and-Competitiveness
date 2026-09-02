@@ -5,6 +5,7 @@ import { MediprintCase } from "@/components/case/MediprintCase";
 import { OpenItems } from "@/components/ui/OpenItems";
 import { InitiativePanel } from "@/components/case/InitiativePanel";
 import { ConditionTile } from "@/components/case/ConditionTile";
+import { MediprintPriority } from "@/components/case/MediprintPriority";
 import { CONDITIONS, CONDITIONS_DE, INITIATIVES, INITIATIVES_DE } from "@/data/mediprint";
 import { useLocale } from "@/lib/locale";
 
@@ -69,7 +70,11 @@ export default function MediprintPage() {
           <p className="mb-4 text-body text-ash">{copy.initiativesIntro}</p>
           <div className="grid gap-3 md:grid-cols-3">
             {initiatives.map((initiative) => (
-              <InitiativePanel key={initiative.id} initiative={initiative} />
+              <InitiativePanel
+                key={initiative.id}
+                initiative={initiative}
+                conditions={conditions}
+              />
             ))}
           </div>
         </section>
@@ -88,6 +93,8 @@ export default function MediprintPage() {
             ))}
           </ul>
         </section>
+
+        <MediprintPriority />
       </div>
     </>
   );

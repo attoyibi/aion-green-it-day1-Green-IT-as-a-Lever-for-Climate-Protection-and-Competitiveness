@@ -48,8 +48,34 @@ export type Hotspot = {
 
 export type ContextTile = { id: string; text: string };
 
-/** A read-only option on the table — no ranking, no recommendation. */
-export type Initiative = { id: string; title: string; body: string };
+/**
+ * One of the three options on the MediPrint table.
+ *
+ * `title` and `body` ship verbatim (N1). Everything below them is reasoning
+ * material added so Worksheet 2 Section C can be answered from the app: the
+ * learner has to rank the three and give one sentence of reason per row, and
+ * W5 teaches them to do that on impact against feasibility. So each option
+ * carries both axes, what it buys, what it costs, and which of the five
+ * general conditions bear on it. None of it states a rank — the ranking is
+ * the learner's, and MediprintPriority is where they commit to it.
+ */
+export type Initiative = {
+  id: string;
+  title: string;
+  body: string;
+  /** A / B / C. The letter Section C asks the learner to circle. */
+  letter: string;
+  /** Read on the impact axis of W5's matrix. */
+  impact: string;
+  /** Read on the feasibility axis of W5's matrix. */
+  feasibility: string;
+  /** What choosing it first would buy, stated without praise. */
+  buys: string;
+  /** What it costs or leaves open. Every option has one. */
+  costs: string;
+  /** ids from CONDITIONS that bear on this option. */
+  conditions: string[];
+};
 
 export type CaseBrief = {
   name: string;

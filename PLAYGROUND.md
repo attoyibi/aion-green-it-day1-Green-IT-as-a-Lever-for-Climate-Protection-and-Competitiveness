@@ -214,6 +214,45 @@ Anything that still imports literal strings for chrome text has not been
 migrated yet — search for the string before assuming it is missing from the
 dictionary.
 
+## Worksheet 2 Section C is a widget, not three dropdowns
+
+MediPrint used to end at three read-only initiative panels, which left Task 2
+without the decision surface Case B and Case C both have. `MediprintPriority`
+is that surface: rank A/B/C, one sentence of reason per row, commit, read what
+your own order costs, and only then an optional key.
+
+Three things are deliberate.
+
+Picking a letter that is already placed **swaps** the two rows rather than
+rejecting the click. The sheet prints a self-check — "the three circles across
+the three rows must be A, B and C, no repeats" — and a widget that can only
+ever hold a valid permutation makes that check unfailable instead of
+restating it as a warning.
+
+The reason box per row is not decoration. Section C is marked on the
+sentence, not the letter, so a committed row with an empty reason says so in
+warn colour rather than passing quietly.
+
+The reasoning lives on `Initiative`, not in the component: `impact`,
+`feasibility`, `buys`, `costs` and a `conditions` list of `cond-*` ids that
+`InitiativePanel` resolves into the actual pills. The impact/feasibility split
+is not a free choice — W5 is the named Learn support for Worksheet 2, and its
+own `why` says it exists "so that when you later defend a ranking, you can say
+which axis decided it". That ranking is this one, so the two axes it teaches
+are the two fields each initiative carries.
+
+The key's order (C, B, A) is derived, not invented: W5's own card hints score
+`w5-owner` as "costs almost nothing and unblocks everything downstream",
+`w5-procurement` as "compounding impact… applies to every future purchase",
+and `w5-replace-all` as "large budget, and the embedded manufacturing carbon
+can outweigh the energy saved". It also matches the line Case B states
+outright in `KEY.core`. `honesty` carries the same job it does in NordCom's
+key: B first is defensible and the text says so, so a learner who defended it
+does not read the key as a verdict.
+
+`title` and `body` on all three initiatives are still verbatim (N1). Only the
+fields under them were added.
+
 ## Judging the roadmap without scoring it
 
 W8 used to check one thing — whether a measure ran before its prerequisite —
